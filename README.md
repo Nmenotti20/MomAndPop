@@ -2,7 +2,7 @@
 B2B Networking
 
 
-[![GitHub followers](https://img.shields.io/github/followers/Nmenotti20?label=Follow&style=social)](https://github.com/Nmenotti20) [![project-top-language](https://img.shields.io/github/languages/top/Nmenotti20/README_Generator?color=yellow)](https://github.com/Nmenotti20/Fitness_Tracker) [![license](https://img.shields.io/badge/License-mit-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
+[![GitHub followers](https://img.shields.io/github/followers/Nmenotti20?label=Follow&style=social)](https://github.com/Nmenotti20) [![project-top-language](https://img.shields.io/github/languages/top/Nmenotti20/Accord?color=yellow)](https://github.com/Nmenotti20/Accord) [![license](https://img.shields.io/badge/License-mit-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
 
 ##### Version 1.0
 
@@ -19,11 +19,14 @@ B2B Networking
 
 
 #### User Story
-As a user, I want to be able to view create and track daily workouts. I want to be able to log multiple exercises in a workout on a given day. I should also be able to track the name, type, weight, sets, reps, and duration of exercise. If the exercise is a cardio exercise, I should be able to track my distance traveled.
+As a Buisiness Owner 
+I am looking for a tool to connect me with other buisnesses with capabilities to generate new clients and buisness partners in related industries
+so that I may do buisness with them.
+
 
 #### Project Links:
 
-[GitHub Repo](https://github.com/Nmenotti20/Fitness_Tracker)<br>
+[GitHub Repo](https://github.com/Nmenotti20/Accord)<br>
 
 ![Video Demo](/assets/demo.gif)<br>
 
@@ -63,6 +66,6 @@ Copyright © 2020 [Nick Menotti]<br>
 
 <p align='center'><i>
 Please contact me for additional information:<br>
-[GitHub Repo](https://github.com/Nmenotti20/Fitness_Tracker)<br>
+[GitHub Repo](https://github.com/Nmenotti20/Accord)<br>
 [Email:](nmenotti@cox.net)</i></p>
 
