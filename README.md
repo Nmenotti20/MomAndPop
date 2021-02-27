@@ -1,10 +1,6 @@
 # Accord
 B2B Networking
 
-<<<<<<< HEAD
-I got it on my machine -Enrique
-=======
-
 [![GitHub followers](https://img.shields.io/github/followers/Nmenotti20?label=Follow&style=social)](https://github.com/Nmenotti20) [![project-top-language](https://img.shields.io/github/languages/top/Nmenotti20/Accord?color=yellow)](https://github.com/Nmenotti20/Accord) [![license](https://img.shields.io/badge/License-mit-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
 
 ##### Version 1.0
@@ -71,5 +67,3 @@ Copyright © 2020 [Nick Menotti]<br>
 Please contact me for additional information:<br>
 [GitHub Repo](https://github.com/Nmenotti20/Accord)<br>
 [Email:](nmenotti@cox.net)</i></p>
-
->>>>>>> 90bdfa03b7d9521470703c18e7875b27fb340c17
