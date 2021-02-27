@@ -72,7 +72,5 @@ Copyright © 2020 [Nick Menotti, Enrique Gomez, Brett Winterstrom, Enrilo Ugalde
 
 <p align='center'><i>
 Please contact me for additional information:<br>
-
-[GitHub Repo](https://github.com/Nmenotti20/MomAndPop)<br>
->>>>>>> Stashed changes
-[Email:](nmenotti@cox.net)</i></p>
+![GitHub Repo](https://github.com/Nmenotti20/MomAndPop)<br>
+![Email:](nmenotti@cox.net)</i></p>
