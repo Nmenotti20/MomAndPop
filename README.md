@@ -1,9 +1,7 @@
-# Accord
-B2B Networking
+# MomAndPop
+Support Local Small Buisinesses 
 
-
-<<<<<<< Updated upstream
-[![GitHub followers](https://img.shields.io/github/followers/Nmenotti20?label=Follow&style=social)](https://github.com/Nmenotti20) [![project-top-language](https://img.shields.io/github/languages/top/Nmenotti20/Accord?color=yellow)](https://github.com/Nmenotti20/Accord) [![license](https://img.shields.io/badge/License-mit-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
+[![GitHub followers](https://img.shields.io/github/followers/Nmenotti20?label=Follow&style=social)](https://github.com/Nmenotti20) [![project-top-language](https://img.shields.io/github/languages/top/Nmenotti20/Accord?color=yellow)](https://github.com/Nmenotti20/MomAndPop) [![license](https://img.shields.io/badge/License-mit-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
 =======
 ##### Version 1.0
 
@@ -18,6 +16,10 @@ B2B Networking
 
 ### Project Description
 
+Small Businesses will be able to create a Local Small Business Owner Account and post their business logos, contact information, location, menus and marketing information as well as show their location on a map on the app so that consumers can find and support them by bringing them business.
+ 
+Consumers will be able to create a Consumer Account to search for Local Small Businesses, post photos, and reviews and comment on small businesses experiences so that other consumers may see the reviews and determine if they would like to support that business also. 
+
 
 #### User Story
 <<<<<<< Updated upstream
@@ -28,18 +30,15 @@ so that I may do buisness with them.
 
 #### Project Links:
 
-[GitHub Repo](https://github.com/Nmenotti20/Accord)<br>
+[GitHub Repo](https://github.com/Nmenotti20/MomAndPop)<br>
 =======
-As a user, I want to be able to view create and track daily workouts. I want to be able to log multiple exercises in a workout on a given day. I should also be able to track the name, type, weight, sets, reps, and duration of exercise. If the exercise is a cardio exercise, I should be able to track my distance traveled.
-
-#### Project Links:
-
-[GitHub Repo](https://github.com/Nmenotti20/Fitness_Tracker)<br>
->>>>>>> Stashed changes
+As a consumer,
+I want an app that will help me find local Small Businesses near me
+so that I can support them with business as opposed to big box retailers
 
 ![Video Demo](/assets/demo.gif)<br>
 
-![Additional Links](/assets/image.jpg)<br>
+![Additional Links](/client\assets\LogoMakr-9gsIdP.png)<br>
 
 ### Installation
 
@@ -47,6 +46,9 @@ As a user, I want to be able to view create and track daily workouts. I want to 
   
 ### Usage
 
+Small Businesses will be able to create a Local Small Business Owner Account and post their business logos, contact information, location, menus and marketing information as well as show their location on a map on the app so that consumers can find and support them by bringing them business.
+ 
+Consumers will be able to create a Consumer Account to search for Local Small Businesses, post photos, and reviews and comment on small businesses experiences so that other consumers may see the reviews and determine if they would like to support that business also. 
 
 ### Credits
 
