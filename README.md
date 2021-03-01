@@ -68,6 +68,7 @@ This project is [mit](https://choosealicense.com/licenses/mit) licensed.<br>
 
 <hr>
 <p align='center'><i>
+
 Copyright © 2020 [Nick Menotti, Enrique Gomez, Brett Winterstrom, Enrilo Ugalde Jr.]<br> 
 
 <p align='center'><i>
