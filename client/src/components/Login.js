@@ -15,19 +15,19 @@ function Login() {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Input 1" />
+                                <input type="email" class="form-control" placeholder="email" />
                             </div>
                             <div className="input-group form-group">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input type="password" class="form-control" placeholder="Input 2" />
+                                <input type="password" class="form-control" placeholder="password" />
                             </div>
                             <div className="input-group form-group">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Input 3" />
+                                <input type="password" class="form-control" placeholder="re-enter password" />
                             </div>
                             <div className="form-group">
                                 <input type="submit" value="Login" className="btn float-right login_btn" />
