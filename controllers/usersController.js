@@ -40,7 +40,8 @@ module.exports = {
     }
   },
   find: async function(req, res) {
-      res.send("yup it works");
+      console.log(jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret));
+      res.send(jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret));
   }
 //   update: function(req, res) {
 //     db.User
