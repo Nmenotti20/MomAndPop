@@ -22,8 +22,15 @@ export const SidebarData = [
     },
     {
         title: 'Business Profile',
-        path: '../pages/BizProfile.js',
-        icon: <FaIcons.FaUser />,
+        path: '/businessprofile',
+        icon: <FaIcons.FaUserTie />,
         cName: 'nav-text'
     },
+    {
+        title: 'Business Login',
+        path: '/businesslogin',
+        icon: <FaIcons.FaUserTie />,
+        cName: 'nav-text'
+    },
+
 ];
