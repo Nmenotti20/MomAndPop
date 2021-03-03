@@ -2,11 +2,12 @@ import React from 'react';
 import styles from "./login.css";
 import { FaEnvelope } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
+import background from "../images/Accord_Logo.png";
 
 
 function Login() {
     return (
-        <div className="container">
+        <div className="container" style={{ backgroundImage: `url(${background})` }}>
             <div className="d-flex justify-content-center h-100">
                 <div className="card">
                     <div className="card-header">
