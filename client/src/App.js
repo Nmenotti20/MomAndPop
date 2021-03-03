@@ -5,6 +5,8 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import BizLogin from "./pages/BizLogin";
+import BizProfile from "./pages/BizProfile";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       <Route path="/" exact component={Login} />
       <Route path="/settings" component={Settings} />
       <Route path="/profile" component={Profile} />
+      <Route path="/businesslogin" component={BizLogin} />
+      <Route path="/businessprofile" component={BizProfile} />
       <Footer />
     </Router>
   );
