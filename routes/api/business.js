@@ -1,16 +1,16 @@
 const router = require("express").Router();
-const usersController = require("../../controllers/usersController");
+const businessesController = require("../../controllers/businessesController");
 const passport = require('passport');
 
 // Matches with "/api/books"
 router.route("/login")
-  .get(usersController.login)
+  .get(businessesController.login)
 
 router.route("/register")
-  .post(usersController.register);
+  .post(businessesController.register);
 
 router.route("/isloggedin")
-  .get(passport.authenticate('userStrategy', { session: false }), usersController.find);
+  .get(passport.authenticate('businessStrategy', { session: false }), businessesController.find);
 // Matches with "/api/books/:id"
 // router
 //   .route("/:id")
