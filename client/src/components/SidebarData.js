@@ -20,5 +20,10 @@ export const SidebarData = [
         icon: <FaIcons.FaUser />,
         cName: 'nav-text'
     },
-
+    {
+        title: 'Business Profile',
+        path: '../pages/BizProfile.js',
+        icon: <FaIcons.FaUser />,
+        cName: 'nav-text'
+    },
 ];
