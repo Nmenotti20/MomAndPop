@@ -1,5 +1,7 @@
 import React from 'react';
-import styles from "./login.css"
+import styles from "./login.css";
+import { FaEnvelope } from "react-icons/fa";
+import { FaUnlock } from "react-icons/fa";
 
 
 function Login() {
@@ -14,19 +16,19 @@ function Login() {
                         <form>
                             <div className="input-group form-group">
                                 <div className="input-group-prepend">
-                                    <span className="input-group-text"><i class="fas fa-user"></i></span>
+                                    <span className="input-group-text"><FaEnvelope /> </span>
                                 </div>
                                 <input type="email" class="form-control" placeholder="email" />
                             </div>
                             <div className="input-group form-group">
                                 <div className="input-group-prepend">
-                                    <span className="input-group-text"><i class="fas fa-key"></i></span>
+                                    <span className="input-group-text"><FaUnlock /> </span>
                                 </div>
                                 <input type="password" class="form-control" placeholder="password" />
                             </div>
                             <div className="input-group form-group">
                                 <div className="input-group-prepend">
-                                    <span className="input-group-text"><i class="fas fa-user"></i></span>
+                                    <span className="input-group-text"><FaUnlock /> </span>
                                 </div>
                                 <input type="password" class="form-control" placeholder="re-enter password" />
                             </div>
