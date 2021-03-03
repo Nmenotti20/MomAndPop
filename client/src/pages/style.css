@@ -8,17 +8,21 @@ background-image: url('');
 height: 1200px;
 width:1000px;
 align-content: center;
+background-image: url("../images/12104LOGO.png");
+background-size: contain;
+background-repeat: no-repeat;
+background-position:center;
 }
 
 .card{
-height: 370px;
-margin-top: 30px;
+height: 343px;
+margin-top: 20px;
 margin-bottom: auto;
 width: 400px;
 background-color: rgba(0, 0, 0, 0.315) !important;
 animation-name: move;
 animation-duration: 3s;
-animation-direction: normal; 
+animation-direction: normal;
 }
 
 @keyframes move{
@@ -57,11 +61,4 @@ width: 100px;
 color: black;
 background-color: white;
 }
-
-.container{    
-    background-image: url("../images/12104.jpg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;    
-  }
 
