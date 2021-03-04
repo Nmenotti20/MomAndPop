@@ -8,8 +8,8 @@ import { FaUnlock } from "react-icons/fa";
 function NewUser() {
     return (
         <div className="container">
-            <div className="d-flex justify-content-center h-100">
-                <div className="card">
+           <div className="d-flex justify-content-center h-100">
+            <div className="card">
                     <div className="card-header">
                         <h3>Sign In</h3>
                     </div>
@@ -19,7 +19,7 @@ function NewUser() {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"><FaEnvelope /> </span>
                                 </div>
-                                <input type="email" class="form-control" placeholder="email" />
+                                <input type="email" className="form-control" placeholder="email" />
                             </div>
                             <div className="input-group form-group">
                                 <div className="input-group-prepend">
