@@ -10,7 +10,7 @@ passport.use('userStrategy',
         secretOrKey: process.env.jwt_secret,
     },
     (jwtPayload, done) => {
-        return  db.User.findOne({ where: { id: jwtPayload.id }}).then(user => {
+        return  db.User.findOne({ where: { uuid: jwtPayload.uuid }}).then(user => {
             return done(null, user);
         }).catch(err => {
             return done(err);
@@ -24,7 +24,7 @@ passport.use('businessStrategy',
         secretOrKey: process.env.jwt_secret,
     },
     (jwtPayload, done) => {
-        return  db.Business.findOne({ where: { id: jwtPayload.id }}).then(user => {
+        return  db.Business.findOne({ where: { uuid: jwtPayload.uuid }}).then(user => {
             return done(null, user);
         }).catch(err => {
             return done(err);
