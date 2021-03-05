@@ -1,5 +1,7 @@
 .navbar {
-    background-color: #060b26;
+    /* background-color: #060b26; */
+    background-color: rgba(0, 0, 0, 0.315) !important;
+    opacity: 1;
     height: 80px;
     display: flex;
     justify-content: start;
@@ -10,10 +12,13 @@
     margin-left: 2rem;
     font-size: 2rem;
     background: none;
+    /* color: red; */
+    color: #1abeff;
   }
   
   .nav-menu {
-    background-color: #060b26;
+    background-color: lightgrey;
+    /* background-color: rgba(0, 0, 0, 0.315) !important; */
     width: 250px;
     height: 100vh;
     display: flex;
@@ -40,7 +45,9 @@
   
   .nav-text a {
     text-decoration: none;
-    color: #f5f5f5;
+    /* color: #f5f5f5; */
+    /* color: #1abeff; */
+    color: black !important;
     font-size: 18px;
     width: 95%;
     height: 100%;
@@ -51,7 +58,8 @@
   }
   
   .nav-text a:hover {
-    background-color: #1a83ff;
+    /* background-color: #1a83ff; */
+    background-color: #1abeff;
   }
   
   .nav-menu-items {
@@ -59,7 +67,9 @@
   }
   
   .navbar-toggle {
-    background-color: #060b26;
+    background-color: lightgrey;
+    /* background-color: rgba(0, 0, 0, 0.315) !important; */
+    opacity: 1;
     width: 100%;
     height: 80px;
     display: flex;

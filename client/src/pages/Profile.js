@@ -2,8 +2,13 @@ import React from 'react';
 
 function Profile() {
     return (
-        <div>
+        <div className="container">
             <h1>Profile</h1>
+        
+        
+        
+        
+        
         </div>
     );
 }
