@@ -3,12 +3,12 @@ const sequelize = require('../config/connection.js');
 // Creating our User model
 const Review = sequelize.define("review", {
     userId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         defaultValue: 0
     },
     businessId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         defaultValue: 0
     },
@@ -35,6 +35,6 @@ Review.associate = function(models) {
     })
 }
 
-Review.sync();
+// Review.sync();
 
 module.exports = Review;
