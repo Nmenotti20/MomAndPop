@@ -42,7 +42,25 @@ module.exports = {
   find: async function(req, res) {
       console.log(jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret));
       res.send(jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret));
+  },
+  allReviews: function(req, res) {
+    db.Review
+      .findAll({
+        where: {
+          businessId: jwt.verify(req.headers.authorization.split(' ')[1], process.env.jwt_secret).id
+        }
+      })
+      .then(reviews => res.json(reviews))
+      .catch(err => res.status(422).json(err));
   }
+  // makePost: function(req, res) {
+  //   db.Post
+  //     .create(req.body)
+  //     .then(result => {
+  //       res.json(result)
+  //     })
+  //     .catch(err => res.status(422).json(err));
+  // }
 //   update: function(req, res) {
 //     db.User
 //       .findOneAndUpdate({ _id: req.params.id }, req.body)
