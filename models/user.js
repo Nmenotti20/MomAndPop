@@ -53,7 +53,7 @@ User.addHook("beforeCreate", User => {
         User.password,
         bcrypt.genSaltSync(10),
         null
-);
+    );
 });
 
 User.sync();
