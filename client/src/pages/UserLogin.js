@@ -7,8 +7,8 @@ import { FaUnlock } from "react-icons/fa";
 
 function UserLogin() {
     return (
-        <div className="container">
-            <div className="d-flex justify-content-center h-100">
+        
+            <div className="d-flex justify-content-center">
                 <div className="card">
                     <div className="card-header">
                         <h3>Returning User<br></br>Sign In</h3>
@@ -35,6 +35,7 @@ function UserLogin() {
                         </form>
                     </div>
                 </div>
+                <div className="container">
             </div>
         </div>
     )

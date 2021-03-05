@@ -6,7 +6,7 @@ import * as FaIcons from 'react-icons/fa';
 
 function BizLogin() {
     return (
-        <div className="container">
+        
             <div className="d-flex justify-content-center h-100">
                 <div className="card">
                     <div className="card-header">
@@ -35,7 +35,9 @@ function BizLogin() {
                         </form>
                     </div>
                 </div>
+                <div className="container">
             </div>
+
         </div>
     )
 }
