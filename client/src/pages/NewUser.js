@@ -5,7 +5,7 @@ import { FaUnlock } from "react-icons/fa";
 
 
 
-function Login() {
+function NewUser() {
     return (
         <div className="container">
            <div className="d-flex justify-content-center h-100">
@@ -36,6 +36,7 @@ function Login() {
                             <div className="form-group">
                                 <input type="submit" value="Login" className="btn float-right login_btn" />
                             </div>
+                            <a href="./UserLogin.js" class="card-link">Login to you existing<br></br>User Account</a>
                         </form>
                     </div>
                 </div>
@@ -44,4 +45,4 @@ function Login() {
     )
 }
 
-export default Login;
+export default NewUser;

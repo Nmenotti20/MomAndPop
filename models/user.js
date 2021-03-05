@@ -21,7 +21,13 @@ const User = sequelize.define("user", {
         unique: true,
         validate: {
             isEmail: true
-        }
+        },
+    // The username cannot be null    
+    username: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {}
     },
     // The password cannot be null
     password: {
