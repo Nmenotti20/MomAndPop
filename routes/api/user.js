@@ -21,11 +21,5 @@ router.route("/reviews")
   .get(authenticate, usersController.allReviews)
   .delete(authenticate, usersController.deleteReview)
   .put(authenticate, usersController.editReview);
-// Matches with "/api/books/:id"
-// router
-//   .route("/:id")
-//   .get(booksController.findById)
-//   .put(booksController.update)
-//   .delete(booksController.remove);
 
 module.exports = router;
