@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const { authorize } = require("passport");
 const Sequelize = require('sequelize');
 const sequelize = require('../config/connection.js');
+const Review = require('./review.js');
 // Creating our User model
 const Business = sequelize.define("business", {
     firstName: {
@@ -27,8 +28,11 @@ const Business = sequelize.define("business", {
         type: Sequelize.STRING,
         allowNull: false
     },
-    
     companyName: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    service: {
         type: Sequelize.STRING,
         allowNull: false
     },
@@ -61,11 +65,10 @@ const Business = sequelize.define("business", {
     }
 });
 
-Business.associate = function(models) {
-    Business.hasMany(models.Post, {
-        foreignKey: 'businessId'
-    })
-}
+
+Business.hasMany(Review, {
+    foreignKey: 'businessId'
+})
 
 // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
 Business.prototype.validPassword = function (password) {
