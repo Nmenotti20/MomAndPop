@@ -23,6 +23,13 @@ const Business = sequelize.define("business", {
             isEmail: true
         }
     },
+    // The username cannot be null    
+    username: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {}
+    },
     // The password cannot be null
     password: {
         type: Sequelize.STRING,

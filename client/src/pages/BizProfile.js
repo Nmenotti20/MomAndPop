@@ -2,8 +2,13 @@ import React from 'react';
 
 function BizProfile() {
     return (
-        <div>
+        <div className="container">
+        
             <h1>Business Profile</h1>
+
+
+
+            
         </div>
     );
 }
