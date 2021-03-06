@@ -4,7 +4,6 @@ const { authorize } = require("passport");
 const Sequelize = require('sequelize');
 const sequelize = require('../config/connection.js');
 const Review = require('./review.js');
-const { v4: uuidv4 } = require('uuid');
 // Creating our User model
 const Business = sequelize.define("business", {
     uuid: {
@@ -68,7 +67,10 @@ const Business = sequelize.define("business", {
         allowNull: false
     },
     website: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+            isUrl: true
+        }
     }
 });
 
