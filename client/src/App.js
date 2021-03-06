@@ -7,11 +7,13 @@ import Settings from "./pages/Settings";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BizLogin from "./pages/BizLogin";
 import BizProfile from "./pages/BizProfile";
+import Header from "./components/Header";
 
 function App() {
   return (
     <Router>
-      <Navbar />
+      {/* <Navbar /> */}
+      < Header />
       <Route path="/" exact component={UserLogin} />
       <Route path="/settings" component={Settings} />
       <Route path="/profile" component={Profile} />
