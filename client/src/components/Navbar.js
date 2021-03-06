@@ -7,6 +7,7 @@ import { IconContext } from 'react-icons';
 import logo from '../images/MomAndPop_Logo.png';
 import SearchIcon from "@material-ui/icons/Search";
 
+
 function Navbar() {
     const [sidebar, setSidebar] = useState(false);
 

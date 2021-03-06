@@ -7,6 +7,7 @@
     align-items: center;
   }
 
+
   .header_left {
     display: flex;
     justify-content: space-evenly;
@@ -67,6 +68,7 @@
   padding: 0 30px;
   border-bottom: none;
 }
+
   
   .menu-bars {
     margin-left: 2rem;
