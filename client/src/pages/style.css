@@ -4,7 +4,7 @@ html,body{
 background-image: url("../images/SmallBizOwnersImg.png"); 
 background-repeat: no-repeat;
 background-size:cover;
-background-origin: content-box;
+background-origin: padding-box;
 
 /* background-color: rgb(125, 238, 91); */
 }
@@ -12,20 +12,21 @@ background-origin: content-box;
 .container{
 /* height: 1200px;
 width:1000px; */
-height:1200px;
-width:auto;
+margin-top: 110px;
+height: 650px;
+width: 600px;
 align-content: center;
-background-image: url("../images/12104LOGO.png");
+background-image: url("../images/12104LOGOOP.png");
 background-size: contain;
 background-repeat: no-repeat;
 /* background-position:center; */
-background-position:bottom;
+background-position:center;
+
 }
 
 .card{
-height: 343px;
-margin-top: 20px;
-margin-bottom: auto;
+height: 290px;
+margin-top: 10px;
 width: 400px;
 /* background-color: rgba(0, 0, 0, 0.315) !important; */
 background-color: red !important;

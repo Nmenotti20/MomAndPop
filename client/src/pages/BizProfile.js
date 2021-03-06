@@ -6,6 +6,7 @@ import BusinessOwner from '../images/Petersons_Donughts_Img.png';
 
 function BizProfile() {
     return (
+
         <div classNameName="container">
             <div className="d-flex justify-content-center h-100">
                     <div className="card2 mb-3">
@@ -20,6 +21,7 @@ function BizProfile() {
                         </div>
                     </div>
             </div>
+
         </div>
     );
 }

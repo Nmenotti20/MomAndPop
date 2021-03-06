@@ -5,7 +5,7 @@ const authenticate = passport.authenticate('businessStrategy', { session: false 
 
 // Matches with "/api/books"
 router.route("/login")
-  .get(businessesController.login)
+  .post(businessesController.login)
 
 router.route("/register")
   .post(businessesController.register);
@@ -15,6 +15,12 @@ router.route("/isloggedin")
 
 router.route('/reviews')
   .get(authenticate, businessesController.allReviews);
+
+router.route('/posts')
+  .get(authenticate, businessesController.allPosts)
+  .post(authenticate, businessesController.makePost)
+  .delete(authenticate, businessesController.deletePost)
+  .put(authenticate, businessesController.editPost);
 
 // router.route("/makePost")
 //   .post(businessesController.makePost);

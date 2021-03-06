@@ -6,6 +6,7 @@ import Shopper from '../images/Shopper_img.png';
 
 function Profile() {
     return (
+
         <div classNameName="container">
             <div className="d-flex justify-content-center h-100">
                     <div className="card2 mb-3">
@@ -20,6 +21,7 @@ function Profile() {
                         </div>
                     </div>
             </div>
+
         </div>
     );
 }

@@ -22,7 +22,7 @@ module.exports = {
                 if (!user) return res.json({ message: "Email or password does not match" })
                 console.log(process.env.jwt_secret)
 
-                const jwtToken = jwt.sign({ id: dbModel.id, email: dbModel.email }, process.env.jwt_secret);
+                const jwtToken = jwt.sign({ uuid: dbModel.uuid, email: dbModel.email }, process.env.jwt_secret);
                 res.json({ message: "Welcome!", token: jwtToken })
             })
       })
@@ -46,8 +46,8 @@ module.exports = {
   makeReview: function(req, res) {
     db.Review
       .create({
-        ...req.body,
-        userId: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).id
+        userId: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid,
+        ...req.body
       })
       .then(result => {
         res.json(result)
@@ -74,23 +74,37 @@ module.exports = {
     db.Review
       .findAll({
         where: {
-          userId: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).id
+          userId: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid
         }
       })
       .then(reviews => res.json(reviews))
       .catch(err => res.status(422).json(err));
+  },
+  editReview: function(req, res) {
+    db.Review
+      .update({
+        title: req.body.title,
+        message: req.body.message
+      },
+        {
+          where: {
+            id: req.body.id,
+            userId: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid
+          }
+        }
+      )
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  deleteReview: function(req, res) {
+    db.Review
+      .destroy({
+        where: {
+          id: req.body.id,
+          userId: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid
+        }
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
-//   update: function(req, res) {
-//     db.User
-//       .findOneAndUpdate({ _id: req.params.id }, req.body)
-//       .then(dbModel => res.json(dbModel))
-//       .catch(err => res.status(422).json(err));
-//   },
-//   remove: function(req, res) {
-//     db.User
-//       .findById({ _id: req.params.id })
-//       .then(dbModel => dbModel.remove())
-//       .then(dbModel => res.json(dbModel))
-//       .catch(err => res.status(422).json(err));
-//   }
 };
