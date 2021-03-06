@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
-// import Logo from "../images/Accord_Logo.png";
+import Logo from "../images/MomAndPop_Logo.png";
 
 function Navbar() {
     const [sidebar, setSidebar] = useState(false);

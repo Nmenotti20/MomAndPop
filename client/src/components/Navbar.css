@@ -7,6 +7,10 @@
     justify-content: start;
     align-items: center;
   }
+
+  .navbar-brand{
+    
+  }
   
   .menu-bars {
     margin-left: 2rem;
