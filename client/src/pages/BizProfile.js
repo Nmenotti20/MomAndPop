@@ -2,7 +2,7 @@ import React from 'react';
 
 function BizProfile() {
     return (
-        <div className="container">
+        <div className="ProfileContainer">
         
             <h1>Business Profile</h1>
 

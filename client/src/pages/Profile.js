@@ -2,9 +2,9 @@ import React from 'react';
 
 function Profile() {
     return (
-        <div className="container">
+        <div className="ProfileContainer">
             <h1>Profile</h1>
-        
+            
         
         
         
