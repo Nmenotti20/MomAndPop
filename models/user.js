@@ -4,12 +4,11 @@ const { authorize } = require("passport");
 const Sequelize = require('sequelize');
 const sequelize = require('../config/connection.js');
 const Review = require('./review.js');
-const { v4: uuidv4 } = require('uuid');
 // Creating our User model
 const User = sequelize.define("user", {
     uuid: {
         type: Sequelize.UUID,
-        defaultValue: uuidv4(),
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         allowNull: false
     },
