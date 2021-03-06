@@ -9,7 +9,7 @@ const { v4: uuidv4 } = require('uuid');
 const Business = sequelize.define("business", {
     uuid: {
         type: Sequelize.UUID,
-        defaultValue: uuidv4(),
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         allowNull: false
     },
@@ -29,13 +29,6 @@ const Business = sequelize.define("business", {
         validate: {
             isEmail: true
         }
-    },
-    // The username cannot be null    
-    username: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {}
     },
     // The password cannot be null
     password: {

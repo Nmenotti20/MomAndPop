@@ -13,8 +13,8 @@ router.route("/register")
 router.route("/isloggedin")
   .get(authenticate, usersController.find);
   
-router.route('/allBusinesses')
-  .get(usersController.allBusinesses)
+router.route('/findBusinesses')
+  .get(usersController.findBusinesses)
 
 router.route("/reviews")
   .post(authenticate, usersController.makeReview)

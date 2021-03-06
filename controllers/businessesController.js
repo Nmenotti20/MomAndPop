@@ -81,8 +81,7 @@ module.exports = {
           message: req.body.message
         }, {
           where: {
-            id: req.body.id,
-            businessId: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid
+            id: req.body.id
           }
         })
       .then(dbModel => res.json(dbModel))
@@ -92,8 +91,7 @@ module.exports = {
     db.Post
       .destroy({
         where: {
-          id: req.body.id,
-          businessId: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid
+          id: req.body.id
         }
       })
       .then(dbModel => res.json(dbModel))
