@@ -8,7 +8,7 @@ export default {
         return axios.post("/api/business/register", { ...info })
     },
     makePost: function(info) {
-        return axios.post("/api/business/reviews", { ...info })
+        return axios.post("/api/business/posts", { ...info })
     },
     findBusinesses: function(query) {
         return axios.get("/api/business/findBusinesses", { query })
@@ -16,10 +16,13 @@ export default {
     allReviews: function() {
         return axios.get("/api/business/reviews")
     },
-    editReview: function(info) {
-        return axios.put("/api/business/reviews", { ...info })
+    allPosts: function() {
+        return axios.get("/api/business/posts")
     },
-    deleteReview: function(id) {
-        return axios.delete("/api/business/reviews", { id })
+    editPost: function(info) {
+        return axios.put("/api/business/posts", { ...info })
+    },
+    deletePost: function(id) {
+        return axios.delete("/api/business/posts", { id })
     }
 }

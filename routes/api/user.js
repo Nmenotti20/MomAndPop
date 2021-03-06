@@ -22,4 +22,7 @@ router.route("/reviews")
   .delete(authenticate, usersController.deleteReview)
   .put(authenticate, usersController.editReview);
 
+router.route("/posts")
+  .get(usersController.allPosts);
+
 module.exports = router;
