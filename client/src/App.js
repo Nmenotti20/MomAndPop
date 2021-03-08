@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       {/* <Navbar /> */}
-      < Header />
+      <Header />
       <Route path="/" exact component={UserLogin} />
       <Route path="/settings" component={Settings} />
       <Route path="/profile" component={Profile} />
