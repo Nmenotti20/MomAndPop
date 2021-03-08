@@ -55,6 +55,8 @@ Special thanks to the following resources that inspired this project:
 <li> [https://create-react-app.dev/docs/deployment/#github-pages]<https://create-react-app.dev/docs/deployment/#github-pages> </li>
 <li> [https://reactjs.org/]<https://reactjs.org> </li>
 <li> [https://www.npmjs.com/package/react-axios]<https://www.npmjs.com/package/react-axios> </li>
+<li> [https://www.npmjs.com/package/react-star-ratings]<https://www.npmjs.com/package/react-star-ratings> </li>
+<li> [https://react-bootstrap.github.io/components/cards/?#card-deck-props]<https://react-bootstrap.github.io/components/cards/?#card-deck-props> </li>
 </ul>
 
 ### Command to Test
