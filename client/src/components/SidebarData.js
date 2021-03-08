@@ -8,15 +8,21 @@ export const SidebarData = [
         icon: <FaIcons.FaHome />,
         cName: 'nav-text'
     },
+    // {
+    //     title: 'Settings',
+    //     path: '/settings',
+    //     icon: <FaIcons.FaCog />,
+    //     cName: 'nav-text '
+    // },
     {
-        title: 'Settings',
-        path: '/settings',
-        icon: <FaIcons.FaCog />,
+        title: 'Shopper Profile',
+        path: '/profile',
+        icon: <FaIcons.FaUser />,
         cName: 'nav-text '
     },
     {
-        title: 'Profile',
-        path: '/profile',
+        title: 'Shopper Login',
+        path: '/userlogin',
         icon: <FaIcons.FaUser />,
         cName: 'nav-text '
     },

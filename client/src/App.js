@@ -8,28 +8,21 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BizLogin from "./pages/BizLogin";
 import BizProfile from "./pages/BizProfile";
 import Header from "./components/Header";
-import Login from "./components/Login";
-import Feed from "./components/Feed";
+import Landing from "./pages/Landing";
 
 function App() {
-
   return (
-    <div>
-
-      <Router>
-        {/* <Navbar /> */}
-        < Header />
-        <Feed />
-        <Route path="/" exact component={UserLogin} />
+    <Router>
+      {/* <Navbar /> */}
+      < Header />
+        <Route path="/" exact component={Landing} />
         <Route path="/settings" component={Settings} />
+        <Route path="/userlogin" component={UserLogin} />
         <Route path="/profile" component={Profile} />
         <Route path="/businesslogin" component={BizLogin} />
         <Route path="/businessprofile" component={BizProfile} />
-        <Footer />
-      </Router>
-      )
-    </div>
-
+      <Footer />
+    </Router>
   );
 }
 

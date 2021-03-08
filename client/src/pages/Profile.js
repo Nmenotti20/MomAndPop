@@ -1,27 +1,33 @@
 import React from 'react';
 import "./style.css";
-import { FaEnvelope } from "react-icons/fa";
-import { FaUnlock } from "react-icons/fa";
 import Shopper from '../images/Shopper_img.png';
+import { Card } from "react-bootstrap";
+
 
 function Profile() {
     return (
 
         <div classNameName="container">
             <div className="d-flex justify-content-center h-100">
-                    <div className="card2 mb-3">
-                        <img src={Shopper} className="card-img-top" alt="photo"></img>
-                        <div className="card-body">
-                            <h5 className="card-title">Shopper Profile</h5>
-                            <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <Card className="card" style={{ height: 'auto', width: 'auto' }}>
+                    <Card.Img variant="top" src={Shopper} />
+                        <Card.Body>
+                            <Card.Title>Shopper Name</Card.Title>
+                                <Card.Text>
+                                A brief description of Shopper Profile.
+                                </Card.Text>
+                        </Card.Body>
+                        <Card.Body>
                             <div className="form-group">
-                                <input type="submit" value="Edit Profile" className="btn float-right login_btn" />
-                            </div>
-                            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
+                                <Card.Link href="#">Favortes</Card.Link>
+                                <input type="submit" value="Edit Profile" className="btn float-right edit_btn" />
+                                </div>
+                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                        </Card.Body>
+                </Card>
             </div>
-
+            <div className="container">
+            </div> 
         </div>
     );
 }
