@@ -2,6 +2,7 @@ const db = require("../models");
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const Sequelize = require("sequelize");
 
 // Defining methods for the UsersController
 module.exports = {
@@ -13,16 +14,16 @@ module.exports = {
 //   },
   login: function(req, res) {
     db.User
-      .findOne({ where: { email: req.body.email }})
+      .findOne({ where: { username: req.body.username }})
       .then(async dbModel => {
-          if (!dbModel) return res.json({ message: "Email or password does not match" });
+          if (!dbModel) return res.json({ message: "Username or password does not match" });
 
           bcrypt.compare(req.body.password, dbModel.password)
             .then((user) => {
-                if (!user) return res.json({ message: "Email or password does not match" })
+                if (!user) return res.json({ message: "Username or password does not match" })
                 console.log(process.env.jwt_secret)
 
-                const jwtToken = jwt.sign({ uuid: dbModel.uuid, email: dbModel.email }, process.env.jwt_secret);
+                const jwtToken = jwt.sign({ uuid: dbModel.uuid, username: dbModel.username }, process.env.jwt_secret);
                 res.json({ message: "Welcome!", token: jwtToken })
             })
       })
@@ -54,9 +55,28 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   },
-  allBusinesses: function(req, res) {
+  findBusinesses: function(req, res) {
     db.Business
       .findAll({
+        where: {
+          [Sequelize.Op.or]: [
+            {
+              service: {
+                [Sequelize.Op.substring]: req.body.query
+              }
+            },
+            {
+              companyName: {
+                [Sequelize.Op.substring]: req.body.query
+              }
+            },
+            {
+              zipCode: {
+                [Sequelize.Op.substring]: req.body.query
+              }
+            }
+          ]
+        },
         attributes: {
           exclude: [
             'email',
@@ -88,8 +108,7 @@ module.exports = {
       },
         {
           where: {
-            id: req.body.id,
-            userId: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid
+            id: req.body.id
           }
         }
       )
@@ -100,11 +119,16 @@ module.exports = {
     db.Review
       .destroy({
         where: {
-          id: req.body.id,
-          userId: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid
+          id: req.body.id
         }
       })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  allPosts: function(req, res) {
+    db.Post
+      .findAll({})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
   }
 };

@@ -1,0 +1,30 @@
+#footer{
+    background-image: url("../images/12104LOGOOP.png");
+    filter: grayscale(70%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color:white;
+    padding: 25px;
+    background-position: bottom, center;
+    display: flex;
+    justify-content: left;
+ 
+}
+footer img{
+    height: 50px;
+    width: 50px;
+    margin-left: 3px;
+
+}
+
+footer .gitHub{
+    filter:invert(100);
+        
+}
+
+input{
+    justify-content: left;
+}
+button{
+    background-color: orange;
+}

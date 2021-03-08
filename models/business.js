@@ -4,12 +4,11 @@ const { authorize } = require("passport");
 const Sequelize = require('sequelize');
 const sequelize = require('../config/connection.js');
 const Review = require('./review.js');
-const { v4: uuidv4 } = require('uuid');
 // Creating our User model
 const Business = sequelize.define("business", {
     uuid: {
         type: Sequelize.UUID,
-        defaultValue: uuidv4(),
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         allowNull: false
     },
@@ -29,13 +28,6 @@ const Business = sequelize.define("business", {
         validate: {
             isEmail: true
         }
-    },
-    // The username cannot be null    
-    username: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {}
     },
     // The password cannot be null
     password: {
@@ -75,7 +67,10 @@ const Business = sequelize.define("business", {
         allowNull: false
     },
     website: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+            isUrl: true
+        }
     }
 });
 

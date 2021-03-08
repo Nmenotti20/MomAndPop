@@ -13,13 +13,16 @@ router.route("/register")
 router.route("/isloggedin")
   .get(authenticate, usersController.find);
   
-router.route('/allBusinesses')
-  .get(usersController.allBusinesses)
+router.route('/findBusinesses')
+  .get(usersController.findBusinesses)
 
 router.route("/reviews")
   .post(authenticate, usersController.makeReview)
   .get(authenticate, usersController.allReviews)
   .delete(authenticate, usersController.deleteReview)
   .put(authenticate, usersController.editReview);
+
+router.route("/posts")
+  .get(usersController.allPosts);
 
 module.exports = router;

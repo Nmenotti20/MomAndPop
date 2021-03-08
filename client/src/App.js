@@ -10,7 +10,6 @@ import BizProfile from "./pages/BizProfile";
 import Header from "./components/Header";
 import Landing from "./pages/Landing";
 
-
 function App() {
   return (
     <Router>
