@@ -15,7 +15,7 @@ function Footer() {
           <div className="col-lg-12">
             <a
               className="gitHub"
-              href="https://github.com/Jruuuu"
+              href="https://github.com/Nmenotti20/MomAndPop"
               target="_blank"
               rel="noopener noreferrer">
               <img src={gitHubIcon} alt="github icon" loading="lazy"></img>
