@@ -8,11 +8,12 @@ import BizLogin from "./pages/BizLogin";
 import BizProfile from "./pages/BizProfile";
 import Header from "./components/Header";
 import Landing from "./pages/Landing";
-
+import Feed from "./components/Feed";
 function App() {
   return (
     <Router>
       < Header />
+      <Feed />
       <Route path="/" exact component={Landing} />
       <Route path="/settings" component={Settings} />
       <Route path="/userlogin" component={UserLogin} />
