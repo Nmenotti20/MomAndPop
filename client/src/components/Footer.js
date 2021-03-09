@@ -6,7 +6,7 @@ import "./Footer.css";
 import gitHubIcon from "../images/GitHub-Mark-Light-32px.png";
 import igIcon from "../images/Instagram.png";
 import  linkedIcon from "../images/LI-In-Bug.png"
-import twitterIcon from "../images/twitter.jpg"
+import twitterIcon from "../images/twitter.png"
 
 function Footer() {
     return (

@@ -29,9 +29,10 @@ height: 290px;
 margin-top: 10px;
 width: 400px;
 /* background-color: rgba(0, 0, 0, 0.315) !important; */
-background-color: red !important;
+/* background-color: #7fd8fc !important; */
+background-color: #ffdd1a !important;
 position: absolute;
-opacity:0.65;
+opacity:0.85;
 animation-name: move;
 animation-duration: 3s;
 animation-direction: normal;
@@ -60,7 +61,8 @@ color: black;
 .input-group-prepend span{
 width: 40px;
 /* background-color: #FFC312; */
-background-color: #1abeff;
+background-color: #ff0202;
+/* background-color: #ffdd1a; */
 color: black;
 border:0 !important;
 }
@@ -73,7 +75,9 @@ box-shadow: 0 0 0 0 !important;
 .login_btn{
 color: black;
 /* background-color: #FFC312; */
-background-color: #1abeff;
+/* background-color: #ffdd1a; */
+background-color: #ff0202;
+
 width: 100px;
 }
 
