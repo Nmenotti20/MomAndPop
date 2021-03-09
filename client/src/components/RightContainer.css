@@ -1,0 +1,30 @@
+.business {
+    margin-left:50px;
+    margin-top: 15px;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+    padding: 25px 10px;
+}
+
+.business_top {
+    display: flex;
+    position:relative;
+    align-items: center;
+    padding: 15px;
+}
+
+.business_topInfo > h3 {
+    font-size: medium;
+}
+
+.business_topInfo > p {
+    font-size: small;
+    color: gray;
+}
+
+.post_bottom {
+    margin-bottom: 10px;
+    padding: 15px 25px;
+}
+
