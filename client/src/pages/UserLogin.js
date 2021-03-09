@@ -7,7 +7,7 @@ function UserLogin() {
     return (
         <div classNameName="container">
             <div className="d-flex justify-content-center h-100">
-                <div className="card">
+                <div className="card" style={{ height: 'auto', width: 'auto' }}>
                     <div className="card-header">
                         <h3>Returning User<br></br>Sign In</h3>
                     </div>
