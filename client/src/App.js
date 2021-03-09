@@ -1,6 +1,5 @@
 import React from "react";
 import Footer from "./components/Footer";
-import Navbar from './components/Navbar';
 import UserLogin from "./pages/UserLogin";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
@@ -9,13 +8,18 @@ import BizLogin from "./pages/BizLogin";
 import BizProfile from "./pages/BizProfile";
 import Header from "./components/Header";
 
+
+import Landing from "./pages/Landing";
+import Feed from "./components/Feed";
 function App() {
   return (
     <Router>
-      {/* <Navbar /> */}
-      <Header />
-      <Route path="/" exact component={UserLogin} />
+      < Header />
+      <Feed />
+      <Route path="/" exact component={Landing} />
       <Route path="/settings" component={Settings} />
+      <Route path="/userlogin" component={UserLogin} />
+
       <Route path="/profile" component={Profile} />
       <Route path="/businesslogin" component={BizLogin} />
       <Route path="/businessprofile" component={BizProfile} />

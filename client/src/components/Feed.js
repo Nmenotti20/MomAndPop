@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./Feed.css";
+import MessageSender from './MessageSender';
 import Post from './Post';
 
 function Feed() {
@@ -11,6 +12,7 @@ function Feed() {
 
     return (
         <div>
+            <MessageSender />
             <Post />
         </div>
     )

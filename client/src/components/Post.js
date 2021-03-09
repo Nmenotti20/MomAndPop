@@ -3,11 +3,15 @@ import "./Post.css";
 import { Avatar } from "@material-ui/core";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
-import NearMeIcon from "@material-ui/icons/NearMe";
-import { ExpandMoreOutlined } from "@material-ui/icons";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import StarRating from './StarRating';
+
+
+
+
 
 function Post({ image, profilePic, username, timestamp, message }) {
+
+
     return (
         <div className="post">
             <div className="post_top">
@@ -26,8 +30,7 @@ function Post({ image, profilePic, username, timestamp, message }) {
             </div>
             <div className="post_options">
                 <div className="post_option">
-                    <ThumbUpIcon />
-                    <p>Like</p>
+                    <StarRating />
                 </div>
                 <div className="post_option">
                     <ChatBubbleOutlineIcon />

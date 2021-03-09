@@ -3,12 +3,10 @@ import "./style.css";
 import { FaEnvelope } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 
-
-
 function UserLogin() {
     return (
-        
-            <div className="d-flex justify-content-center">
+        <div classNameName="container">
+            <div className="d-flex justify-content-center h-100">
                 <div className="card">
                     <div className="card-header">
                         <h3>Returning User<br></br>Sign In</h3>
@@ -35,8 +33,9 @@ function UserLogin() {
                         </form>
                     </div>
                 </div>
-                <div className="container">
             </div>
+            <div className="container">
+            </div> 
         </div>
     )
 }
