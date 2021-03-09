@@ -1,6 +1,5 @@
 import React from "react";
 import Footer from "./components/Footer";
-import Navbar from './components/Navbar';
 import UserLogin from "./pages/UserLogin";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
@@ -13,14 +12,13 @@ import Landing from "./pages/Landing";
 function App() {
   return (
     <Router>
-      {/* <Navbar /> */}
       < Header />
-        <Route path="/" exact component={Landing} />
-        <Route path="/settings" component={Settings} />
-        <Route path="/userlogin" component={UserLogin} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/businesslogin" component={BizLogin} />
-        <Route path="/businessprofile" component={BizProfile} />
+      <Route path="/" exact component={Landing} />
+      <Route path="/settings" component={Settings} />
+      <Route path="/userlogin" component={UserLogin} />
+      <Route path="/profile" component={Profile} />
+      <Route path="/businesslogin" component={BizLogin} />
+      <Route path="/businessprofile" component={BizProfile} />
       <Footer />
     </Router>
   );
