@@ -13,35 +13,35 @@ function Footer() {
       <footer id="footer">
         <div className="row">
           <div className="col-lg-12">
-            <a
+            {/* <a
               className="gitHub"
               href="https://github.com/Nmenotti20/MomAndPop"
               target="_blank"
               rel="noopener noreferrer">
               <img src={gitHubIcon} alt="github icon" loading="lazy"></img>
-            </a>
+            </a> */}
             <a
               className="igIcon"
-              href=""
+              href="https://www.instagram.com/"
               target="_blank"
               rel="noopener noreferrer">
               <img src={igIcon} alt="instagram icon" loading="lazy"></img>
             </a>
             <a
               className="linkedInIcon"
-              href=""
+              href="https://www.linkedin.com/"
               target="_blank"
               rel="noopener noreferrer">
               <img src={linkedIcon} alt="LinkedIN icon" loading="lazy"></img>
             </a>
             <a
               className="twitterIcon"
-              href=""
+              href="https://twitter.com/"
               target="_blank"
               rel="noopener noreferrer">
               <img src={twitterIcon} alt="Twitter icon" loading="lazy"></img>
             </a>
-            <input></input><button>Subscribe</button>
+            {/* <input></input><button>Subscribe</button> */}
           </div>
         </div>
       </footer>
