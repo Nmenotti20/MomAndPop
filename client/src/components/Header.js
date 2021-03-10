@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import "./Header.css";
 import logo from '../images/Pin_logo.png';
-import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from "@material-ui/icons/Home";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 import { Avatar } from "@material-ui/core";
@@ -16,19 +15,41 @@ function Header() {
     const showSidebar = () => setSidebar(!sidebar);
 
     return (
-        <div className="header">
+        <div classNameName="container">
+            <div className="d-flex justify-content-center h-100">
 
-            <div className="header_left">
-                <Link to='#' className='menu-bars'>
-                    <FaIcons.FaBars onClick={showSidebar} />
-                </Link>
-                <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                    <ul className='nav-menu-items' onClick={showSidebar}>
-                        <li className='navbar-toggle'>
-                            <Link to='#' className='menu-bars'>
-                                <FaIcons.FaTimes />
-                            </Link>
-                        </li>
+                <div className="header">
+                    <div className="header_left">
+                        <Link to='#' className='menu-bars'>
+                            <FaIcons.FaBars onClick={showSidebar} />
+                        </Link>
+                        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                            <ul className='nav-menu-items' onClick={showSidebar}>
+                                <li className='navbar-toggle'>
+                                    <Link to='#' className='menu-bars'>
+                                        <FaIcons.FaTimes />
+                                    </Link>
+                                </li>
+                                {SidebarData.map((item, index) => {
+                                    return (
+                                        <li key={index} className={item.cName}>
+                                            <Link to={item.path}>
+                                                {item.icon}
+                                                <span>{item.title}</span>
+                                            </Link>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </nav>
+                        <img src={logo} />
+                        <div className="header_input">
+                            <SearchIcon />
+                            <input placeholder="Search Small Business" type="text" />
+                        </div>
+                    </div>
+
+                    <div className="header_center">
                         {SidebarData.map((item, index) => {
                             return (
                                 <li key={index} className={item.cName}>
@@ -39,40 +60,29 @@ function Header() {
                                 </li>
                             );
                         })}
+<<<<<<< HEAD
                     </ul>
                 </nav>
                 <img src={logo} />
-                <div className="header_input">
-                    <SearchIcon />
-                    <input placeholder="Search Small Business" type="text" />
-                </div>
             </div>
+=======
+                        {/* <div className="header_option header_option--active">
+                            <HomeIcon fontSize="large" />
+                        </div>
+                        <div className="header_option">
+                            <SupervisedUserCircleIcon fontSize="large" />
+                        </div> */}
+                    </div>
+>>>>>>> af4852f416763fc0c7647069cadb474b24f83b5b
 
-            <div className="header_center">
-                {SidebarData.map((item, index) => {
-                    return (
-                        <li key={index} className={item.cName}>
-                            <Link to={item.path}>
-                                {item.icon}
-                                <span>{item.title}</span>
-                            </Link>
-                        </li>
-                    );
-                })}
-                {/* <div className="header_option header_option--active">
-                    <HomeIcon fontSize="large" />
+                    <div className="header_right">
+                        <div className="header_info">
+                            <Avatar src="" />
+                            <h4>Brett </h4>
+                        </div>
+
+                    </div>
                 </div>
-                <div className="header_option">
-                    <SupervisedUserCircleIcon fontSize="large" />
-                </div> */}
-            </div>
-
-            <div className="header_right">
-                <div className="header_info">
-                    <Avatar src="" />
-                    <h4>Brett </h4>
-                </div>
-
             </div>
         </div>
     )
