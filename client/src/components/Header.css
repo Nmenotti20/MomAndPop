@@ -151,3 +151,9 @@
   span {
     margin-left: 16px;
   }
+
+@media all and (max-width: 1200px){
+  .nav-text a {
+    display: none
+  }
+}
