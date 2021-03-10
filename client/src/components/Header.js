@@ -37,7 +37,7 @@ function Header() {
                 </nav>
                 <img src={logo} />
                 <div className="header_input">
-                    <SearchIcon />
+                    {/* <SearchIcon /> */}
                     <input placeholder="Search Small Business" type="text" />
                 </div>
             </div>
