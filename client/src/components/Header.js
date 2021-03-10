@@ -60,12 +60,6 @@ function Header() {
                                 </li>
                             );
                         })}
-<<<<<<< HEAD
-                    </ul>
-                </nav>
-                <img src={logo} />
-            </div>
-=======
                         {/* <div className="header_option header_option--active">
                             <HomeIcon fontSize="large" />
                         </div>
@@ -73,7 +67,6 @@ function Header() {
                             <SupervisedUserCircleIcon fontSize="large" />
                         </div> */}
                     </div>
->>>>>>> af4852f416763fc0c7647069cadb474b24f83b5b
 
                     <div className="header_right">
                         <div className="header_info">
