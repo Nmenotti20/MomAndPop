@@ -3,10 +3,12 @@ import StarRating from './StarRating'
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import "./LocalBusiness.css";
 
+
 function LocalBusiness() {
     return (
         <div className="business ">
             <div className="business_top">
+
                 <div className="business_topInfo">
                     <h3>Business Name:</h3>
                     <p>Business Description:</p>
