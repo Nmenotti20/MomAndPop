@@ -18,7 +18,7 @@ function App() {
     <Router>
 
       < Header />
-      <div className="container-fluid">
+      {/* <div className="container-fluid">
         <div className="row">
           <div className="col-lg-4 col-md-6">
 
@@ -34,7 +34,7 @@ function App() {
           </div>
 
         </div>
-      </div>
+      </div> */}
 
 
       <Route path="/" exact component={Landing} />

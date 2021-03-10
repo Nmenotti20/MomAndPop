@@ -55,6 +55,22 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   },
+  findAllBusinesses: function(req, res) {
+    db.Business
+      .findAll({
+        attributes: {
+          exclude: [
+            'email',
+            'password'
+          ]
+        },
+        include: [{
+          model: db.Review
+        }]
+      })
+      .then(businesses => res.json(businesses))
+      .catch(err => res.status(422).json(err))
+  },
   findBusinesses: function(req, res) {
     db.Business
       .findAll({
@@ -62,17 +78,17 @@ module.exports = {
           [Sequelize.Op.or]: [
             {
               service: {
-                [Sequelize.Op.substring]: req.body.query
+                [Sequelize.Op.substring]: req.params.query
               }
             },
             {
               companyName: {
-                [Sequelize.Op.substring]: req.body.query
+                [Sequelize.Op.substring]: req.params.query
               }
             },
             {
               zipCode: {
-                [Sequelize.Op.substring]: req.body.query
+                [Sequelize.Op.substring]: req.params.query
               }
             }
           ]

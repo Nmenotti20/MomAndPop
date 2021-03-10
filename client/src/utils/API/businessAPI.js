@@ -10,9 +10,6 @@ export default {
     makePost: function(info) {
         return axios.post("/api/business/posts", { ...info })
     },
-    findBusinesses: function(query) {
-        return axios.get("/api/business/findBusinesses", { query })
-    },
     allReviews: function() {
         return axios.get("/api/business/reviews")
     },
