@@ -11,11 +11,32 @@ import Header from "./components/Header";
 
 import Landing from "./pages/Landing";
 import Feed from "./components/Feed";
+import LocalBusiness from "./components/LocalBusiness";
+import RightContainer from "./components/RightContainer";
 function App() {
   return (
     <Router>
+
       < Header />
-      <Feed />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-lg-4 col-md-6">
+
+            <LocalBusiness />
+          </div>
+          <div className="col-lg-4 col-md-6">
+
+            <Feed />
+          </div>
+          <div className="col-lg-4 col-md-6">
+
+            <RightContainer />
+          </div>
+
+        </div>
+      </div>
+
+
       <Route path="/" exact component={Landing} />
       <Route path="/settings" component={Settings} />
       <Route path="/userlogin" component={UserLogin} />
