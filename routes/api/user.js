@@ -13,8 +13,11 @@ router.route("/register")
 router.route("/isloggedin")
   .get(authenticate, usersController.find);
   
-router.route('/findBusinesses')
+router.route('/findBusinesses/:query')
   .get(usersController.findBusinesses)
+
+router.route('/findAllBusinesses')
+  .get(usersController.findAllBusinesses)
 
 router.route("/reviews")
   .post(authenticate, usersController.makeReview)
