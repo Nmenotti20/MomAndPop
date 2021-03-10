@@ -32,8 +32,8 @@ const Landing = () => {
     useEffect(() => {
         if (!search) {
             API.findAllBusinesses()
-            .then(res => setBusinesses(res.data))
-            .catch(err => console.log(err))
+                .then(res => setBusinesses(res.data))
+                .catch(err => console.log(err))
         } else if (debouncedSearchTerm) {
             searchBusinesses(debouncedSearchTerm)
         }
@@ -56,7 +56,7 @@ const Landing = () => {
                 <input onChange={handleInputChange} placeholder="Search Small Business" type="text" />
             </div>
             <div className="d-flex justify-content-center h-100">
-            <CardColumns>
+                <CardColumns>
                     {
                         businesses.map(business => (
                             <Card className="card" style={{ height: 'auto', width: 'auto' }}>
@@ -68,9 +68,9 @@ const Landing = () => {
                                     </Card.Text>
                                     <Card.Text>
                                         {business.streetAddress}
-                                        <br/>
+                                        <br />
                                         {business.city}, {business.state} {business.zipCode}
-                                        <br/>
+                                        <br />
                                         {business.phone}
                                     </Card.Text>
                                 </Card.Body>
@@ -81,13 +81,13 @@ const Landing = () => {
                             </Card>
                         ))
                     }
-                </CardColumns>     
+                </CardColumns>
             </div>
             {/* <div className="container">
             </div> */}
-            <Modal show={false} style={{opacity: 1}}>
-                    <img src={BusinessOwner}/>
-                    <h1>This should be modal</h1>
+            <Modal show={false} style={{ opacity: 1 }}>
+                <img src={BusinessOwner} />
+                <h1>This should be modal</h1>
             </Modal>
         </div>
     );
