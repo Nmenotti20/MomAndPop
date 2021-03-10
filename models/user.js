@@ -3,8 +3,15 @@ const bcrypt = require("bcryptjs");
 const { authorize } = require("passport");
 const Sequelize = require('sequelize');
 const sequelize = require('../config/connection.js');
+const Review = require('./review.js');
 // Creating our User model
 const User = sequelize.define("user", {
+    uuid: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
+        allowNull: false
+    },
     firstName: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -23,6 +30,12 @@ const User = sequelize.define("user", {
             isEmail: true
         }
     },
+    // The username cannot be null    
+    username: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
+    },
     // The password cannot be null
     password: {
         type: Sequelize.STRING,
@@ -30,11 +43,10 @@ const User = sequelize.define("user", {
     }
 });
 
-User.associate = function(models) {
-    User.hasMany(models.Post, {
-        foreignKey: 'userId'
-    })
-}
+
+User.hasMany(Review, {
+    foreignKey: 'userId'
+})
 
 // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
 User.prototype.validPassword = function (password) {
@@ -47,9 +59,9 @@ User.addHook("beforeCreate", User => {
         User.password,
         bcrypt.genSaltSync(10),
         null
-);
+    );
 });
 
-User.sync();
+// User.sync();
 
 module.exports = User;

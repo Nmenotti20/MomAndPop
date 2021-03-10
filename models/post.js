@@ -3,12 +3,12 @@ const sequelize = require('../config/connection.js');
 // Creating our User model
 const Post = sequelize.define("post", {
     userId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         defaultValue: 0
     },
     businessId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         defaultValue: 0
     },
@@ -23,14 +23,11 @@ const Post = sequelize.define("post", {
 });
 
 Post.associate = function(models) {
-    Post.belongsTo(models.User, {
-        foreignKey: 'userId'
-    })
     Post.belongsTo(models.Business, {
         foreignKey: 'businessId'
     })
 }
 
-Post.sync();
+// Post.sync();
 
 module.exports = Post;

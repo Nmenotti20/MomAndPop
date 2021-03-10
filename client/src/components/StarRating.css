@@ -1,0 +1,8 @@
+.radiobtn {
+    display:none;
+}
+
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+}

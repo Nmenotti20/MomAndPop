@@ -22,7 +22,7 @@ module.exports = {
                 if (!user) return res.json({ message: "Email or password does not match" })
                 console.log(process.env.jwt_secret)
 
-                const jwtToken = jwt.sign({ id: dbModel.id, email: dbModel.email }, process.env.jwt_secret);
+                const jwtToken = jwt.sign({ uuid: dbModel.uuid, email: dbModel.email }, process.env.jwt_secret);
                 res.json({ message: "Welcome!", token: jwtToken })
             })
       })
@@ -42,18 +42,59 @@ module.exports = {
   find: async function(req, res) {
       console.log(jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret));
       res.send(jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret));
+  },
+  allReviews: function(req, res) {
+    db.Review
+      .findAll({
+        where: {
+          businessId: jwt.verify(req.headers.authorization.split(' ')[1], process.env.jwt_secret).uuid
+        }
+      })
+      .then(reviews => res.json(reviews))
+      .catch(err => res.status(422).json(err));
+  },
+  makePost: function(req, res) {
+    db.Post
+      .create({
+        businessId: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid,
+        ...req.body
+      })
+      .then(result => {
+        res.json(result)
+      })
+      .catch(err => res.status(422).json(err));
+  },
+  allPosts: function(req, res) {
+    db.Post
+      .findAll({
+        where: {
+          businessId: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid
+        }
+      })
+      .then(reviews => res.json(reviews))
+      .catch(err => res.status(422).json(err));
+  },
+  editPost: function(req, res) {
+    db.Post
+      .update({
+          title: req.body.title,
+          message: req.body.message
+        }, {
+          where: {
+            id: req.body.id
+          }
+        })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  deletePost: function(req, res) {
+    db.Post
+      .destroy({
+        where: {
+          id: req.body.id
+        }
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
-//   update: function(req, res) {
-//     db.User
-//       .findOneAndUpdate({ _id: req.params.id }, req.body)
-//       .then(dbModel => res.json(dbModel))
-//       .catch(err => res.status(422).json(err));
-//   },
-//   remove: function(req, res) {
-//     db.User
-//       .findById({ _id: req.params.id })
-//       .then(dbModel => dbModel.remove())
-//       .then(dbModel => res.json(dbModel))
-//       .catch(err => res.status(422).json(err));
-//   }
 };
