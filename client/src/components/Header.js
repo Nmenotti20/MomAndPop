@@ -36,10 +36,6 @@ function Header() {
                     </ul>
                 </nav>
                 <img src={logo} />
-                <div className="header_input">
-                    {/* <SearchIcon /> */}
-                    <input placeholder="Search Small Business" type="text" />
-                </div>
             </div>
             <div className="header_center">
                 {SidebarData.map((item, index) => {

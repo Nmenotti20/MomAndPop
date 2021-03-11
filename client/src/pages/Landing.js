@@ -59,7 +59,7 @@ const Landing = () => {
                 <CardColumns>
                     {
                         businesses.map(business => (
-                            <Card className="card" style={{ height: 'auto', width: 'auto' }}>
+                            <Card key={business.uuid} className="card" style={{ height: 'auto', width: 'auto' }}>
                                 <Card.Img variant="top" src={BusinessOwner} />
                                 <Card.Body>
                                     <Card.Title>{business.companyName}</Card.Title>
