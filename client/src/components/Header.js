@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
 import "./Header.css";
 import logo from '../images/Pin_logo.png';
-import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from "@material-ui/icons/Home";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 import { Avatar } from "@material-ui/core";
 import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
 import { SidebarData } from './SidebarData';
-
 function Header() {
-
     const [sidebar, setSidebar] = useState(false);
-
     const showSidebar = () => setSidebar(!sidebar);
-
     return (
         <div className="header">
-
             <div className="header_left">
                 <Link to='#' className='menu-bars'>
                     <FaIcons.FaBars onClick={showSidebar} />
@@ -43,11 +37,10 @@ function Header() {
                 </nav>
                 <img src={logo} />
                 <div className="header_input">
-                    <SearchIcon />
+                    {/* <SearchIcon /> */}
                     <input placeholder="Search Small Business" type="text" />
                 </div>
             </div>
-
             <div className="header_center">
                 {SidebarData.map((item, index) => {
                     return (
@@ -66,16 +59,13 @@ function Header() {
                     <SupervisedUserCircleIcon fontSize="large" />
                 </div> */}
             </div>
-
             <div className="header_right">
                 <div className="header_info">
                     <Avatar src="" />
                     <h4>Brett </h4>
                 </div>
-
             </div>
         </div>
     )
 }
-
 export default Header

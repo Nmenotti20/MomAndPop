@@ -10,8 +10,11 @@ export default {
     makeReview: function(info) {
         return axios.post("/api/user/reviews", { ...info })
     },
+    findAllBusinesses: function() {
+        return axios.get('/api/user/findAllBusinesses')
+    },
     findBusinesses: function(query) {
-        return axios.get("/api/user/findBusinesses", { query })
+        return axios.get("/api/user/findBusinesses/" + query)
     },
     allReviews: function() {
         return axios.get("/api/user/reviews")

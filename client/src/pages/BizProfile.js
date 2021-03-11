@@ -3,6 +3,9 @@ import "./style.css";
 import BusinessOwner from '../images/Petersons_Donughts_Img.png';
 import { Card } from "react-bootstrap";
 import Feed from '../components/Feed';
+import StarRating from '../components/StarRating'
+import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
+
 
 
 function BizProfile() {
@@ -22,7 +25,15 @@ function BizProfile() {
                     <Card.Body>
                         <div className="form-group">
                             <Card.Link href="#">Business Website Link</Card.Link>
-                            <Card.Link href="#">Ratings Here with Link</Card.Link>
+                            <div className="post_options">
+                            <div className="post_option">
+                                <StarRating />
+                            </div>
+                            <div className="post_option">
+                                <ChatBubbleOutlineIcon />
+                                <p>View Comments</p>
+                            </div>
+                            </div>
                             <input type="submit" value="Edit Profile" className="btn float-right edit_btn" />
                         </div>
                         <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
