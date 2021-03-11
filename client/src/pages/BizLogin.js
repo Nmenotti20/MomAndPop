@@ -7,6 +7,10 @@ import API from "../utils/API/businessAPI";
 function BizLogin() {
   //setting our Components initial state
   const [formObject, setFormObject] = useState({});
+  const [message, setMessage] = useState({
+    text: "",
+    color: ""
+  });
 
   //handles updating component state when the user types login info into input field
 
@@ -17,13 +21,25 @@ function BizLogin() {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    if (formObject.username && formObject.password) {
+    if (formObject.email && formObject.password) {
       API.login({
-        username: formObject.username,
+        email: formObject.email,
         password: formObject.password,
       })
-        .then(function () {
-          window.location.replace("/profile");
+        .then(function (res) {
+          if (res.data.message === "Welcome!") {
+            setMessage({
+              text: res.data.message,
+              color: 'success'
+            })
+            document.cookie = `token=${res.data.token}; SameSite=Lax; Secure`
+          } else if (res.data.message === "Email or password does not match") {
+            setMessage({
+              text: res.data.message,
+              color: 'danger'
+            })
+          }
+          console.log(res)
         })
         .catch(function (err) {
           console.log(err);
@@ -41,7 +57,7 @@ function BizLogin() {
             </h3>
           </div>
           <div className="card-body">
-            <form>
+            <form onSubmit={handleFormSubmit}>
               <div className="input-group form-group">
                 <div className="input-group-prepend">
                   <span className="input-group-text">
@@ -49,10 +65,10 @@ function BizLogin() {
                   </span>
                 </div>
                 <input
-                  type="username"
-                  name="username"
-                  class="form-control"
-                  placeholder="Username"
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  placeholder="Email Address"
                   onChange={handleLoginChange}
                 />
               </div>
@@ -65,23 +81,30 @@ function BizLogin() {
                 <input
                   type="password"
                   name="password"
-                  class="form-control"
+                  className="form-control"
                   placeholder="Password"
                   onChange={handleLoginChange}
                 />
               </div>
 
-              <div className="form-group">
+              <div className="form-group d-flex flex-column align-items-end">
                 <input
                   type="submit"
                   value="Login"
                   className="btn float-right login_btn"
-                  onClick={handleFormSubmit}
                 />
+                <div id="message" className={`text-${message.color}`}>
+                  {message.text}
+                </div>
               </div>
-              <a href="./NewUser.js" class="card-link">
-                Create NEW<br></br>Business Owner Account
-              </a>
+              <div>
+                Don't have a business acount? <br/>
+                <a href="./businessregister" className="card-link text-primary">
+                  <u>
+                    Register Here
+                  </u>
+                </a>
+              </div>
             </form>
           </div>
         </div>
