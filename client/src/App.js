@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Footer from "./components/Footer";
+import NewUser from "./pages/NewUser";
 import UserLogin from "./pages/UserLogin";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
@@ -60,6 +61,8 @@ function App() {
 
         <Route path="/" exact component={Landing} />
         <Route path="/settings" component={Settings} />
+        <Route path="/NewUser" component={NewUser} />
+
         <Route path="/userlogin" component={UserLogin} />
 
         <Route path="/profile" component={Profile} />
