@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Footer from "./components/Footer";
+import NewUser from "./pages/NewUser";
 import UserLogin from "./pages/UserLogin";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import ProtectedRoute from './utils/ProtectedRoutes/BusinessRoute';
+import BusinessRoute from './utils/ProtectedRoutes/BusinessRoute';
+import UserRoute from './utils/ProtectedRoutes/UserRoute';
 import BizLogin from "./pages/BizLogin";
 import BizRegister from "./pages/BizRegister";
 import BizProfile from "./pages/BizProfile";
@@ -28,6 +30,7 @@ function App() {
   useEffect(() => {
     if (document.cookie.split(';')[0].split('=')[0] === "token" && document.cookie.split(';')[1].split('=')[1]) {
       setUser({
+        ...user,
         token: document.cookie.split(';')[0].split('=')[1],
         loggedInAs: document.cookie.split(';')[1].split('=')[1]
       });
@@ -59,13 +62,13 @@ function App() {
 
         <Route path="/" exact component={Landing} />
         <Route path="/settings" component={Settings} />
-        <Route path="/userlogin" component={UserLogin} />
-
-        <Route path="/profile" component={Profile} />
+        <Route path="/NewUser" component={NewUser} />
+        <Route path="/userlogin" component={UserLogin} />        
         <Route path="/businesslogin" component={BizLogin} />
         <Route path="/businessregister" component={BizRegister} />
         {/* <Route path="/businessprofile" component={BizProfile} /> */}
-        <ProtectedRoute path="/businessprofile" component={BizProfile} user={user} />
+        <BusinessRoute path="/businessprofile" component={BizProfile} user={user} />
+        <UserRoute path="/profile" component={Profile} user={user} />
         <Footer />
       </UserContext.Provider>
     </Router>

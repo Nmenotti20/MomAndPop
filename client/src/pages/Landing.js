@@ -50,17 +50,17 @@ const Landing = () => {
     }
 
     return (
-        <div className="container">
+        <div>
             <div className="header_input mt-5">
                 <SearchIcon />
                 <input onChange={handleInputChange} placeholder="Search Small Business" type="text" />
             </div>
-            <div className="d-flex justify-content-center h-100">
+            <div>
                 <CardColumns>
                     {
                         businesses.map(business => (
-                            <Card key={business.uuid} className="card" style={{ height: 'auto', width: 'auto' }}>
-                                <Card.Img variant="top" src={BusinessOwner} />
+                            <Card key={business.uuid}>
+                                <Card.Img variant="top" src={`/api/uploads/${business.image}`} />
                                 <Card.Body>
                                     <Card.Title>{business.companyName}</Card.Title>
                                     <Card.Text>
@@ -83,12 +83,11 @@ const Landing = () => {
                     }
                 </CardColumns>
             </div>
-            {/* <div className="container">
-            </div> */}
             <Modal show={false} style={{ opacity: 1 }}>
                 <img src={BusinessOwner} />
                 <h1>This should be modal</h1>
             </Modal>
+            <div className="container"></div>              
         </div>
     );
 }

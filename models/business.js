@@ -67,10 +67,11 @@ const Business = sequelize.define("business", {
         allowNull: false
     },
     website: {
+        type: Sequelize.STRING
+    },
+    image: {
         type: Sequelize.STRING,
-        validate: {
-            isUrl: true
-        }
+        allowNull: false
     }
 });
 
