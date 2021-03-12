@@ -9,7 +9,10 @@ import FormData from 'form-data';
 function BizRegister() {
   //setting our Components initial state
   const [formObject, setFormObject] = useState({
-      website: ''
+      website: '',
+      picture: {
+        type: ''
+      }
   });
   const [message, setMessage] = useState({
       text: "",
@@ -32,8 +35,7 @@ function BizRegister() {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    console.log(formObject)
-    if (formObject.email && formObject.password && formObject.password === formObject.confirmPassword && formObject.firstName && formObject.lastName && formObject.companyName && formObject.service && formObject.streetAddress && formObject.city && formObject.state && formObject.zipCode && formObject.phone && formObject.picture) {
+    if (formObject.email && formObject.password && formObject.password === formObject.confirmPassword && formObject.firstName && formObject.lastName && formObject.companyName && formObject.service && formObject.streetAddress && formObject.city && formObject.state && formObject.zipCode && formObject.phone && formObject.picture.type.split('/')[0] === "image") {
       let data = new FormData();
       data.append('picture', formObject.picture, formObject.picture.name);
       const objectParams = ['email', 'password', 'firstName', 'lastName', 'companyName', 'service', 'streetAddress', 'city', 'state', 'zipCode', 'phone', 'website'];
@@ -238,7 +240,7 @@ function BizRegister() {
                 </div>
                     
                     <select
-                        class="form-control"
+                        className="form-control"
                         name="state"
                         type="state"
                         onChange={handleLoginChange}

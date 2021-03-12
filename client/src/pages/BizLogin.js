@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { Redirect } from 'react-router-dom';
 import "./style.css";
 import { FaEnvelope } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
@@ -45,7 +44,6 @@ function BizLogin() {
               color: 'danger'
             })
           }
-          console.log(res)
         })
         .catch(function (err) {
           console.log(err);
