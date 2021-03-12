@@ -10,7 +10,7 @@ import twitterIcon from "../images/twitter.png"
 
 function Footer() {
     return (
-      <div classNameName="container">
+      <div className="container">
         {/* <div className="d-flex justify-content-center h-100"> */}
 
           <footer id="footer">
