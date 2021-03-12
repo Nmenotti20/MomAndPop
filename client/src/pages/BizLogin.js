@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Redirect } from 'react-router-dom';
 import "./style.css";
 import { FaEnvelope } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
@@ -38,7 +39,6 @@ function BizLogin() {
               text: res.data.message,
               color: 'success'
             })
-            
           } else if (res.data.message === "Email or password does not match") {
             setMessage({
               text: res.data.message,

@@ -13,7 +13,7 @@ function BizProfile() {
     return (
 
 
-        <div classNameName="container">
+        <div className="container">
             <div className="d-flex justify-content-center h-100">
                 <Card className="card" style={{ height: 'auto', width: 'auto' }}>
                     <Card.Img variant="top" src={BusinessOwner} />
