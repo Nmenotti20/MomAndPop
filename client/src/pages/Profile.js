@@ -2,7 +2,7 @@ import React from 'react';
 import "./style.css";
 import Shopper from '../images/Shopper_img.png';
 import { Card } from "react-bootstrap";
-
+import { withRouter } from 'react-router-dom';
 
 function Profile() {
     return (
@@ -32,4 +32,4 @@ function Profile() {
     );
 }
 
-export default Profile;
+export default withRouter(Profile);
