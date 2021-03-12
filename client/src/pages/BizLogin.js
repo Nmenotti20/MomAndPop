@@ -38,6 +38,7 @@ function BizLogin() {
               text: res.data.message,
               color: 'success'
             })
+            window.location.replace('/businessprofile')
           } else if (res.data.message === "Email or password does not match") {
             setMessage({
               text: res.data.message,
