@@ -2,12 +2,12 @@ import React from 'react';
 import "./style.css";
 import Shopper from '../images/Shopper_img.png';
 import { Card } from "react-bootstrap";
-
+import { withRouter } from 'react-router-dom';
 
 function Profile() {
     return (
 
-        <div classNameName="container">
+        <div className="container">
             <div className="d-flex justify-content-center h-100">
                 <Card className="card" style={{ height: 'auto', width: 'auto' }}>
                     <Card.Img variant="top" src={Shopper} />
@@ -32,4 +32,4 @@ function Profile() {
     );
 }
 
-export default Profile;
+export default withRouter(Profile);
