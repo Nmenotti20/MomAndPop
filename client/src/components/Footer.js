@@ -10,8 +10,8 @@ import twitterIcon from "../images/twitter.png"
 
 function Footer() {
     return (
-      <div className="container">
-        {/* <div className="d-flex justify-content-center h-100"> */}
+      
+        
 
           <footer id="footer">
             <div className="row">
@@ -48,8 +48,8 @@ function Footer() {
               </div>
             </div>
           </footer>
-        {/* </div> */}
-      </div>
+       
+      
     );
 }
 

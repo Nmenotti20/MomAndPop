@@ -55,7 +55,7 @@ const Landing = () => {
                 <SearchIcon />
                 <input onChange={handleInputChange} placeholder="Search Small Business" type="text" />
             </div>
-            <div className="d-flex justify-content-center h-100">
+            <div className="row h-100">
                 <CardColumns>
                     {
                         businesses.map(business => (
@@ -83,12 +83,14 @@ const Landing = () => {
                     }
                 </CardColumns>
             </div>
-            {/* <div className="container">
-            </div> */}
             <Modal show={false} style={{ opacity: 1 }}>
                 <img src={BusinessOwner} />
                 <h1>This should be modal</h1>
             </Modal>
+            <div className="container">
+
+            </div>
+            
         </div>
     );
 }
