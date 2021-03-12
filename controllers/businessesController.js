@@ -34,7 +34,10 @@ module.exports = {
         return res.json({ message: "This email already has an account" })
     } else {
         db.Business
-            .create(req.body)
+            .create({
+              ...req.body,
+              image: req.file.filename
+            })
             .then(dbModel => res.json({ message: "You registered successfully!" }))
             .catch(err => res.status(422).json(err));
     }

@@ -30,7 +30,7 @@ function BizLogin() {
         email: formObject.email,
         password: formObject.password,
       })
-        .then(async function (res) {
+        .then(function (res) {
           if (res.data.message === "Welcome!") {
             document.cookie = `token=${res.data.token}; SameSite=Lax; Secure`;
             document.cookie = `loggedInAs=${res.data.loggedInAs}; SameSite=Lax; Secure`;

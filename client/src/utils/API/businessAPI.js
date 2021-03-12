@@ -4,8 +4,12 @@ export default {
     login: function(info) {
         return axios.post("/api/business/login", { ...info })
     },
-    register: function(info) {
-        return axios.post("/api/business/register", { ...info })
+    register: function(data) {
+        return axios.post("/api/business/register", data, {
+            headers: {
+                'Content-Type': `multipart/form-data; boundary=${data._boundary}`
+            }
+        })
     },
     makePost: function(info) {
         return axios.post("/api/business/posts", { ...info })

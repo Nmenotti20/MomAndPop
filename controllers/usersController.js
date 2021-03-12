@@ -3,6 +3,7 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Sequelize = require("sequelize");
+const path = require('path');
 
 // Defining methods for the UsersController
 module.exports = {
@@ -146,5 +147,8 @@ module.exports = {
       .findAll({})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
+  },
+  image: function(req, res) {
+    res.sendFile(path.join(__dirname, "../uploads/" + req.params.fileName))
   }
 };
