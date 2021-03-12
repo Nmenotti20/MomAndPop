@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./style.css";
 import { FaEnvelope } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import API from "../utils/API/businessAPI";
+import UserContext from '../utils/Context/UserContext';
 
 function BizLogin() {
+  const { changeUser } = useContext(UserContext);
   //setting our Components initial state
   const [formObject, setFormObject] = useState({});
   const [message, setMessage] = useState({
     text: "",
     color: ""
   });
+
 
   //handles updating component state when the user types login info into input field
 
@@ -26,13 +29,16 @@ function BizLogin() {
         email: formObject.email,
         password: formObject.password,
       })
-        .then(function (res) {
+        .then(async function (res) {
           if (res.data.message === "Welcome!") {
+            document.cookie = `token=${res.data.token}; SameSite=Lax; Secure`;
+            document.cookie = `loggedInAs=${res.data.loggedInAs}; SameSite=Lax; Secure`;
+            changeUser(res.data.token, 'business')
             setMessage({
               text: res.data.message,
               color: 'success'
             })
-            document.cookie = `token=${res.data.token}; SameSite=Lax; Secure`
+            
           } else if (res.data.message === "Email or password does not match") {
             setMessage({
               text: res.data.message,

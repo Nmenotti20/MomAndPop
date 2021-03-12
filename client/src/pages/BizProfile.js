@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import "./style.css";
 import BusinessOwner from '../images/Petersons_Donughts_Img.png';
 import { Card } from "react-bootstrap";
@@ -46,4 +47,4 @@ function BizProfile() {
     );
 }
 
-export default BizProfile;
+export default withRouter(BizProfile);
