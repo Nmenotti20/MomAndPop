@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Footer from "./components/Footer";
 import UserLogin from "./pages/UserLogin";
 import Profile from "./pages/Profile";
@@ -28,6 +28,7 @@ function App() {
   useEffect(() => {
     if (document.cookie.split(';')[0].split('=')[0] === "token" && document.cookie.split(';')[1].split('=')[1]) {
       setUser({
+        ...user,
         token: document.cookie.split(';')[0].split('=')[1],
         loggedInAs: document.cookie.split(';')[1].split('=')[1]
       });
