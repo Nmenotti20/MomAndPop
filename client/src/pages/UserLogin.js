@@ -29,7 +29,7 @@ function UserLogin() {
                             <div className="form-group">
                                 <input type="submit" value="Login" className="btn float-right login_btn" />
                             </div>
-                            <a href="./NewUser.js" class="card-link">Create NEW<br></br> User Account</a>
+                            <a href="./NewUser" class="card-link">Create NEW<br></br> User Account</a>
                         </form>
                     </div>
                 </div>
