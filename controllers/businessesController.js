@@ -23,7 +23,7 @@ module.exports = {
                 console.log(process.env.jwt_secret)
 
                 const jwtToken = jwt.sign({ uuid: dbModel.uuid, email: dbModel.email }, process.env.jwt_secret);
-                res.json({ message: "Welcome!", token: jwtToken })
+                res.json({ message: "Welcome!", token: jwtToken, loggedInAs: 'business' })
             })
       })
       .catch(err => res.status(422).json(err));
