@@ -60,7 +60,7 @@ const Landing = () => {
                     {
                         businesses.map(business => (
                             <Card key={business.uuid}>
-                                <Card.Img variant="top" src={BusinessOwner} />
+                                <Card.Img variant="top" src={`/api/uploads/${business.image}`} />
                                 <Card.Body>
                                     <Card.Title>{business.companyName}</Card.Title>
                                     <Card.Text>

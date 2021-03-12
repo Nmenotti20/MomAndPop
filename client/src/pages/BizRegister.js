@@ -3,10 +3,14 @@ import "./style.css";
 import { FaEnvelope } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import API from "../utils/API/businessAPI";
+import { FormatBoldTwoTone } from "@material-ui/icons";
+import FormData from 'form-data';
 
 function BizRegister() {
   //setting our Components initial state
-  const [formObject, setFormObject] = useState({});
+  const [formObject, setFormObject] = useState({
+      website: ''
+  });
   const [message, setMessage] = useState({
       text: "",
       color: ""
@@ -19,11 +23,25 @@ function BizRegister() {
     setFormObject({ ...formObject, [name]: value });
   }
 
+  function handleFileChange(event) {
+      setFormObject({
+          ...formObject,
+          picture: event.target.files[0]
+      })
+  }
+
   function handleFormSubmit(event) {
     event.preventDefault();
     console.log(formObject)
-    if (formObject.email && formObject.password && formObject.password === formObject.confirmPassword && formObject.firstName && formObject.lastName && formObject.companyName && formObject.service && formObject.streetAddress && formObject.city && formObject.state && formObject.zipCode && formObject.phone) {
-      API.register(formObject)
+    if (formObject.email && formObject.password && formObject.password === formObject.confirmPassword && formObject.firstName && formObject.lastName && formObject.companyName && formObject.service && formObject.streetAddress && formObject.city && formObject.state && formObject.zipCode && formObject.phone && formObject.picture) {
+      let data = new FormData();
+      data.append('picture', formObject.picture, formObject.picture.name);
+      const objectParams = ['email', 'password', 'firstName', 'lastName', 'companyName', 'service', 'streetAddress', 'city', 'state', 'zipCode', 'phone', 'website'];
+      objectParams.forEach(item => {
+          data.append(`${item}`, formObject[`${item}`])
+      })
+
+      API.register(data)
         .then(function (res) {
           console.log(res)
           if (res.data.message === "You registered successfully!") {
@@ -31,7 +49,7 @@ function BizRegister() {
                   text: res.data.message,
                   color: 'success'
               })
-              window.location.replace('/businesslogin')
+            //   window.location.replace('/businesslogin')
           } else if (res.data.message === "This email already has an account") {
               setMessage({
                   text: res.data.message,
@@ -292,6 +310,22 @@ function BizRegister() {
                   className="form-control"
                   placeholder="Zip Code"
                   onChange={handleLoginChange}
+                />
+              </div>
+              <div className="input-group form-group">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">
+                    <i className="fas fa-image"></i>
+                  </span>
+                  <label className="ml-1">Upload an image</label>
+                </div>
+                <input
+                  type="file"
+                  name="picture"
+                  id="picture"
+                  className="ml-2"
+                  placeholder="Image"
+                  onChange={handleFileChange}
                 />
               </div>
 
