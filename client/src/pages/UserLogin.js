@@ -71,7 +71,7 @@ function UserLogin() {
                 <input
                     name="username"
                   type="username"
-                  classnName="form-control"
+                  className="form-control"
                   placeholder="User Name"
                   onChange={handleLoginChange}
                 />

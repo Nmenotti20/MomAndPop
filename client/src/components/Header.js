@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import UserContext from '../utils/Context/UserContext';
 import "./Header.css";
 import logo from '../images/Pin_logo.png';
 import HomeIcon from "@material-ui/icons/Home";
@@ -9,7 +10,30 @@ import * as FaIcons from 'react-icons/fa';
 import { SidebarData } from './SidebarData';
 function Header() {
     const [sidebar, setSidebar] = useState(false);
+    const { token, loggedInAs, changeUser } = useContext(UserContext)
     const showSidebar = () => setSidebar(!sidebar);
+    const [newSidebarData, setNewSidebarData] = useState([])
+
+    useEffect(() => {
+        if (token) {
+            switch(loggedInAs) {
+                case 'business': setNewSidebarData(SidebarData.filter(item => item.accessTo.includes('business')))
+                break;
+                case 'user': setNewSidebarData(SidebarData.filter(item => item.accessTo.includes('user')))
+                break
+                default: setNewSidebarData(SidebarData.filter(item => item.accessTo === 'user & business'))
+            }
+        } else {
+            setNewSidebarData(SidebarData.filter(item => item.accessTo === 'anyone' || item.accessTo === 'user & business'))
+        }
+    }, [token, loggedInAs]);
+
+    function signOut() {
+        document.cookie = "token=; Max-Age=0";
+        document.cookie = "loggedInAs=; Max-Age=0";
+        changeUser('', '');
+    }
+
     return (
         <div className="header">
             <div className="header_left">
@@ -23,7 +47,7 @@ function Header() {
                                 <FaIcons.FaTimes />
                             </Link>
                         </li>
-                        {SidebarData.map((item, index) => {
+                        {newSidebarData.map((item, index) => {
                             return (
                                 <li key={index} className={item.cName}>
                                     <Link to={item.path}>
@@ -37,8 +61,8 @@ function Header() {
                 </nav>
                 <img src={logo} />
             </div>
-            <div className="header_center">
-                {SidebarData.map((item, index) => {
+            <div className="header_left">
+                {newSidebarData.map((item, index) => {
                     return (
                         <li key={index} className={item.cName}>
                             <Link to={item.path}>
@@ -55,8 +79,8 @@ function Header() {
                     <SupervisedUserCircleIcon fontSize="large" />
                 </div> */}
             </div>
-            <div className="header_right">
-                <div className="header_info">
+            <div className="header_right" style={{cursor: 'pointer'}}>
+                <div className="header_info" onClick={signOut}>
                     <Avatar src="" />
                     <h4>Brett </h4>
                 </div>
