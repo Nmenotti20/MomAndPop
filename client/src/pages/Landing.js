@@ -50,16 +50,16 @@ const Landing = () => {
     }
 
     return (
-        <div className="container">
+        <div>
             <div className="header_input mt-5">
                 <SearchIcon />
                 <input onChange={handleInputChange} placeholder="Search Small Business" type="text" />
             </div>
-            <div className="row h-100">
+            <div>
                 <CardColumns>
                     {
                         businesses.map(business => (
-                            <Card key={business.uuid} className="card" style={{ height: 'auto', width: 'auto' }}>
+                            <Card key={business.uuid}>
                                 <Card.Img variant="top" src={BusinessOwner} />
                                 <Card.Body>
                                     <Card.Title>{business.companyName}</Card.Title>
@@ -87,10 +87,7 @@ const Landing = () => {
                 <img src={BusinessOwner} />
                 <h1>This should be modal</h1>
             </Modal>
-            <div className="container">
-
-            </div>
-            
+            <div className="container"></div>              
         </div>
     );
 }
