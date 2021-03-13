@@ -43,8 +43,28 @@ module.exports = {
     }
   },
   find: async function(req, res) {
-      console.log(jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret));
-      res.send(jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret));
+    db.Business
+      .findOne({
+        where: {
+          uuid: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid
+        },
+        attributes: {
+          exclude: [
+            'password'
+          ]
+        },
+        include: [{
+          model: db.Review
+        }]
+      })
+      .then(business => res.json(business))
+      .catch(err => {
+        res.status(422).json(err)
+        console.log(err)
+      })
+
+      // console.log(jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret));
+      // res.send(jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret));
   },
   allReviews: function(req, res) {
     db.Review

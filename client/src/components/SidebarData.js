@@ -24,6 +24,13 @@ export const SidebarData = [
         cName: 'nav-text '
     },
     {
+        title: 'New Shopper',
+        accessTo: 'anyone',
+        path: '/NewUser',
+        icon: <FaIcons.FaUser />,
+        cName: 'nav-text '
+    },
+    {
         title: 'Shopper Login',
         accessTo: 'anyone',
         path: '/userlogin',
@@ -38,10 +45,17 @@ export const SidebarData = [
         cName: 'nav-text '
     },
     {
+        title: 'Register Your Business',
+        accessTo: 'anyone',
+        path: '/businessregister',
+        icon: <FaIcons.FaUserTie />,
+        cName: 'nav-text '
+    },
+    {
         title: 'Business Login',
         accessTo: 'anyone',
         path: '/businesslogin',
         icon: <FaIcons.FaUserTie />,
         cName: 'nav-text '
-    }
+    },
 ];
