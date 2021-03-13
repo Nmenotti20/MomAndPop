@@ -51,7 +51,7 @@ function BizRegister() {
                   text: res.data.message,
                   color: 'success'
               })
-            //   window.location.replace('/businesslogin')
+              window.location.replace('/businesslogin')
           } else if (res.data.message === "This email already has an account") {
               setMessage({
                   text: res.data.message,

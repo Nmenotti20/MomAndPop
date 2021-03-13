@@ -4,6 +4,7 @@ const UserContext = React.createContext({
     token: '',
     loggedInAs: '',
     name: '',
+    image: '',
     changeUser: () => {}
 })
 

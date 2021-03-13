@@ -10,7 +10,7 @@ import * as FaIcons from 'react-icons/fa';
 import { SidebarData } from './SidebarData';
 function Header() {
     const [sidebar, setSidebar] = useState(false);
-    const { token, loggedInAs, name, changeUser } = useContext(UserContext)
+    const { token, loggedInAs, name, image, changeUser } = useContext(UserContext)
     const showSidebar = () => setSidebar(!sidebar);
     const [newSidebarData, setNewSidebarData] = useState([])
 
@@ -31,8 +31,9 @@ function Header() {
     function signOut() {
         document.cookie = "token=; Max-Age=0";
         document.cookie = "loggedInAs=; Max-Age=0";
-        document.cookie= "name=; Max-Age=0";
-        changeUser('', '', '');
+        document.cookie = "name=; Max-Age=0";
+        document.cooie = 'image=; Max-Age=0';
+        changeUser('', '', '', '');
     }
 
     function profileIcon() {
@@ -40,7 +41,7 @@ function Header() {
             return (
                 <div className="header_right" style={{cursor: 'pointer'}}>
                     <div className="header_info" onClick={signOut}>
-                        <Avatar src="" />
+                        <Avatar src={`./api/uploads/${image}`} />
                         <h4>{name}</h4>
                     </div>
                 </div>
