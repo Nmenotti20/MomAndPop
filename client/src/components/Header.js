@@ -32,19 +32,23 @@ function Header() {
         document.cookie = "token=; Max-Age=0";
         document.cookie = "loggedInAs=; Max-Age=0";
         document.cookie = "name=; Max-Age=0";
-        document.cooie = 'image=; Max-Age=0';
+        document.cookie = 'image=; Max-Age=0';
         changeUser('', '', '', '');
     }
 
     function profileIcon() {
         if (name) {
             return (
-                <div className="header_right" style={{cursor: 'pointer'}}>
-                    <div className="header_info" onClick={signOut}>
-                        <Avatar src={`./api/uploads/${image}`} />
-                        <h4>{name}</h4>
+               
+                    <div className="header_right">
+                        <div className="header_info">
+                            <Avatar src={`./api/uploads/${image}`} />
+                            <div>
+                            <h4>{name}</h4>
+                            <a onClick={signOut} style={{cursor: 'pointer', textDecoration: 'underline'}}>Sign Out</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
             )
         }
     }
