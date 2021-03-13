@@ -33,7 +33,8 @@ function BizLogin() {
           if (res.data.message === "Welcome!") {
             document.cookie = `token=${res.data.token}; SameSite=Lax; Secure`;
             document.cookie = `loggedInAs=${res.data.loggedInAs}; SameSite=Lax; Secure`;
-            changeUser(res.data.token, 'business')
+            document.cookie = `name=${res.data.name}; SameSite=Lax; Secure`;
+            changeUser(res.data.token, 'business', res.data.name)
             setMessage({
               text: res.data.message,
               color: 'success'

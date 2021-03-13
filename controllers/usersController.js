@@ -25,7 +25,7 @@ module.exports = {
                 console.log(process.env.jwt_secret)
 
                 const jwtToken = jwt.sign({ uuid: dbModel.uuid, username: dbModel.username }, process.env.jwt_secret);
-                res.json({ message: "Welcome!", token: jwtToken, loggedInAs: 'user' })
+                res.json({ message: "Welcome!", token: jwtToken, loggedInAs: 'user', name: `${dbModel.firstName} ${dbModel.lastName}` })
             })
       })
       .catch(err => res.status(422).json(err));

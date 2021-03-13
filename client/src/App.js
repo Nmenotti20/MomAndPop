@@ -22,8 +22,9 @@ function App() {
   const [user, setUser] = useState({
     token: '',
     loggedInAs: '',
-    changeUser: (token, loggedInAs) => {
-      setUser({ ...user, token, loggedInAs })
+    name: '',
+    changeUser: (token, loggedInAs, name) => {
+      setUser({ ...user, token, loggedInAs, name })
     }
   });
     
@@ -32,7 +33,8 @@ function App() {
       setUser({
         ...user,
         token: document.cookie.split(';')[0].split('=')[1],
-        loggedInAs: document.cookie.split(';')[1].split('=')[1]
+        loggedInAs: document.cookie.split(';')[1].split('=')[1],
+        name: document.cookie.split(';')[2].split('=')[1]
       });
     }
   }, [])
