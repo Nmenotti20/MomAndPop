@@ -11,6 +11,13 @@ export default {
             }
         })
     },
+    find: function() {
+        return axios.get('/api/business/profile', {
+            headers: {
+                'Authorization': `Bearer ${document.cookie.split(';')[0].split('=')[1]}`
+            }
+        })
+    },
     makePost: function(info) {
         return axios.post("/api/business/posts", { ...info })
     },

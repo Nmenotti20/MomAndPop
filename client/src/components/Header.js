@@ -21,7 +21,7 @@ function Header() {
                 break;
                 case 'user': setNewSidebarData(SidebarData.filter(item => item.accessTo.includes('user')))
                 break
-                default: setNewSidebarData(SidebarData.filter(item => item.accessTo === 'user & business'))
+                default: setNewSidebarData(SidebarData.filter(item => item.accessTo === 'user & business' || item.accessTo === 'anyone'))
             }
         } else {
             setNewSidebarData(SidebarData.filter(item => item.accessTo === 'anyone' || item.accessTo === 'user & business'))

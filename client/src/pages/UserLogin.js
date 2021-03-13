@@ -30,7 +30,7 @@ function UserLogin() {
             console.log(res)
           if (res.data.message === "Welcome!") {
             document.cookie = `token=${res.data.token};SameSite=Lax; Secure`;
-            document.cookie = `loggedInAs=${res.loggedInAs}; SameSite=Lax; Secure`;
+            document.cookie = `loggedInAs=${res.data.loggedInAs}; SameSite=Lax; Secure`;
             changeUser(res.data.token, "user");
             setMessage({
               text: res.data.message,
