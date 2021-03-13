@@ -2,13 +2,14 @@ const router = require("express").Router();
 const usersController = require("../../controllers/usersController");
 const passport = require('passport');
 const authenticate = passport.authenticate('userStrategy', { session: false });
+const upload = require('../../config/middleware/multer');
 
 // Matches with "/api/books"
 router.route("/login")
   .post(usersController.login)
 
 router.route("/register")
-  .post(usersController.register);
+  .post(upload.single('picture'), usersController.register);
 
 router.route("/isloggedin")
   .get(authenticate, usersController.find);

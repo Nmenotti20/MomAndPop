@@ -25,7 +25,7 @@ module.exports = {
                 console.log(process.env.jwt_secret)
 
                 const jwtToken = jwt.sign({ uuid: dbModel.uuid, username: dbModel.username }, process.env.jwt_secret);
-                res.json({ message: "Welcome!", token: jwtToken, loggedInAs: 'user', name: `${dbModel.firstName} ${dbModel.lastName}` })
+                res.json({ message: "Welcome!", token: jwtToken, loggedInAs: 'user', name: `${dbModel.firstName} ${dbModel.lastName}`, image: dbModel.image })
             })
       })
       .catch(err => res.status(422).json(err));
@@ -36,10 +36,22 @@ module.exports = {
         return res.json({ message: "This email already has an account" })
     } else {
         db.User
-            .create(req.body)
+            .create({
+              ...req.body,
+              image: req.file.filename
+            })
             .then(dbModel => res.json({ message: "You registered successfully!" }))
             .catch(err => res.status(422).json(err));
     }
+    // const existingUser = await User.findOne({ where: { email: req.body.email }});
+    // if (existingUser) {
+    //     return res.json({ message: "This email already has an account" })
+    // } else {
+    //     db.User
+    //         .create(req.body)
+    //         .then(dbModel => res.json({ message: "You registered successfully!" }))
+    //         .catch(err => res.status(422).json(err));
+    // }
   },
   find: async function(req, res) {
       console.log(jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret));

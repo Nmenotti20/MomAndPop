@@ -4,8 +4,12 @@ export default {
     login: function(info) {
         return axios.post("/api/user/login", { ...info })
     },
-    register: function(info) {
-        return axios.post("/api/user/register", { ...info })
+    register: function(data) {
+        return axios.post("/api/user/register", data, {
+            headers: {
+                'Content-Type': `multipart/form-data; boundary=${data._boundary}`
+            }
+        })
     },
     makeReview: function(info) {
         return axios.post("/api/user/reviews", { ...info })

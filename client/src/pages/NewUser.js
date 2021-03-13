@@ -25,11 +25,25 @@ function NewUser() {
     setFormObject({ ...formObject, [name]: value });
   }
 
+  function handleFileChange(event) {
+    setFormObject({
+        ...formObject,
+        picture: event.target.files[0]
+    })
+  }
+
   function handleFormSubmit(event) {
     event.preventDefault();
     console.log(formObject)
-    if (formObject.username && formObject.email && formObject.password && formObject.password === formObject.confirmPassword) {
-      API.register(formObject)
+    if (formObject.username && formObject.email && formObject.password && formObject.password === formObject.confirmPassword && formObject.picture.type.split('/')[0] === "image") {
+      let data = new FormData();
+      data.append('picture', formObject.picture, formObject.picture.name);
+      const objectParams = ['email', 'username', 'password', 'firstName', 'lastName', ];
+      objectParams.forEach(item => {
+          data.append(`${item}`, formObject[`${item}`])
+      })
+
+      API.register(data)
         .then(function (res) {
           console.log(res)
           if (res.data.message === "You registered successfully!") {
@@ -37,7 +51,7 @@ function NewUser() {
                   text: res.data.message,
                   color: 'success'
               })
-              window.location.replace('/UserLogin')
+              window.location.replace('/userlogin')
           } else if (res.data.message === "This email already has an account") {
               setMessage({
                   text: res.data.message,
@@ -149,7 +163,24 @@ function NewUser() {
                   placeholder="re-enter password"
                   onChange={handleLoginChange}
                 />
+
               </div>
+              <div className="input-group form-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      <i className="fas fa-image"></i>
+                    </span>
+                    <label className="ml-1">Upload an image</label>
+                  </div>
+                  <input
+                    type="file"
+                    name="picture"
+                    id="picture"
+                    className="ml-2"
+                    placeholder="Image"
+                    onChange={handleFileChange}
+                  />
+                </div>
               <div className="form-group">
                 <input
                   type="submit"

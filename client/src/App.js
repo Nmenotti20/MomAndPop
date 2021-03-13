@@ -23,8 +23,9 @@ function App() {
     token: '',
     loggedInAs: '',
     name: '',
-    changeUser: (token, loggedInAs, name) => {
-      setUser({ ...user, token, loggedInAs, name })
+    image: '',
+    changeUser: (token, loggedInAs, name, image) => {
+      setUser({ ...user, token, loggedInAs, name, image })
     }
   });
     
@@ -34,7 +35,8 @@ function App() {
         ...user,
         token: document.cookie.split(';')[0].split('=')[1],
         loggedInAs: document.cookie.split(';')[1].split('=')[1],
-        name: document.cookie.split(';')[2].split('=')[1]
+        name: document.cookie.split(';')[2].split('=')[1],
+        image: document.cookie.split(';')[3].split('=')[1]
       });
     }
   }, [])

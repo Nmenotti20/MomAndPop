@@ -32,7 +32,8 @@ function UserLogin() {
             document.cookie = `token=${res.data.token};SameSite=Lax; Secure`;
             document.cookie = `loggedInAs=${res.data.loggedInAs}; SameSite=Lax; Secure`;
             document.cookie = `name=${res.data.name}; SameSite=Lax; Secure`;
-            changeUser(res.data.token, 'user', res.data.name);
+            document.cookie = `image=${res.data.image}; SameSite=Lax; Secure`;
+            changeUser(res.data.token, 'user', res.data.name, res.data.image);
             setMessage({
               text: res.data.message,
               color: "success",
