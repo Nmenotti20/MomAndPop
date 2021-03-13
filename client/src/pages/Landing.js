@@ -4,8 +4,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import BusinessOwner from '../images/Petersons_Donughts_Img.png';
 import { Card, CardColumns, Modal } from "react-bootstrap";
 import { FaStar } from 'react-icons/fa';
-import { StarRating } from '../components/StarRating';
+import StarRating from '../components/StarRating';
 import API from '../utils/API/userAPI';
+import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 
 
 const Landing = () => {
@@ -62,7 +63,7 @@ const Landing = () => {
                             <Card key={business.uuid}>
                                 <Card.Img variant="top" src={`/api/uploads/${business.image}`} />
                                 <Card.Body>
-                                    <Card.Title>{business.companyName}</Card.Title>
+                                    <Card.Title className="rem2">{business.companyName}</Card.Title>
                                     <Card.Text>
                                         {business.service}
                                     </Card.Text>
@@ -75,8 +76,12 @@ const Landing = () => {
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Body>
-                                    <Card.Link href="#">{business.website}</Card.Link><br /><br />
-                                    <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />
+                                    <Card.Link href="#">{business.website}</Card.Link>
+                                    <StarRating />
+                                    <div className="post_option">
+                                        <ChatBubbleOutlineIcon />
+                                        <p>Post a Review</p>
+                                    </div>
                                 </Card.Body>
                             </Card>
                         ))
@@ -87,7 +92,7 @@ const Landing = () => {
                 <img src={BusinessOwner} />
                 <h1>This should be modal</h1>
             </Modal>
-            <div className="container"></div>              
+            <div className="container"></div>
         </div>
     );
 }

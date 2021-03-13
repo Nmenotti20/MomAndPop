@@ -42,6 +42,17 @@ background-color: #7fd8fc !important;
 animation-name: move;
 animation-duration: 3s;
 animation-direction: normal;
+box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+}
+
+.card img {
+    padding: 25px 10px;
+}
+.card p {
+    font-size: 1.75rem;
+}
+.rem2 {
+    font-size: 2rem !important;
 }
 
 
