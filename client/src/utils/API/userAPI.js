@@ -12,7 +12,11 @@ export default {
         })
     },
     makeReview: function(info) {
-        return axios.post("/api/user/reviews", { ...info })
+        return axios.post("/api/user/reviews", { ...info }, {
+            headers: {
+                'Authorization': `Bearer ${document.cookie.split(';')[0].split('=')[1]}`
+            }
+        })
     },
     findAllBusinesses: function() {
         return axios.get('/api/user/findAllBusinesses')

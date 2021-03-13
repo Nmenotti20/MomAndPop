@@ -27,7 +27,6 @@ function UserLogin() {
         password: formObject.password,
       })
         .then(function (res) {
-            console.log(res)
           if (res.data.message === "Welcome!") {
             document.cookie = `token=${res.data.token};SameSite=Lax; Secure`;
             document.cookie = `loggedInAs=${res.data.loggedInAs}; SameSite=Lax; Secure`;
@@ -39,7 +38,8 @@ function UserLogin() {
               color: "success",
             })
             window.location.replace("/profile")
-            } else if (res.data.message === "Email or password does not match") {
+          } else if (res.data.message === "Username or password does not match") {
+            console.log(res.data.message)
             setMessage({
               text: res.data.message,
               color: "danger",
