@@ -11,7 +11,7 @@ router.route("/login")
 router.route("/register")
   .post(upload.single('picture'), businessesController.register);
 
-router.route("/isloggedin")
+router.route("/profile")
   .get(authenticate, businessesController.find);
 
 router.route('/reviews')
