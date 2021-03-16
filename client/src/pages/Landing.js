@@ -113,9 +113,10 @@ const Landing = () => {
         setShowModal(true);
         if (token && name && loggedInAs === 'user' && image) {
             setReviewBusiness(businesses[e.target.id])
-            console.log(businesses[e.target.id])
         } else {
-            console.log('please log in as shopper to leave a review')
+            setModalContent(() => {
+                return <h1>please log in as shopper to leave a review</h1>
+            })
         }
     }
 
