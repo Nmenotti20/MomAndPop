@@ -27,7 +27,7 @@ function BizProfile() {
     <div>
       <div className="d-flex justify-content-center h-100">
         <Card className="card" style={{ height: "auto", width: "auto" }}>
-          <Card.Img variant="top" style={{height: '200px', width: 'auto'}} src={`/api/uploads/${business.image}`} />
+          <Card.Img variant="top" style={{ height: '200px', width: 'auto' }} src={`/api/uploads/${business.image}`} />
           <Card.Body>
             <Card.Title>{business.companyName}</Card.Title>
             <Card.Text>
@@ -36,7 +36,7 @@ function BizProfile() {
           </Card.Body>
           <Card.Body>
             <div className="form-group">
-              <Card.Link href="#">{business.website}</Card.Link>
+              <Card.Link href={business.website} target="_blank">{business.website}</Card.Link>
               <div className="post_options">
                 <div className="post_option">
                   <StarRating />
