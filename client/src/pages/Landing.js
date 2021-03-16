@@ -15,6 +15,9 @@ const Landing = () => {
     const [search, setSearch] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [reviewBusiness, setReviewBusiness] = useState({});
+    const [viewBusiness, setViewBusiness] = useState({
+        reviews: []
+    });
     const { token, loggedInAs, name, image} = useContext(UserContext);
     const [modalContent, setModalContent] = useState(() => {
         return (
@@ -78,7 +81,6 @@ const Landing = () => {
     }
 
     useEffect(() => {
-        if (reviewBusiness !== {}) {
             setModalContent(() => {
                 return (
                     <div>
@@ -106,18 +108,68 @@ const Landing = () => {
                     </div>
                 )
             })
-        }
     }, [reviewBusiness])
+
+    useEffect(() => {
+            setModalContent(() => {
+                return (
+                    <div>
+                            <Card.Img src={`/api/uploads/${viewBusiness.image}`} />
+                            <h1>{viewBusiness.companyName}</h1>
+                            <h4>{viewBusiness.service}</h4>
+                            <h5>{viewBusiness.streetAddress}</h5>
+                            <h5>{viewBusiness.city}, {viewBusiness.state} {viewBusiness.zipCode}</h5>
+                            <br/>
+                            <h5>Phone: {viewBusiness.phone}</h5>
+                            <h5><a href={viewBusiness.website}>{viewBusiness.website}</a></h5>
+                            {showReviews(viewBusiness.reviews)}
+                    </div>
+                )
+            })
+    }, [viewBusiness])
+
+    function showReviews(reviews) {
+        if (reviews.length) {
+            return (
+                <div style={{height: '200px', overflowY: 'scroll'}}>
+                    <h3 style={{textDecoration: 'underline'}}>Reviews</h3>
+                    {
+                        reviews.map(review => (
+                                <div key={review.id} className="border p-2">
+                                    <h5>{review.title}</h5>
+                                    <p>{review.message}</p>
+                                </div>
+                            )
+                        )
+                    }
+                </div>
+                
+            )
+        } else {
+            return (
+                <h3 style={{textDecoration: 'underline'}}>This business has no reviews yet</h3>
+            )
+        }
+    }
 
     function reviewOnClick(e) {
         setShowModal(true);
         if (token && name && loggedInAs === 'user' && image) {
             setReviewBusiness(businesses[e.target.id])
+            API.findAllBusinesses()
+                .then(res => setBusinesses(res.data))
+                .catch(err => console.log(err))
         } else {
             setModalContent(() => {
                 return <h1>please log in as shopper to leave a review</h1>
             })
         }
+    }
+
+    function seeReviewsOnClick(e) {
+        console.log(businesses[e.target.id])
+        setViewBusiness(businesses[e.target.id])
+        setShowModal(true);
     }
 
     return (
@@ -144,11 +196,16 @@ const Landing = () => {
                                         <br />
                                         {business.phone}
                                     </Card.Text>
+                                    <Card.Text>
+                                        <Card.Link href={business.website}>{business.website}</Card.Link>
+                                    </Card.Text>
                                 </Card.Body>
                                 <Card.Body>
-                                    <Card.Link href={business.website}>{business.website}</Card.Link>
                                     <StarRating />
-                                    <div className="post_option" id={index} onClick={reviewOnClick} style={{cursor: 'pointer'}}>
+                                    <div className="post_option float-left" id={index} onClick={seeReviewsOnClick} style={{cursor: 'pointer'}}>
+                                        <p id={index}>See Reviews</p>
+                                    </div>
+                                    <div className="post_option float-right" id={index} onClick={reviewOnClick} style={{cursor: 'pointer'}}>
                                         <ChatBubbleOutlineIcon id={index} />
                                         <p id={index}>Post a Review</p>
                                     </div>
