@@ -56,31 +56,34 @@ function Header() {
     return (
         <div className="header">
             <div className="header_left">
-                <Link to='#' className='menu-bars'>
-                    <FaIcons.FaBars onClick={showSidebar} />
-                </Link>
-                <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                    <ul className='nav-menu-items' onClick={showSidebar}>
-                        <li className='navbar-toggle'>
-                            <Link to='#' className='menu-bars'>
-                                <FaIcons.FaTimes />
-                            </Link>
-                        </li>
-                        {newSidebarData.map((item, index) => {
-                            return (
-                                <li key={index} className={item.cName}>
-                                    <Link to={item.path}>
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </nav>
+                <div>
+                    <Link to='#' className='menu-bars'>
+                        <FaIcons.FaBars onClick={showSidebar} />
+                    </Link>
+                    <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                        <ul className='nav-menu-items' onClick={showSidebar}>
+                            <li className='navbar-toggle'>
+                                <Link to='#' className='menu-bars'>
+                                    <FaIcons.FaTimes />
+                                </Link>
+                            </li>
+                            {newSidebarData.map((item, index) => {
+                                return (
+                                    <li key={index} className={item.cName}>
+                                        <Link to={item.path}>
+                                            {item.icon}
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </nav>
+                </div>
+                
                 <img src={logo} />
             </div>
-            <div className="header_left">
+            <div className="header_left full-header">
                 {newSidebarData.map((item, index) => {
                     return (
                         <li key={index} className={item.cName}>
