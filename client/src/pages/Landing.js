@@ -125,9 +125,8 @@ const Landing = () => {
                             <h4>{viewBusiness.service}</h4>
                             <h5>{viewBusiness.streetAddress}</h5>
                             <h5>{viewBusiness.city}, {viewBusiness.state} {viewBusiness.zipCode}</h5>
-                            <br/>
-                            <h5>Phone: {viewBusiness.phone}</h5>
-                            <h5><a href={viewBusiness.website}>{viewBusiness.website}</a></h5>
+                            <h5>{viewBusiness.phone}</h5>
+                            <h4><a href={viewBusiness.website}>{viewBusiness.website}</a></h4>
                             {showReviews(viewBusiness.reviews)}
                     </div>
                 )

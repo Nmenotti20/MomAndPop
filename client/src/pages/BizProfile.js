@@ -26,17 +26,23 @@ function BizProfile() {
   return (
     <div>
       <div className="d-flex justify-content-center h-100">
-        <Card className="card" style={{ height: "auto", width: "auto" }}>
-          <Card.Img variant="top" style={{ height: '200px', width: 'auto' }} src={`/api/uploads/${business.image}`} />
+        <Card className="card">
+          <Card.Img variant="top" src={`/api/uploads/${business.image}`} />
           <Card.Body>
-            <Card.Title>{business.companyName}</Card.Title>
+            <Card.Title>
+              <h1>{business.companyName}</h1>
+            </Card.Title>
             <Card.Text>
-              {business.service}
+              <h4>{business.service}</h4>
+              <h5>{business.streetAddress}</h5>
+              <h5>{business.city}, {business.state} {business.zipCode}</h5>
+              <br/>
+              <h5>Phone: {business.phone}</h5>
             </Card.Text>
           </Card.Body>
           <Card.Body>
             <div className="form-group">
-              <Card.Link href={business.website} target="_blank">{business.website}</Card.Link>
+              <h4><Card.Link href={business.website} target="_blank">{business.website}</Card.Link></h4>
               <div className="post_options">
                 <div className="post_option">
                   <StarRating />
