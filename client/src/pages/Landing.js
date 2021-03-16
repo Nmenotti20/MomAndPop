@@ -75,6 +75,12 @@ const Landing = () => {
             rating: ratingRef.current.value
         })
         .then(res => {
+            API.findAllBusinesses()
+                .then(response => {
+                    setBusinesses(response.data)
+                    setShowModal(false)
+                })
+                .catch(error => console.log(error))
             console.log(res)
         })
         .catch(err => console.log(err))
@@ -156,9 +162,6 @@ const Landing = () => {
         setShowModal(true);
         if (token && name && loggedInAs === 'user' && image) {
             setReviewBusiness(businesses[e.target.id])
-            API.findAllBusinesses()
-                .then(res => setBusinesses(res.data))
-                .catch(err => console.log(err))
         } else {
             setModalContent(() => {
                 return <h1>please log in as shopper to leave a review</h1>
