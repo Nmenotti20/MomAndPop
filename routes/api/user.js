@@ -4,6 +4,7 @@ const passport = require('passport');
 const authenticate = passport.authenticate('userStrategy', { session: false });
 const upload = require('../../config/middleware/multer');
 
+
 // Matches with "/api/books"
 router.route("/login")
   .post(usersController.login)
@@ -13,6 +14,8 @@ router.route("/register")
 
 router.route("/isloggedin")
   .get(authenticate, usersController.find);
+
+
   
 router.route('/findBusinesses/:query')
   .get(usersController.findBusinesses)
@@ -28,5 +31,8 @@ router.route("/reviews")
 
 router.route("/posts")
   .get(usersController.allPosts);
+
+router.route('/user/findOneUser')
+  .get(authenticate, usersController.findOneUser);   
 
 module.exports = router;

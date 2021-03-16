@@ -1,20 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import Shopper from '../images/Shopper_img.png';
 import { Card } from "react-bootstrap";
 import { withRouter } from 'react-router-dom';
+import API from '../utils/API/userAPI';
 
 function Profile() {
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        API.findOneUser()
+          .then(res => {
+            console.log(res.data)
+            setUser({
+              ...user,
+              ...res.data
+            })
+          })
+          .catch(err => console.log(err))
+      }, [])
+
     return (
 
         <div className="container">
             <div className="d-flex justify-content-center h-100">
-                <Card className="card" style={{ height: 'auto', width: 'auto' }}>
-                    <Card.Img variant="top" src={Shopper} />
+                <Card className="card">
+                    <Card.Img variant="top" src={`/api/uploads/${user.image}`} />
                         <Card.Body>
-                            <Card.Title>Shopper Name</Card.Title>
+                            <Card.Title>
+                              <h1>{user.username}</h1>  
+                            </Card.Title>
                                 <Card.Text>
-                                A brief description of Shopper Profile.
+                                <h5>{user.firstName}</h5>
+                                <h5>{user.lastName}</h5>
+                                <h5>{user.email}</h5>
                                 </Card.Text>
                         </Card.Body>
                         <Card.Body>

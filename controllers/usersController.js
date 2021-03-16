@@ -68,6 +68,27 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   },
+  findOneUser: function(req, res) {
+    db.User
+    .findOneUser({
+      where: {
+        uuid: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid
+      },
+      attributes: {
+        exclude: [
+          'password'
+        ]
+      },
+      include: [{
+        model: db.User
+      }]
+    })
+    .then(user => res.json(user))
+    .catch(err => {
+      res.status(422).json(err)
+      console.log(err)
+    })
+  },
   findAllBusinesses: function(req, res) {
     db.Business
       .findAll({

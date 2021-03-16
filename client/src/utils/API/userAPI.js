@@ -18,6 +18,13 @@ export default {
             }
         })
     },
+    findOneUser: function() {
+        return axios.get('/api/user/findOneUser', {
+            headers: {
+                'Authorization': `Bearer ${document.cookie.split(';')[0].split('=')[1]}`
+            }
+        })
+    },
     findAllBusinesses: function() {
         return axios.get('/api/user/findAllBusinesses')
     },
