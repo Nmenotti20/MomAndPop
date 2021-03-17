@@ -70,7 +70,7 @@ module.exports = {
   },
   findOneUser: function(req, res) {
     db.User
-    .findOneUser({
+    .findOne({
       where: {
         uuid: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid
       },
@@ -80,7 +80,7 @@ module.exports = {
         ]
       },
       include: [{
-        model: db.User
+        model: db.Review
       }]
     })
     .then(user => res.json(user))
