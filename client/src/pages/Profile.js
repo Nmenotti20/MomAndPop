@@ -22,7 +22,7 @@ function Profile() {
 
     return (
 
-        <div className="container">
+        <div>
             <div className="d-flex justify-content-center h-100">
                 <Card className="card">
                     <Card.Img variant="top" src={`/api/uploads/${user.image}`} />
@@ -45,8 +45,7 @@ function Profile() {
                         </Card.Body>
                 </Card>
             </div>
-            <div className="container">
-            </div> 
+            <div className="container"></div> 
         </div>
     );
 }
