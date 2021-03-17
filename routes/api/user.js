@@ -32,7 +32,7 @@ router.route("/reviews")
 router.route("/posts")
   .get(usersController.allPosts);
 
-router.route('/user/findOneUser')
+router.route('/findOneUser')
   .get(authenticate, usersController.findOneUser);   
 
 module.exports = router;
