@@ -6,6 +6,7 @@ import BusinessOwner from '../images/Petersons_Donughts_Img.png';
 import { Card, CardColumns, Modal } from "react-bootstrap";
 import { FaStar } from 'react-icons/fa';
 import StarRating from '../components/StarRating';
+import StarRatings from 'react-star-ratings'
 import API from '../utils/API/userAPI';
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 
@@ -24,6 +25,7 @@ const Landing = () => {
             'please sign in'
         )
     })
+    const [ratingValue, setRatingValue] = useState('tacos');
     const reviewTitleRef = useRef();
     const reviewRef = useRef();
     const ratingRef = useRef();
@@ -68,11 +70,13 @@ const Landing = () => {
 
     function submitReview(e) {
         e.preventDefault();
+        const rating = parseInt(localStorage.getItem('rating'))
+        localStorage.removeItem('rating');
         API.makeReview({
             businessId: reviewBusiness.uuid,
             title: reviewTitleRef.current.value,
             message: reviewTitleRef.current.value,
-            rating: ratingRef.current.value
+            rating: rating
         })
         .then(res => {
             API.findAllBusinesses()
@@ -86,6 +90,7 @@ const Landing = () => {
         .catch(err => console.log(err))
     }
 
+
     useEffect(() => {
             setModalContent(() => {
                 return (
@@ -95,7 +100,7 @@ const Landing = () => {
                         <h4>{reviewBusiness.service}</h4>
                         <form onSubmit={submitReview}>
                             <StarRating />
-                            <label>Select Rating</label>
+                            {/* <label>Select Rating</label>
                             <select className="form-select" ref={ratingRef}>
                                 <option defaultValue>Select a Rating</option>
                                 <option value="1">1</option>
@@ -103,7 +108,7 @@ const Landing = () => {
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
-                            </select>
+                            </select> */}
                             <br/>
                             <label>Title your review</label>
                             <input className="form-control" ref={reviewTitleRef} />
@@ -174,6 +179,23 @@ const Landing = () => {
         setShowModal(true);
     }
 
+    function findAverageRating(reviews, size) {
+        let total = 0
+        for (let i = 0; i < reviews.length; i++) {
+            total += reviews[i].rating;
+        }
+
+        if (!total) {
+            return (
+                <h3>No Reviews Yet</h3>
+            )
+        } else {
+            return (
+                <StarRatings starDimension={size} starRatedColor="gold" rating={total/reviews.length} />
+            )
+        }
+    }
+
     return (
         <div>
             <div className="header_input mt-5">
@@ -203,7 +225,8 @@ const Landing = () => {
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Body>
-                                    <StarRating />
+                                    {findAverageRating(business.reviews, '30px')}
+                                    <br/>
                                     <div className="post_option float-left" id={index} onClick={seeReviewsOnClick} style={{cursor: 'pointer'}}>
                                         <p id={index}>See Reviews</p>
                                     </div>
