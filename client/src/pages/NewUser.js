@@ -1,4 +1,4 @@
-import React , { useState, useContext }from "react";
+import React , { useState }from "react";
 import "./style.css";
 import { FaEnvelope } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
@@ -6,7 +6,7 @@ import { FaUsers  } from "react-icons/fa";
 import { FaSignature  } from "react-icons/fa";
 
 import API from "../utils/API/userAPI";
-import UserContext from '../utils/Context/UserContext';
+
 
 function NewUser() {
 

@@ -2,8 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import UserContext from '../utils/Context/UserContext';
 import "./Header.css";
 import logo from '../images/Pin_logo.png';
-import HomeIcon from "@material-ui/icons/Home";
-import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
+
 import { Avatar } from "@material-ui/core";
 import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
@@ -45,7 +44,7 @@ function Header() {
                             <Avatar src={`./api/uploads/${image}`} />
                             <div>
                             <h4>{name}</h4>
-                            <a onClick={signOut} style={{cursor: 'pointer', textDecoration: 'underline'}}>Sign Out</a>
+                            <a href="/" onClick={signOut} style={{cursor: 'pointer', textDecoration: 'underline'}}>Sign Out</a>
                             </div>
                         </div>
                     </div>
@@ -81,7 +80,7 @@ function Header() {
                     </nav>
                 </div>
                 
-                <img src={logo} />
+                <img alt="company logo" src={logo} />
             </div>
             <div className="header_left full-header">
                 {newSidebarData.map((item, index) => {

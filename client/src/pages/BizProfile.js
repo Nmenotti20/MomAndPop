@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import "./style.css";
-import BusinessOwner from "../images/Petersons_Donughts_Img.png";
+
 import { Card } from "react-bootstrap";
-import Feed from "../components/Feed";
-import StarRating from "../components/StarRating";
+
 import StarRatings from 'react-star-ratings'
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import API from '../utils/API/businessAPI';
@@ -17,7 +16,6 @@ function BizProfile() {
   useEffect(() => {
     API.find()
       .then(res => {
-        console.log(res.data)
         setBusiness({
           ...business,
           ...res.data
@@ -38,7 +36,7 @@ function BizProfile() {
         )
     } else {
         return (
-            <StarRatings starDimension={size} starRatedColor="gold" rating={total/reviews.length} />
+            <StarRatings starDimension={size} starRatedColor="gold" starSpacing="1px" rating={total/reviews.length} />
         )
     }
   }

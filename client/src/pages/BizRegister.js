@@ -3,7 +3,7 @@ import "./style.css";
 import { FaEnvelope } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import API from "../utils/API/businessAPI";
-import { FormatBoldTwoTone } from "@material-ui/icons";
+
 import FormData from 'form-data';
 
 function BizRegister() {

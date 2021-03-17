@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import Shopper from '../images/Shopper_img.png';
+
 import { Card } from "react-bootstrap";
 import { withRouter } from 'react-router-dom';
 import API from '../utils/API/userAPI';
