@@ -1,6 +1,6 @@
 #footer{
     background-image: url("../images/12104LOGOOP.png");
-    filter: grayscale(70%);
+    filter: grayscale(80%);
     background-size: contain;
     background-repeat: no-repeat;
     background-color:white;
@@ -8,6 +8,11 @@
     background-position: bottom, center;
     display: flex;
     justify-content: left;
+    position: fixed;
+    left:0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
  
 }
 footer img{
@@ -19,9 +24,20 @@ footer img{
 }
 
 footer .gitHub{
-    filter:invert(100);
-        
+    filter:invert(100%) grayscale(0%);        
 }
+footer .igIcon{
+    filter:grayscale(0%);        
+}
+footer .linkedInIcon{
+    filter:grayscale(0%);        
+}
+footer .twiiterIcon{
+    filter:grayscale(0%);        
+}
+
+
+
 
 input{
     justify-content: left;
