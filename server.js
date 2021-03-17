@@ -7,7 +7,6 @@ const app = express();
 const routes = require('./routes');
 require('./config/passport.js');
 
-console.log("**********", process.env.DB_password);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
