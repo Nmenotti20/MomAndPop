@@ -40,7 +40,6 @@
     "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
-    "react-star-ratings": "^2.3.0",
     "sequelize": "^6.5.0",
     "uuid": "^8.3.2"
   }

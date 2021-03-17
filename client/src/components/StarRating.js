@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 import "./StarRating.css";
 
 function StarRating() {
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
+
+    useEffect(() => {
+        localStorage.setItem('rating', rating)
+    }, [rating])
+    
 
     return (
         <div>

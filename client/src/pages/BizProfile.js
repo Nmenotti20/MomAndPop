@@ -5,11 +5,14 @@ import BusinessOwner from "../images/Petersons_Donughts_Img.png";
 import { Card } from "react-bootstrap";
 import Feed from "../components/Feed";
 import StarRating from "../components/StarRating";
+import StarRatings from 'react-star-ratings'
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import API from '../utils/API/businessAPI';
 
 function BizProfile() {
-  const [business, setBusiness] = useState({})
+  const [business, setBusiness] = useState({
+    reviews: []
+  })
 
   useEffect(() => {
     API.find()
@@ -22,6 +25,23 @@ function BizProfile() {
       })
       .catch(err => console.log(err))
   }, [])
+
+  function findAverageRating(reviews, size) {
+    let total = 0
+    for (let i = 0; i < reviews.length; i++) {
+        total += reviews[i].rating;
+    }
+
+    if (!total) {
+        return (
+            <h3>No Reviews Yet</h3>
+        )
+    } else {
+        return (
+            <StarRatings starDimension={size} starRatedColor="gold" rating={total/reviews.length} />
+        )
+    }
+  }
 
   return (
     <div>
@@ -45,7 +65,9 @@ function BizProfile() {
               <h4><Card.Link href={business.website} target="_blank">{business.website}</Card.Link></h4>
               <div className="post_options">
                 <div className="post_option">
-                  <StarRating />
+                  {
+                    findAverageRating(business.reviews, '30px')
+                  }
                 </div>
                 <div className="post_option">
                   <ChatBubbleOutlineIcon />
