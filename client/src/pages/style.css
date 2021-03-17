@@ -9,17 +9,19 @@ background-origin: padding-box;
 
 .container{
 margin-top: auto;
+height: 650px;
 width: 600px;
 align-content: center;
 background-image: url("../images/12104LOGOOP.png");
 background-size: contain;
 background-repeat: no-repeat;
 background-position:center;
-
+margin-bottom: 62px;
 }
 
 .card{
 max-width: 100%;
+max-height:100%;
 width: auto;
 height: auto;
 margin-top: 20px;

@@ -15,7 +15,7 @@ function Footer() {
 
           <footer id="footer">
             <div className="row">
-              <div className="col-lg-12">
+              <div>
                 <a
                   className="gitHub"
                   href="https://github.com/Nmenotti20/MomAndPop"
@@ -44,6 +44,7 @@ function Footer() {
                   rel="noopener noreferrer">
                   <img src={twitterIcon} alt="Twitter icon" loading="lazy"></img>
                 </a>
+                <br></br>
                 <input></input><button>Subscribe</button>
               </div>
             </div>
