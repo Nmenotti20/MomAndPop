@@ -9,6 +9,7 @@ background-origin: padding-box;
 
 .container{
 margin-top: auto;
+height: 650px;
 width: 600px;
 align-content: center;
 background-image: url("../images/12104LOGOOP.png");

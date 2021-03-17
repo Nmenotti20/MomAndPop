@@ -71,7 +71,7 @@ function NewUser() {
 
 
   return (
-    <div className="container">
+    <div>
       <div className="d-flex justify-content-center h-100">
         <div className="card">
           <div className="card-header">
@@ -199,6 +199,7 @@ function NewUser() {
           </div>
         </div>
       </div>
+      <div  className="container"></div>
     </div>
   );
 }
