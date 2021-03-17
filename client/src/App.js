@@ -4,7 +4,7 @@ import NewUser from "./pages/NewUser";
 import UserLogin from "./pages/UserLogin";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BusinessRoute from './utils/ProtectedRoutes/BusinessRoute';
 import UserRoute from './utils/ProtectedRoutes/UserRoute';
 import BizLogin from "./pages/BizLogin";
@@ -14,9 +14,6 @@ import Header from "./components/Header";
 
 
 import Landing from "./pages/Landing";
-import Feed from "./components/Feed";
-import LocalBusiness from "./components/LocalBusiness";
-import RightContainer from "./components/RightContainer";
 import UserContext from './utils/Context/UserContext';
 function App() {
   const [user, setUser] = useState({
@@ -63,16 +60,22 @@ function App() {
           </div>
         </div> */}
 
-
-        <Route path="/" exact component={Landing} />
-        <Route path="/settings" component={Settings} />
-        <Route path="/NewUser" component={NewUser} />
-        <Route path="/userlogin" component={UserLogin} />        
-        <Route path="/businesslogin" component={BizLogin} />
-        <Route path="/businessregister" component={BizRegister} />
-        {/* <Route path="/businessprofile" component={BizProfile} /> */}
-        <BusinessRoute path="/businessprofile" component={BizProfile} user={user} />
-        <UserRoute path="/profile" component={Profile} user={user} />
+        <Switch>
+          <Route path="/" exact component={Landing} />
+          <Route path="/settings" exact component={Settings} />
+          <Route path="/NewUser" exact component={NewUser} />
+          <Route path="/userlogin" exact component={UserLogin} />        
+          <Route path="/businesslogin" exact component={BizLogin} />
+          <Route path="/businessregister" exact component={BizRegister} />
+          {/* <Route path="/businessprofile" component={BizProfile} /> */}
+          <BusinessRoute path="/businessprofile" exact component={BizProfile} user={user} />
+          <UserRoute path="/profile" exact component={Profile} user={user} />
+          <Route>
+            <div>
+              <h1>No page here</h1>
+            </div>
+          </Route>
+        </Switch>
         <Footer />
       </UserContext.Provider>
     </Router>

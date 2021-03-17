@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import UserContext from '../utils/Context/UserContext';
 import "./style.css";
 import SearchIcon from "@material-ui/icons/Search";
-import BusinessOwner from '../images/Petersons_Donughts_Img.png';
+
 import { Card, CardColumns, Modal } from "react-bootstrap";
-import { FaStar } from 'react-icons/fa';
+
 import StarRating from '../components/StarRating';
 import StarRatings from 'react-star-ratings'
 import API from '../utils/API/userAPI';
@@ -25,10 +25,8 @@ const Landing = () => {
             'please sign in'
         )
     })
-    const [ratingValue, setRatingValue] = useState('tacos');
     const reviewTitleRef = useRef();
     const reviewRef = useRef();
-    const ratingRef = useRef();
 
 
     function useDebounce(value, delay) {
@@ -141,17 +139,20 @@ const Landing = () => {
     function showReviews(reviews) {
         if (reviews.length) {
             return (
-                <div style={{height: '200px', overflowY: 'scroll'}}>
+                <div>
                     <h3 style={{textDecoration: 'underline'}}>Reviews</h3>
-                    {
-                        reviews.map(review => (
-                                <div key={review.id} className="border p-2">
-                                    <h5>{review.title}</h5>
-                                    <p>{review.message}</p>
-                                </div>
+                    <div style={{height: '200px', overflowY: 'scroll'}}>
+                        {
+                            reviews.map(review => (
+                                    <div key={review.id} className="border p-2">
+                                        <h5>{review.title}</h5>
+                                        <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
+                                        <p>{review.message}</p>
+                                    </div>
+                                )
                             )
-                        )
-                    }
+                        }
+                    </div>
                 </div>
                 
             )
@@ -191,7 +192,7 @@ const Landing = () => {
             )
         } else {
             return (
-                <StarRatings starDimension={size} starRatedColor="gold" rating={total/reviews.length} />
+                <StarRatings starDimension={size} starRatedColor="gold" starSpacing='1px' rating={total/reviews.length} />
             )
         }
     }

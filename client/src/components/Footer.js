@@ -1,7 +1,6 @@
 import React from 'react';
 import "react-bootstrap"
-import * as FaIcons from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+
 import "./Footer.css";
 import gitHubIcon from "../images/GitHub-Mark-Light-32px.png";
 import igIcon from "../images/Instagram.png";

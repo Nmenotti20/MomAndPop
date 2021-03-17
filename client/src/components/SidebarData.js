@@ -1,6 +1,6 @@
 import React from 'react';
 import * as FaIcons from 'react-icons/fa';
-import { Avatar } from '@material-ui/core';
+
 
 export const SidebarData = [
     {
