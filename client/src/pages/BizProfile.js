@@ -62,14 +62,23 @@ function BizProfile() {
             <div className="form-group">
               <h4><Card.Link href={business.website} target="_blank">{business.website}</Card.Link></h4>
               <div className="post_options">
-                <div className="post_option">
+                <div className="post_option mt-5">
+                  <h4>Overall Rating</h4>
                   {
                     findAverageRating(business.reviews, '30px')
                   }
                 </div>
-                <div className="post_option">
-                  <ChatBubbleOutlineIcon />
-                  <p>View Comments</p>
+                <h4 className="mt-5" style={{textDecoration: 'underline'}}>Reviews</h4>
+                <div style={{height: '200px', overflowY: 'scroll'}}>
+                  {
+                    business.reviews.map(review => (
+                      <div key={review.id} className="border p-2">
+                          <h5>{review.title}</h5>
+                          <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
+                          <p>{review.message}</p>
+                      </div>
+                    ))
+                  }
                 </div>
               </div>
               <input

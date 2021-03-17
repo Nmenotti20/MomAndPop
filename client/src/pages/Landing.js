@@ -222,7 +222,7 @@ const Landing = () => {
                                         {business.phone}
                                     </Card.Text>
                                     <Card.Text>
-                                        <Card.Link href={business.website}>{business.website}</Card.Link>
+                                        <a href={business.website} target="_blank">{business.website}</a>
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Body>

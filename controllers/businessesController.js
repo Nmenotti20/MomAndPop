@@ -62,9 +62,6 @@ module.exports = {
         res.status(422).json(err)
         console.log(err)
       })
-
-      // console.log(jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret));
-      // res.send(jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret));
   },
   allReviews: function(req, res) {
     db.Review
