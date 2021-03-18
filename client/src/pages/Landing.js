@@ -8,6 +8,7 @@ import { Card, CardColumns, Modal } from "react-bootstrap";
 import StarRating from '../components/StarRating';
 import StarRatings from 'react-star-ratings'
 import API from '../utils/API/userAPI';
+import radarAPI from '../utils/API/radarIO';
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 
 
@@ -47,10 +48,20 @@ const Landing = () => {
     const debouncedSearchTerm = useDebounce(search, 500)
 
     useEffect(() => {
+
         if (!search) {
-            API.findAllBusinesses()
-                .then(res => setBusinesses(res.data))
-                .catch(err => console.log(err))
+            window.navigator.geolocation.getCurrentPosition(location => {
+                radarAPI.findZip(location.coords.latitude, location.coords.longitude)
+                    .then(res => {
+                        API.findBusinesses(res.data.addresses[0].postalCode.substr(0, 3))
+                            .then(data => setBusinesses(data.data))
+                            .catch(err => console.log(err))
+                    })
+            }, () => {
+                API.findAllBusinesses()
+                    .then(res => setBusinesses(res.data))
+                    .catch(err => console.log(err))
+            });
         } else if (debouncedSearchTerm) {
             searchBusinesses(debouncedSearchTerm)
         }
@@ -201,7 +212,7 @@ const Landing = () => {
         <div>
             <div className="header_input mt-5">
                 <SearchIcon />
-                <input onChange={handleInputChange} placeholder="Search Small Business" type="text" />
+                <input style={{width: '100%'}} onChange={handleInputChange} placeholder="zip code, business name, or service you're looking for" type="text" />
             </div>
             <div>
                 <CardColumns>
