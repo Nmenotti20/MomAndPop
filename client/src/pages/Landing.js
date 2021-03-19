@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import UserContext from '../utils/Context/UserContext';
 import "./style.css";
 import SearchIcon from "@material-ui/icons/Search";
+import { Avatar } from "@material-ui/core";
 
 import { Card, CardColumns, Modal } from "react-bootstrap";
 
@@ -102,7 +103,6 @@ const Landing = () => {
         .catch(err => console.log(err))
     }
 
-
     useEffect(() => {
             setModalContent(() => {
                 return (
@@ -160,6 +160,7 @@ const Landing = () => {
                             reviews.map(review => (
                                     <div key={review.id} className="border p-2">
                                         <h5>{review.title}</h5>
+                                        <p><Avatar src={`./api/uploads/${review.userImage}`} /> By: {review.user}</p>
                                         <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
                                         <p>{review.message}</p>
                                     </div>
