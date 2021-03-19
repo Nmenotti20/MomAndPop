@@ -14,7 +14,10 @@ function BizProfile() {
     reviews: []
   })
   const [showModal, setShowModal] = useState(false);
-    const [bizInfo, setBizInfo] = useState({});
+  const [bizInfo, setBizInfo] = useState({});
+  const [showCommentModal, setShowCommentModal] = useState(false);
+  const [bizComment, setBizComment] = useState();
+
     
 
   useEffect(() => {
@@ -39,6 +42,12 @@ function BizProfile() {
     setBizInfo({...bizInfo,[name]:value})
   
   }
+
+  function handleCommentChange(e){
+    const {name, value} = e.target;
+    setBizComment(value)
+  }
+
   
   function handleProfileSubmit(e){
     e.preventDefault();
@@ -55,6 +64,13 @@ function BizProfile() {
       console.log(err)
     })
     }
+  }
+
+  function handleCommentSubmit(e){
+    e.preventDefault();
+    console.log("You replied to a Comment")
+    console.log(bizComment);
+    setShowCommentModal(false);
   }
 
 
@@ -77,6 +93,22 @@ function BizProfile() {
 
   return (
     <div>
+      <Modal 
+      show={showCommentModal} 
+      onHide={() => setShowCommentModal(false)} 
+      style={{ opacity: 1 }}>
+          <form onSubmit={handleCommentSubmit}>
+          <h1>REPLY TO COMMENT</h1>
+            <input name="comment" value={bizComment} onChange={handleCommentChange}/>
+            <input
+                  className="btn float-right edit_btn"
+                  type="submit"
+                  value="Submit"
+                />
+          </form>
+      </Modal>
+
+
       <div className="d-flex justify-content-center h-100">
         <Card className="card">
           <Card.Img variant="top" src={`/api/uploads/${business.image}`} />
@@ -106,11 +138,22 @@ function BizProfile() {
                 <div style={{height: '200px', overflowY: 'scroll'}}>
                   {
                     business.reviews.map(review => (
-                      <div key={review.id} className="border p-2">
+                      <div key={review.id} className="comment-height border p-2">
                           <h5>{review.title}</h5>
                           <p><Avatar src={`./api/uploads/${review.userImage}`} /> By: {review.user}</p>
                           <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
                           <p>{review.message}</p>
+                            
+                            {/* id={review.id} 
+                            // onClick={reviewOnClick} 
+                            style={{cursor: 'pointer'}}> */}
+                              <ChatBubbleOutlineIcon 
+                              // className="post_option float-right" 
+                              id={review.id} />
+                              <p 
+                              // className="post_option float-right" 
+                              onClick={() => setShowCommentModal(true)} 
+                              id={review.id}>Reply to Comment</p>
                       </div>
                     ))
                   }
