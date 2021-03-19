@@ -39,5 +39,12 @@ export default {
     },
     deleteReview: function(id) {
         return axios.delete("/api/user/reviews", { id })
+    },
+    updateInfo: function(data){
+        return axios.put('/api/user/findOneUser',data, {
+            headers: {
+                'Authorization': `Bearer ${document.cookie.split(';')[0].split('=')[1]}`
+            }
+        })
     }
 }

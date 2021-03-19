@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import "./style.css";
 
-import { Card } from "react-bootstrap";
+import { Card, Modal } from "react-bootstrap";
 import { Avatar } from "@material-ui/core";
 
 import StarRatings from 'react-star-ratings'
@@ -13,6 +13,9 @@ function BizProfile() {
   const [business, setBusiness] = useState({
     reviews: []
   })
+  const [showModal, setShowModal] = useState(false);
+    const [bizInfo, setBizInfo] = useState({});
+    
 
   useEffect(() => {
     API.find()
@@ -24,6 +27,36 @@ function BizProfile() {
       })
       .catch(err => console.log(err))
   }, [])
+
+  function editBizProfileClick(e){
+    setShowModal(true);
+    setBizInfo(business);
+    console.log("****USER",bizInfo)
+  }
+  
+  function handleProfileChange(e){
+    const {name, value} = e.target;
+    setBizInfo({...bizInfo,[name]:value})
+  
+  }
+  
+  function handleProfileSubmit(e){
+    e.preventDefault();
+    console.log("i was clicked")
+    console.log(bizInfo);
+    if(bizInfo.email  && bizInfo.firstName && bizInfo.lastName && bizInfo.companyName && bizInfo.service && bizInfo.streetAddress && bizInfo.city && bizInfo.state && bizInfo.zipCode && bizInfo.phone){
+      API.updateInfo({
+        ...bizInfo
+      })
+      .then((res)=>{setShowModal(false)
+      console.log(res)})
+  
+      .catch(function(err){
+      console.log(err)
+    })
+    }
+  }
+
 
   function findAverageRating(reviews, size) {
     let total = 0
@@ -84,9 +117,10 @@ function BizProfile() {
                 </div>
               </div>
               <input
+                className="btn float-right edit_btn"
                 type="submit"
                 value="Edit Profile"
-                className="btn float-right edit_btn"
+                onClick={editBizProfileClick}
               />
             </div>
             <p className="card-text">
@@ -95,6 +129,36 @@ function BizProfile() {
           </Card.Body>
         </Card>
       </div>
+      <Modal show={showModal} onHide={() => setShowModal(false)} style={{ opacity: 1 }}>
+                
+                    <form onSubmit={handleProfileSubmit}>
+                      <h1>EDIT PROFILE</h1>
+                    <label>FIRST NAME</label>
+                    <input name="firstName" value={bizInfo.firstName} onChange={handleProfileChange}/>
+                    <label>LAST NAME</label>
+                    <input name="lastName" value={bizInfo.lastName} onChange={handleProfileChange}/>
+                    <label>EMAIL</label>
+                    <input name="email" value={bizInfo.email} onChange={handleProfileChange}/>
+                    <label>Company Name</label>
+                    <input name="companyName" value={bizInfo.companyName} onChange={handleProfileChange}/>
+                    <label>Servoce</label>
+                    <input name="service" value={bizInfo.service} onChange={handleProfileChange}/>
+                    <label>Street Address</label>
+                    <input name="streetAddress" value={bizInfo.streetAddress} onChange={handleProfileChange}/>
+                    <label>City</label>
+                    <input name="city" value={bizInfo.city} onChange={handleProfileChange}/>
+                    <label>State</label>
+                    <input name="state" value={bizInfo.state} onChange={handleProfileChange}/>
+                    <label>Zipcode</label>
+                    <input name="zipCode" value={bizInfo.zipCode} onChange={handleProfileChange}/>
+                    <label>Phone</label>
+                    <input name="phone" value={bizInfo.phone} onChange={handleProfileChange}/>
+                    <label>Website</label>
+                    <input name="website" value={bizInfo.website} onChange={handleProfileChange}/>
+                     <input type="submit" value="Confirm" className="btn float-right edit_btn"/>
+                    </form>             
+               
+            </Modal>
       <div className="container"></div>
     </div>
   );
