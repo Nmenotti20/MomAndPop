@@ -185,11 +185,13 @@ module.exports = {
   },
   updateUser: function(req, res) {
     db.User
-      .update({
-        where: {
-          uuid: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid
-        },
-      }, req.body)
+      .update(req.body,
+        {
+          where: {
+            uuid: jwt.verify(req.headers.authorization.split(" ")[1], process.env.jwt_secret).uuid
+          }
+        }
+      )
       .then(user => res.json({ message: 'succes', dataChanged: req.body }))
       .catch(err => res.status(422).json(err))
   }
