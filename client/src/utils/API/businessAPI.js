@@ -32,5 +32,12 @@ export default {
     },
     deletePost: function(id) {
         return axios.delete("/api/business/posts", { id })
+    },
+    updateInfo: function(data){
+        return axios.put("/api/business/profile",data, {
+            headers: {
+                'Authorization': `Bearer ${document.cookie.split(';')[0].split('=')[1]}`
+            }
+        })
     }
 }
