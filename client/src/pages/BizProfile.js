@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import "./style.css";
 
 import { Card } from "react-bootstrap";
+import { Avatar } from "@material-ui/core";
 
 import StarRatings from 'react-star-ratings'
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
@@ -74,6 +75,7 @@ function BizProfile() {
                     business.reviews.map(review => (
                       <div key={review.id} className="border p-2">
                           <h5>{review.title}</h5>
+                          <p><Avatar src={`./api/uploads/${review.userImage}`} /> By: {review.user}</p>
                           <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
                           <p>{review.message}</p>
                       </div>

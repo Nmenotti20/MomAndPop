@@ -33,6 +33,7 @@ router.route("/posts")
   .get(usersController.allPosts);
 
 router.route('/findOneUser')
-  .get(authenticate, usersController.findOneUser);   
+  .get(authenticate, usersController.findOneUser)
+  .put(authenticate, usersController.updateUser);   
 
 module.exports = router;
