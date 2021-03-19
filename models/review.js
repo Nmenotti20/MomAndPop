@@ -23,6 +23,17 @@ const Review = sequelize.define("review", {
     rating: {
         type: Sequelize.INTEGER,
         allowNull: false
+    },
+    businessName: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    user: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    userImage: {
+        type: Sequelize.STRING
     }
 });
 
