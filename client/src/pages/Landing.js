@@ -83,6 +83,9 @@ const Landing = () => {
         localStorage.removeItem('rating');
         API.makeReview({
             businessId: reviewBusiness.uuid,
+            businessName: reviewBusiness.companyName,
+            user: name,
+            userImage: image,
             title: reviewTitleRef.current.value,
             message: reviewTitleRef.current.value,
             rating: rating
