@@ -12,7 +12,8 @@ router.route("/register")
   .post(upload.single('picture'), businessesController.register);
 
 router.route("/profile")
-  .get(authenticate, businessesController.find);
+  .get(authenticate, businessesController.find)
+  .put(authenticate, businessesController.updateBiz);
 
 router.route('/reviews')
   .get(authenticate, businessesController.allReviews);
