@@ -24,13 +24,9 @@ router.route('/posts')
   .delete(authenticate, businessesController.deletePost)
   .put(authenticate, businessesController.editPost);
 
-// router.route("/makePost")
-//   .post(businessesController.makePost);
-// Matches with "/api/books/:id"
-// router
-//   .route("/:id")
-//   .get(booksController.findById)
-//   .put(booksController.update)
-//   .delete(booksController.remove);
+
+  router.route('/bizReply')
+    .post(authenticate, businessesController.makeReply);
+
 
 module.exports = router;

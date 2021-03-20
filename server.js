@@ -28,9 +28,11 @@ db.User.sync().then(() => {
   db.Business.sync().then(() => {
     db.Review.sync().then(() => {
       db.Post.sync().then(() => {
-        app.listen(PORT, function () {
-          console.log(`🌎 ==> API server now on port ${PORT}!`);
-        });
+        db.Reply.sync().then(() => {
+          app.listen(PORT, function () {
+            console.log(`🌎 ==> API server now on port ${PORT}!`);
+          });
+        })
       })
     })
   })

@@ -7,8 +7,8 @@ const Reply = sequelize.define("reply", {
             allowNull: false,
             defaultValue: 0
         },
-        postId: {
-            type: Sequelize.UUID,
+        reviewId: {
+            type: Sequelize.INTEGER,
             allowNull: false,
             defaultValue: 0
         },
@@ -20,12 +20,8 @@ const Reply = sequelize.define("reply", {
     
     Reply.associate = function(models) {
         Reply.belongsTo(models.Post, {
-            foreignKey: 'postId'
+            foreignKey: 'reviewId'
         })
     }
-
-
-
-
 
 module.exports = Reply;
