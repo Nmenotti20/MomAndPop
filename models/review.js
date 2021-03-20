@@ -1,51 +1,78 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../config/connection.js');
-// Creating our User model
-const Review = sequelize.define("review", {
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Review extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+        Review.belongsTo(models.Business, {
+            foreignKey: 'businessId'
+        })
+        Review.belongsTo(models.User, {
+            foreignKey: 'userId'
+        })
+        Review.hasMany(models.Reply, {
+          foreignKey: 'postId',
+          onDelete: 'cascade'
+        })
+    }
+  };
+  Review.init({
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     userId: {
-        type: Sequelize.UUID,
-        allowNull: false,
-        defaultValue: 0
+      type: DataTypes.UUID,
+      allowNull: false
     },
     businessId: {
-        type: Sequelize.UUID,
-        allowNull: false,
-        defaultValue: 0
+      type: DataTypes.UUID,
+      allowNull: false,
+      defaultValue: 0
     },
     title: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false
     },
     message: {
-        type: Sequelize.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
     rating: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     businessName: {
-        type: Sequelize.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
     user: {
-        type: Sequelize.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
     userImage: {
-        type: Sequelize.STRING
+      type: DataTypes.STRING
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE
     }
-});
-
-Review.associate = function(models) {
-    Review.belongsTo(models.User, {
-        foreignKey: 'userId'
-    })
-    Review.belongsTo(models.Business, {
-        foreignKey: 'businessId'
-    })
-}
-
-// Review.sync();
-
-module.exports = Review;
+  }, {
+    sequelize,
+    modelName: 'Review',
+  });
+  return Review;
+};

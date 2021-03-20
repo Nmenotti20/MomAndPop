@@ -1,5 +1,4 @@
 const db = require("../models");
-const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Sequelize = require("sequelize");
@@ -31,7 +30,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   register: async function(req, res) {
-    const existingUser = await User.findOne({ where: { email: req.body.email }});
+    const existingUser = await db.User.findOne({ where: { email: req.body.email }});
     if (existingUser) {
         return res.json({ message: "This email already has an account" })
     } else {

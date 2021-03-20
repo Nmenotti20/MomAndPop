@@ -39,7 +39,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   register: async function (req, res) {
-    const existingUser = await Business.findOne({
+    const existingUser = await db.Business.findOne({
       where: { email: req.body.email },
     });
     if (existingUser) {
@@ -52,7 +52,7 @@ module.exports = {
         .then((dbModel) =>
           res.json({ message: "You registered successfully!" })
         )
-        .catch((err) => res.status(422).json(err));
+        .catch((err) => console.log(err));
     }
   },
   find: async function (req, res) {
@@ -150,4 +150,15 @@ module.exports = {
       .then((user) => res.json({ message: "Success", dataChanged: req.body }))
       .catch((err) => res.status(422).json(err));
   },
+  makeReply: function (req,res) {
+    console.log(req.body)
+    db.Reply.create({
+      ...req.body,
+      businessId: jwt.verify(
+        req.headers.authorization.split(" ")[1],process.env.jwt_secret
+        ).uuid,
+    })
+    .then((review) => res.json({ message: "Success", dataChanged: req.body }))
+    .catch((err) => console.log(err));
+  }
 };

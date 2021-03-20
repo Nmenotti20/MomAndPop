@@ -19,7 +19,7 @@ const Landing = () => {
     const [showModal, setShowModal] = useState(false);
     const [reviewBusiness, setReviewBusiness] = useState({});
     const [viewBusiness, setViewBusiness] = useState({
-        reviews: []
+        Reviews: []
     });
     const { token, loggedInAs, name, image} = useContext(UserContext);
     const [modalContent, setModalContent] = useState(() => {
@@ -55,7 +55,10 @@ const Landing = () => {
                 radarAPI.findZip(location.coords.latitude, location.coords.longitude)
                     .then(res => {
                         API.findBusinesses(res.data.addresses[0].postalCode.substr(0, 3))
-                            .then(data => setBusinesses(data.data))
+                            .then(data => {
+                                setBusinesses(data.data)
+                                console.log(data)
+                            })
                             .catch(err => console.log(err))
                     })
             }, () => {
@@ -144,7 +147,7 @@ const Landing = () => {
                             <h5>{viewBusiness.city}, {viewBusiness.state} {viewBusiness.zipCode}</h5>
                             <h5>{viewBusiness.phone}</h5>
                             <h4><a href={viewBusiness.website}>{viewBusiness.website}</a></h4>
-                            {showReviews(viewBusiness.reviews)}
+                            {showReviews(viewBusiness.Reviews)}
                     </div>
                 )
             })
@@ -196,19 +199,18 @@ const Landing = () => {
     }
 
     function findAverageRating(reviews, size) {
-        let total = 0
-        for (let i = 0; i < reviews.length; i++) {
-            total += reviews[i].rating;
-        }
+        if (reviews.length) {
+            let total = 0
+            for (let i = 0; i < reviews.length; i++) {
+                total += reviews[i].rating;
+            }
 
-        if (!total) {
-            return (
-                <h3>No Reviews Yet</h3>
-            )
-        } else {
+        
             return (
                 <StarRatings starDimension={size} starRatedColor="gold" starSpacing='1px' rating={total/reviews.length} />
             )
+        } else {
+            return <h3>No Reviews Yet</h3>
         }
     }
 
@@ -241,7 +243,7 @@ const Landing = () => {
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Body>
-                                    {findAverageRating(business.reviews, '30px')}
+                                    {findAverageRating(business.Reviews, '30px')}
                                     <br/>
                                     <div className="post_option float-left" id={index} onClick={seeReviewsOnClick} style={{cursor: 'pointer'}}>
                                         <p id={index}>See Reviews</p>

@@ -24,15 +24,9 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-db.User.sync().then(() => {
-  db.Business.sync().then(() => {
-    db.Review.sync().then(() => {
-      db.Post.sync().then(() => {
-        app.listen(PORT, function () {
-          console.log(`🌎 ==> API server now on port ${PORT}!`);
-        });
-      })
-    })
-  })
+db.sequelize.sync().then(() => {
+  app.listen(PORT, function () {
+    console.log(`🌎 ==> API server now on port ${PORT}!`);
+  });
 })
 
