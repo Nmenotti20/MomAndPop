@@ -39,5 +39,14 @@ export default {
                 'Authorization': `Bearer ${document.cookie.split(';')[0].split('=')[1]}`
             }
         })
+    },
+
+    reply: function(data) {
+        return axios.post("/api/business/bizReply", { ...data }, {
+        headers: {
+            'Authorization': `Bearer ${document.cookie.split(';')[0].split('=')[1]}`
+        }
+        })
     }
+
 }

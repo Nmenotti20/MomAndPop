@@ -46,5 +46,8 @@ export default {
                 'Authorization': `Bearer ${document.cookie.split(';')[0].split('=')[1]}`
             }
         })
-    }
+    },
+
+
+
 }

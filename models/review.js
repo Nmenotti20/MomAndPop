@@ -44,6 +44,9 @@ Review.associate = function(models) {
     Review.belongsTo(models.Business, {
         foreignKey: 'businessId'
     })
+    Review.hasMany(models.Reply, {
+        foreignKey: 'reviewId'
+    })
 }
 
 // Review.sync();
