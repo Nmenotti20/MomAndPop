@@ -11,7 +11,7 @@ import API from '../utils/API/businessAPI';
 
 function BizProfile() {
   const [business, setBusiness] = useState({
-    reviews: []
+    Reviews: []
   })
   const [showModal, setShowModal] = useState(false);
   const [bizInfo, setBizInfo] = useState({});
@@ -131,13 +131,13 @@ function BizProfile() {
                 <div className="post_option mt-5">
                   <h4>Overall Rating</h4>
                   {
-                    findAverageRating(business.reviews, '30px')
+                    findAverageRating(business.Reviews, '30px')
                   }
                 </div>
                 <h4 className="mt-5" style={{textDecoration: 'underline'}}>Reviews</h4>
                 <div style={{height: '200px', overflowY: 'scroll'}}>
                   {
-                    business.reviews.map(review => (
+                    business.Reviews.map(review => (
                       <div key={review.id} className="comment-height border p-2">
                           <h5>{review.title}</h5>
                           <p><Avatar src={`./api/uploads/${review.userImage}`} /> By: {review.user}</p>

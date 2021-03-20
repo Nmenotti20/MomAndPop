@@ -1,28 +1,44 @@
-// Requiring bcrypt for password hashing. Using the bcryptjs version as the regular bcrypt module sometimes causes errors on Windows machines
+'use strict';
 const bcrypt = require("bcryptjs");
-const { authorize } = require("passport");
-const Sequelize = require('sequelize');
-const sequelize = require('../config/connection.js');
-const Review = require('./review.js');
-// Creating our User model
-const Business = sequelize.define("business", {
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Business extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+      Business.hasMany(models.Review, {
+        foreignKey: 'businessId',
+        onDelete: "cascade"
+      })
+      Business.hasMany(models.Reply, {
+        foreignKey: 'businessId'
+      })
+    }
+  };
+  Business.init({
     uuid: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        primaryKey: true,
-        allowNull: false
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
     },
     firstName: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     lastName: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     // The email cannot be null, and must be a proper email before creation
     email: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true,
         validate: {
@@ -31,69 +47,72 @@ const Business = sequelize.define("business", {
     },
     // The password cannot be null
     password: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     companyName: {
-        type: Sequelize.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
     service: {
-        type: Sequelize.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
     // The email cannot be null, and must be a proper email before creation
     streetAddress: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     // The password cannot be null
     city: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
 
     state: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
 
     zipCode: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     phone: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     website: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
     },
     image: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE
     }
-});
+  }, {
+    sequelize,
+    modelName: 'Business',
+  });
 
-
-Business.hasMany(Review, {
-    foreignKey: 'businessId'
-})
-
-// Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
-Business.prototype.validPassword = function (password) {
+  Business.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
+  };
+      // Hooks are automatic methods that run during various phases of the User Model lifecycle
+      // In this case, before a User is created, we will automatically hash their password
+  Business.addHook("beforeCreate", Business => {
+      Business.password = bcrypt.hashSync(
+          Business.password,
+          bcrypt.genSaltSync(10),
+          null
+      );
+  });
+  return Business;
 };
-    // Hooks are automatic methods that run during various phases of the User Model lifecycle
-    // In this case, before a User is created, we will automatically hash their password
-Business.addHook("beforeCreate", Business => {
-    Business.password = bcrypt.hashSync(
-        Business.password,
-        bcrypt.genSaltSync(10),
-        null
-);
-});
-
-// Business.sync();
-
-module.exports = Business;
