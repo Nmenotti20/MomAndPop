@@ -115,3 +115,6 @@ background-color: white;
     background-color: white;
 }
 
+.comment-height{
+    height: inherit;
+}

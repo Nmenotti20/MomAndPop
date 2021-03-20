@@ -150,4 +150,15 @@ module.exports = {
       .then((user) => res.json({ message: "Success", dataChanged: req.body }))
       .catch((err) => res.status(422).json(err));
   },
+  makeReply: function (req,res) {
+    console.log(req.body)
+    db.Reply.create({
+      ...req.body,
+      businessId: jwt.verify(
+        req.headers.authorization.split(" ")[1],process.env.jwt_secret
+        ).uuid,
+    })
+    .then((review) => res.json({ message: "Success", dataChanged: req.body }))
+    .catch((err) => console.log(err));
+  }
 };

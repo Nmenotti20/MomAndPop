@@ -154,7 +154,7 @@ const Landing = () => {
     }, [viewBusiness])
 
     function showReviews(reviews) {
-        if (reviews) {
+        if (reviews.length) {
             return (
                 <div>
                     <h3 style={{textDecoration: 'underline'}}>Reviews</h3>
@@ -199,7 +199,7 @@ const Landing = () => {
     }
 
     function findAverageRating(reviews, size) {
-        if (reviews) {
+        if (reviews.length) {
             let total = 0
             for (let i = 0; i < reviews.length; i++) {
                 total += reviews[i].rating;

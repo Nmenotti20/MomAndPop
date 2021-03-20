@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.UUID,
         allowNull: false
       },
-      postId: {
+      reviewId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0

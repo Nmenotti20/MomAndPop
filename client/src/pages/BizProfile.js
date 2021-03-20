@@ -16,7 +16,7 @@ function BizProfile() {
   const [showModal, setShowModal] = useState(false);
   const [bizInfo, setBizInfo] = useState({});
   const [showCommentModal, setShowCommentModal] = useState(false);
-  const [bizComment, setBizComment] = useState();
+  const [bizComment, setBizComment] = useState({});
 
     
 
@@ -45,7 +45,10 @@ function BizProfile() {
 
   function handleCommentChange(e){
     const {name, value} = e.target;
-    setBizComment(value)
+    setBizComment({
+      ...bizComment,
+      [name]:value
+    })
   }
 
   
@@ -70,8 +73,28 @@ function BizProfile() {
     e.preventDefault();
     console.log("You replied to a Comment")
     console.log(bizComment);
-    setShowCommentModal(false);
+    // setShowCommentModal(false);
+    API.reply(bizComment)
+      .then(()=>  {
+        setShowCommentModal(false)
+      })
+      .catch(err=>
+        console.log(err)
+        )
   }
+
+  function handleReplyClick(e)  {
+    e.preventDefault();
+    console.log(e.target.id)
+    setBizComment({
+      ...bizComment,
+      reviewId:e.target.id
+      
+    })
+    setShowCommentModal(true)
+  }
+
+
 
 
   function findAverageRating(reviews, size) {
@@ -99,7 +122,7 @@ function BizProfile() {
       style={{ opacity: 1 }}>
           <form onSubmit={handleCommentSubmit}>
           <h1>REPLY TO COMMENT</h1>
-            <input name="comment" value={bizComment} onChange={handleCommentChange}/>
+            <input name="message" value={bizComment.message} onChange={handleCommentChange}/>
             <input
                   className="btn float-right edit_btn"
                   type="submit"
@@ -152,7 +175,7 @@ function BizProfile() {
                               id={review.id} />
                               <p 
                               // className="post_option float-right" 
-                              onClick={() => setShowCommentModal(true)} 
+                              onClick={handleReplyClick} 
                               id={review.id}>Reply to Comment</p>
                       </div>
                     ))
