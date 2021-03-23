@@ -27,13 +27,16 @@ function App() {
   });
     
   useEffect(() => {
-    if (document.cookie.split(';')[0].split('=')[0] === "token" && document.cookie.split(';')[1].split('=')[1]) {
+    if (document.cookie.split(';')[0].split('=')[0] === "token" && localStorage.getItem("loggedInAs")) {
       setUser({
         ...user,
         token: document.cookie.split(';')[0].split('=')[1],
-        loggedInAs: document.cookie.split(';')[1].split('=')[1],
-        name: document.cookie.split(';')[2].split('=')[1],
-        image: document.cookie.split(';')[3].split('=')[1]
+        loggedInAs: localStorage.getItem("loggedInAs"),
+        name: localStorage.getItem("name"),
+        image: localStorage.getItem("image")
+        // loggedInAs: document.cookie.split(';')[1].split('=')[1],
+        // name: document.cookie.split(';')[2].split('=')[1],
+        // image: document.cookie.split(';')[3].split('=')[1]
       });
     }
   }, [])
