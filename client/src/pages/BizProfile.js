@@ -25,6 +25,7 @@ function BizProfile() {
   useEffect(() => {
     API.find()
       .then(res => {
+        console.log(res.data)
         setBusiness({
           ...business,
           ...res.data
@@ -185,7 +186,7 @@ function BizProfile() {
                               <p 
                               // className="post_option float-right" 
                               onClick={handleReplyClick} 
-                              id={review.id}>Reply to Comment</p>
+                              id={review.id} style={{cursor: 'pointer'}}>Reply to Comment</p>
                       </div>
                     ))
                   }

@@ -69,6 +69,11 @@ module.exports = {
       include: [
         {
           model: db.Review,
+          include: [
+            {
+              model: db.Reply
+            }
+          ]
         },
       ],
     })

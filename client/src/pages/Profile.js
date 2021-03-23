@@ -5,11 +5,15 @@ import { Card, Modal } from "react-bootstrap";
 import { withRouter } from 'react-router-dom';
 import API from '../utils/API/userAPI';
 import UserContext from  '../utils/Context/UserContext';
+import StarRatings from 'react-star-ratings'
 
 function Profile() {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({
+      Reviews: []
+    });
     const [showModal, setShowModal] = useState(false);
     const [userInfo, setUserInfo] = useState({});
+    const [showReviews, setShowReviews] = useState(false);
     const { changeUser } = useContext(UserContext); 
     
     
@@ -65,6 +69,21 @@ function handleProfileSubmit(e){
   }
 }
 
+  function reviews(reviews) {
+    return (
+      
+      reviews.map(review => (
+        <div key={review.id} className="bg-white border">
+          <h5>{review.businessName}</h5>
+          <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
+          <h6 className="mt-2">{review.title}</h6>
+          <p style={{fontSize: '10px'}}>{review.message}</p>
+        </div>
+      ))
+      
+    )
+  }
+
     return (
 
         <div>
@@ -83,8 +102,11 @@ function handleProfileSubmit(e){
                         </Card.Body>
                         <Card.Body>
                             <div className="form-group">
-                                <Card.Link href="#">Favortes</Card.Link>
+                                <Card.Link style={{cursor: 'pointer'}} onClick={e => e.target.textContent === "My Reviews" ? setShowReviews(true) : setShowReviews(false)}>{showReviews ? "Hide Reviews" : "My Reviews"}</Card.Link>
                                 <input  className="btn float-right edit_btn" onClick={editProfileClick} value="Edit Profile"/>
+                                </div>
+                                <div>
+                                  {showReviews ? reviews(user.Reviews) : <div></div>}
                                 </div>
                                 <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                         </Card.Body>

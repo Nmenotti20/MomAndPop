@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'userId'
         })
         Review.hasMany(models.Reply, {
-          foreignKey: 'postId',
+          foreignKey: 'reviewId',
           onDelete: 'cascade'
         })
     }
