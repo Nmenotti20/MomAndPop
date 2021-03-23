@@ -47,7 +47,7 @@ module.exports = {
     } else {
       db.Business.create({
         ...req.body,
-        image: req.file.filename,
+        image: req.file.location,
       })
         .then((dbModel) =>
           res.json({ message: "You registered successfully!" })

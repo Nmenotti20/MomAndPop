@@ -60,7 +60,7 @@ function handleProfileSubmit(e){
         <div>
             <div className="d-flex justify-content-center h-100">
                 <Card className="card">
-                    <Card.Img variant="top" src={`/api/uploads/${user.image}`} />
+                    <Card.Img variant="top" src={user.image} />
                         <Card.Body>
                             <Card.Title>
                               <h1>{user.username}</h1>  

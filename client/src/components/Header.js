@@ -41,7 +41,7 @@ function Header() {
                
                     <div className="header_right">
                         <div className="header_info">
-                            <Avatar src={`./api/uploads/${image}`} />
+                            <Avatar src={image} />
                             <div>
                             <h4>{name}</h4>
                             <a href="/" onClick={signOut} style={{cursor: 'pointer', textDecoration: 'underline'}}>Sign Out</a>

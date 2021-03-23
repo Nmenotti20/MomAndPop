@@ -6,6 +6,12 @@ const path = require('path');
 
 const s3 = new aws.S3({ apiVersion: '2006-03-01' });
 
+aws.config.update({
+    region: "us-east-2",
+    "accessKeyId": process.env.AWS_ACCESS_KEY,
+    "secretAccessKey": process.env.AWS_SECRET_ACCESS_KEY
+});
+
 const upload = multer({
     storage: multerS3({
         s3: s3,

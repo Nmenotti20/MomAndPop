@@ -37,7 +37,7 @@ module.exports = {
         db.User
             .create({
               ...req.body,
-              image: req.file.filename
+              image: req.file.location
             })
             .then(dbModel => res.json({ message: "You registered successfully!" }))
             .catch(err => res.status(422).json(err));

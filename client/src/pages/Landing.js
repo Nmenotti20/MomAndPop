@@ -110,7 +110,7 @@ const Landing = () => {
             setModalContent(() => {
                 return (
                     <div>
-                        <Card.Img src={`/api/uploads/${reviewBusiness.image}`} />
+                        <Card.Img src={reviewBusiness.image} />
                         <h1>{reviewBusiness.companyName}</h1>
                         <h4>{reviewBusiness.service}</h4>
                         <form onSubmit={submitReview}>
@@ -140,7 +140,7 @@ const Landing = () => {
             setModalContent(() => {
                 return (
                     <div>
-                            <Card.Img src={`/api/uploads/${viewBusiness.image}`} />
+                            <Card.Img src={viewBusiness.image} />
                             <h1>{viewBusiness.companyName}</h1>
                             <h4>{viewBusiness.service}</h4>
                             <h5>{viewBusiness.streetAddress}</h5>
@@ -163,7 +163,7 @@ const Landing = () => {
                             reviews.map(review => (
                                     <div key={review.id} className="border p-2">
                                         <h5>{review.title}</h5>
-                                        <p><Avatar src={`./api/uploads/${review.userImage}`} /> By: {review.user}</p>
+                                        <p><Avatar src={review.userImage} /> By: {review.user}</p>
                                         <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
                                         <p>{review.message}</p>
                                     </div>
@@ -225,7 +225,7 @@ const Landing = () => {
                     {
                         businesses.map((business, index) => (
                             <Card key={business.uuid}>
-                                <Card.Img variant="top" src={`/api/uploads/${business.image}`} />
+                                <Card.Img variant="top" src={business.image} />
                                 <Card.Body>
                                     <Card.Title className="rem2">{business.companyName}</Card.Title>
                                     <Card.Text>
