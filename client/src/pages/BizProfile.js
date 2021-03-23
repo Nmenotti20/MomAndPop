@@ -134,7 +134,7 @@ function BizProfile() {
 
       <div className="d-flex justify-content-center h-100">
         <Card className="card">
-          <Card.Img variant="top" src={`/api/uploads/${business.image}`} />
+          <Card.Img variant="top" src={business.image} />
           <Card.Body>
             <Card.Title>
               <h1>{business.companyName}</h1>
@@ -163,7 +163,7 @@ function BizProfile() {
                     business.Reviews.map(review => (
                       <div key={review.id} className="comment-height border p-2">
                           <h5>{review.title}</h5>
-                          <p><Avatar src={`./api/uploads/${review.userImage}`} /> By: {review.user}</p>
+                          <p><Avatar src={review.userImage} /> By: {review.user}</p>
                           <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
                           <p>{review.message}</p>
                             
