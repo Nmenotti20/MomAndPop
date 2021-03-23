@@ -79,7 +79,12 @@ module.exports = {
         ]
       },
       include: [{
-        model: db.Review
+        model: db.Review,
+        include: [
+          {
+            model: db.Reply
+          }
+        ]
       }]
     })
     .then(user => res.json(user))
@@ -97,7 +102,12 @@ module.exports = {
           ]
         },
         include: [{
-          model: db.Review
+          model: db.Review,
+          include: [
+            {
+              model: db.Reply
+            }
+          ]
         }]
       })
       .then(businesses => res.json(businesses))
@@ -132,7 +142,12 @@ module.exports = {
           ]
         },
         include: [{
-          model: db.Review
+          model: db.Review,
+          include: [
+            {
+              model: db.Reply
+            }
+          ]
         }]
       })
       .then(businesses => res.json(businesses))

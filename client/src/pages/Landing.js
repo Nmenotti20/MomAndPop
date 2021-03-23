@@ -91,7 +91,7 @@ const Landing = () => {
             user: name,
             userImage: image,
             title: reviewTitleRef.current.value,
-            message: reviewTitleRef.current.value,
+            message: reviewRef.current.value,
             rating: rating
         })
         .then(res => {
