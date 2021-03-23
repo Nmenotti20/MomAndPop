@@ -29,9 +29,12 @@ function Header() {
 
     function signOut() {
         document.cookie = "token=; Max-Age=0";
-        document.cookie = "loggedInAs=; Max-Age=0";
-        document.cookie = "name=; Max-Age=0";
-        document.cookie = 'image=; Max-Age=0';
+        localStorage.removeItem("loggedInAs");
+        localStorage.removeItem("name");
+        localStorage.removeItem("image");
+        // document.cookie = "loggedInAs=; Max-Age=0";
+        // document.cookie = "name=; Max-Age=0";
+        // document.cookie = 'image=; Max-Age=0';
         changeUser('', '', '', '');
     }
 

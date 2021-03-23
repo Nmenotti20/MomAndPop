@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import "./style.css";
 
@@ -8,6 +8,7 @@ import { Avatar } from "@material-ui/core";
 import StarRatings from 'react-star-ratings'
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import API from '../utils/API/businessAPI';
+import UserContext from '../utils/Context/UserContext';
 
 function BizProfile() {
   const [business, setBusiness] = useState({
@@ -17,6 +18,7 @@ function BizProfile() {
   const [bizInfo, setBizInfo] = useState({});
   const [showCommentModal, setShowCommentModal] = useState(false);
   const [bizComment, setBizComment] = useState({});
+  const { changeUser } = useContext(UserContext);
 
     
 
@@ -60,8 +62,15 @@ function BizProfile() {
       API.updateInfo({
         ...bizInfo
       })
-      .then((res)=>{setShowModal(false)
-      console.log(res)})
+      .then((res)=>{
+        setShowModal(false)
+        localStorage.setItem("name", `${bizInfo.companyName}`);
+        changeUser(document.cookie.split(';')[0].split('=')[1], localStorage.getItem("loggedInAs"), localStorage.getItem("name"), localStorage.getItem("image"));
+        setBusiness({
+          ...business,
+          ...bizInfo
+        })
+      })
   
       .catch(function(err){
       console.log(err)

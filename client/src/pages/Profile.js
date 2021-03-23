@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./style.css";
 
 import { Card, Modal } from "react-bootstrap";
 import { withRouter } from 'react-router-dom';
 import API from '../utils/API/userAPI';
+import UserContext from  '../utils/Context/UserContext';
 
 function Profile() {
     const [user, setUser] = useState({});
     const [showModal, setShowModal] = useState(false);
     const [userInfo, setUserInfo] = useState({});
+    const { changeUser } = useContext(UserContext); 
     
     
     useEffect(() => {
@@ -46,8 +48,16 @@ function handleProfileSubmit(e){
       email: userInfo.email,
       username: userInfo.username
     })
-    .then((res)=>{setShowModal(false)
-    console.log(res)})
+    .then((res)=>{
+      setShowModal(false)
+      console.log(res)
+      localStorage.setItem("name", `${userInfo.firstName} ${userInfo.lastName}`);
+      changeUser(document.cookie.split(';')[0].split('=')[1], localStorage.getItem("loggedInAs"), localStorage.getItem("name"), localStorage.getItem("image"));
+      setUser({
+        ...user,
+        ...userInfo
+      })
+    })
 
     .catch(function(err){
     console.log(err)
