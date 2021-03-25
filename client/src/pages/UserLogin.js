@@ -29,7 +29,7 @@ function UserLogin() {
         .then(function (res) {
           if (res.data.message === "Welcome!") {
             const loginPromise = new Promise((resolve, reject) => {
-              document.cookie = `token=${res.data.token}; SameSite=Lax; Secure`;
+              document.cookie = `token=${res.data.token}; Domain=${window.location.hostname}; SameSite=Strict; Secure`;
               resolve(res.data.token)
             });
 
