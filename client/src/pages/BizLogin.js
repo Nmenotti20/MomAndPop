@@ -31,19 +31,40 @@ function BizLogin() {
       })
         .then(function (res) {
           if (res.data.message === "Welcome!") {
-            document.cookie = `token=${res.data.token}; SameSite=Lax; Secure`;
-            localStorage.setItem("loggedInAs", res.data.loggedInAs);
-            localStorage.setItem("name", res.data.name);
-            localStorage.setItem("image", res.data.image);
+            const loginPromise = new Promise((resolve, reject) => {
+              document.cookie = `token=${res.data.token}; SameSite=Lax; Secure`;
+              resolve(res.data.token)
+            });
+
+            loginPromise
+              .then(() => {
+                localStorage.setItem("loggedInAs", res.data.loggedInAs);
+                localStorage.setItem("name", res.data.name);
+                localStorage.setItem("image", res.data.image);
+              })
+              .then(() => {
+                changeUser(res.data.token, 'business', res.data.name, res.data.image)
+              })
+              .then(() => {
+                setMessage({
+                  text: res.data.message,
+                  color: 'success'
+                })
+              })
+              .then(() => window.location.replace('/businessprofile'))
+            // document.cookie = `token=${res.data.token}; SameSite=Lax; Secure`;
+            // localStorage.setItem("loggedInAs", res.data.loggedInAs);
+            // localStorage.setItem("name", res.data.name);
+            // localStorage.setItem("image", res.data.image);
             // document.cookie = `loggedInAs=${res.data.loggedInAs}; SameSite=Lax; Secure`;
             // document.cookie = `name=${res.data.name}; SameSite=Lax; Secure`;
             // document.cookie = `image=${res.data.image}; SameSite=Lax; Secure`;
-            changeUser(res.data.token, 'business', res.data.name, res.data.image)
-            setMessage({
-              text: res.data.message,
-              color: 'success'
-            })
-            window.location.replace('/businessprofile')
+            // changeUser(res.data.token, 'business', res.data.name, res.data.image)
+            // setMessage({
+            //   text: res.data.message,
+            //   color: 'success'
+            // })
+            // window.location.replace('/businessprofile')
           } else if (res.data.message === "Email or password does not match") {
             setMessage({
               text: res.data.message,
