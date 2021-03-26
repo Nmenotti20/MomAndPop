@@ -222,7 +222,7 @@ const Landing = () => {
             </div>
             <div>
 
-            <Animated animationIn="zoomInRight" animationInDelay="2.5" isVisible={true}>
+            <Animated animationIn="fadeInUp" animationInDelay="5s" isVisible={true}>
                 <CardColumns>
                     {
                         businesses.map((business, index) => (
