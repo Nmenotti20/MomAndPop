@@ -17,7 +17,7 @@ router.route("/isloggedin")
 
 
   
-router.route('/findBusinesses/:query')
+router.route('/findBusinesses/:search/:zip')
   .get(usersController.findBusinesses)
 
 router.route('/findAllBusinesses')

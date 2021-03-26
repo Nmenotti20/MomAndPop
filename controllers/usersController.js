@@ -114,30 +114,54 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
   findBusinesses: function(req, res) {
-    db.Business
+    console.log(req.params)
+    if (req.params.search === 'undefined' && req.params.zip !== 'undefined') {
+      db.Business.findAll({
+        where: {
+          zipCode: {
+            [Sequelize.Op.substring]: req.params.zip
+          }
+        },
+        attributes: {
+          exclude: [
+            'password'
+          ]
+        },
+        include: [{
+          model: db.Review,
+          include: [
+            {
+              model: db.Reply
+            }
+          ]
+        }]
+      })
+      .then(business => res.json(business))
+      .catch(err => res.status(422).json(err))
+    } else if (req.params.search !== 'undefined' && req.params.zip === 'undefined') {
+      db.Business
       .findAll({
         where: {
           [Sequelize.Op.or]: [
             {
               service: {
-                [Sequelize.Op.substring]: req.params.query
+                [Sequelize.Op.substring]: req.params.search
               }
             },
             {
               companyName: {
-                [Sequelize.Op.substring]: req.params.query
+                [Sequelize.Op.substring]: req.params.search
               }
             },
             {
               zipCode: {
-                [Sequelize.Op.substring]: req.params.query
+                [Sequelize.Op.substring]: req.params.search
               }
             }
           ]
         },
         attributes: {
           exclude: [
-            'email',
             'password'
           ]
         },
@@ -152,6 +176,84 @@ module.exports = {
       })
       .then(businesses => res.json(businesses))
       .catch(err => res.status(422).json(err))
+    } else if (req.params.search !== 'undefined' && req.params.zip !== 'undefined') {
+      db.Business.findAll({
+        where: {
+          zipCode: {
+            [Sequelize.Op.substring]: req.params.zip
+          },
+          [Sequelize.Op.or]: [
+            {
+              service: {
+                [Sequelize.Op.substring]: req.params.search
+              }
+            },
+            {
+              companyName: {
+                [Sequelize.Op.substring]: req.params.search
+              }
+            }
+          ]
+        },
+        attributes: {
+          exclude: [
+            'password'
+          ]
+        },
+        include: [{
+          model: db.Review,
+          include: [
+            {
+              model: db.Reply
+            }
+          ]
+        }]
+      })
+      .then(business => res.json(business))
+      .catch(err => res.status(422).json(err))
+    } else if (req.params.search === 'undefined' === req.params.zip === 'undeined') {
+      console.log('both undefined')
+    } else {
+      console.log('not valid')
+    }
+
+    // db.Business
+    //   .findAll({
+    //     where: {
+    //       [Sequelize.Op.or]: [
+    //         {
+    //           service: {
+    //             [Sequelize.Op.substring]: req.params.search
+    //           }
+    //         },
+    //         {
+    //           companyName: {
+    //             [Sequelize.Op.substring]: req.params.search
+    //           }
+    //         },
+    //         {
+    //           zipCode: {
+    //             [Sequelize.Op.substring]: req.params.search
+    //           }
+    //         }
+    //       ]
+    //     },
+    //     attributes: {
+    //       exclude: [
+    //         'password'
+    //       ]
+    //     },
+    //     include: [{
+    //       model: db.Review,
+    //       include: [
+    //         {
+    //           model: db.Reply
+    //         }
+    //       ]
+    //     }]
+    //   })
+    //   .then(businesses => res.json(businesses))
+    //   .catch(err => res.status(422).json(err))
   },
   allReviews: function(req, res) {
     db.Review

@@ -46,15 +46,17 @@ const Landing = () => {
         return debouncedValue
     }
 
-    const debouncedSearchTerm = useDebounce(search, 500)
+    const debouncedSearchTerm = useDebounce(search, 500);
+
+    const [zip, setZip] = useState(undefined)
 
     useEffect(() => {
-
         if (!search) {
             window.navigator.geolocation.getCurrentPosition(location => {
                 radarAPI.findZip(location.coords.latitude, location.coords.longitude)
                     .then(res => {
-                        API.findBusinesses(res.data.addresses[0].postalCode.substr(0, 3))
+                        setZip(res.data.addresses[0].postalCode.substr(0, 3));
+                        API.findBusinesses({ debouncedSearchTerm: undefined, zip: res.data.addresses[0].postalCode.substr(0, 3)})
                             .then(data => {
                                 setBusinesses(data.data)
                                 console.log(data)
@@ -67,7 +69,7 @@ const Landing = () => {
                     .catch(err => console.log(err))
             });
         } else if (debouncedSearchTerm) {
-            searchBusinesses(debouncedSearchTerm)
+            searchBusinesses({ debouncedSearchTerm, zip })
         }
     }, [debouncedSearchTerm]);
 
@@ -218,7 +220,7 @@ const Landing = () => {
         <div>
             <div className="header_input mt-5">
                 <SearchIcon />
-                <input style={{width: '100%'}} onChange={handleInputChange} placeholder="zip code, business name, or service you're looking for" type="text" />
+                <input style={{width: '100%'}} onChange={handleInputChange} placeholder="business name, or service you're looking for (if your location is off, you can try a zip code)" type="text" />
             </div>
             <div>
                 <CardColumns>
