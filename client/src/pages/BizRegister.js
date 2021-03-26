@@ -3,7 +3,7 @@ import "./style.css";
 import { FaEnvelope } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import API from "../utils/API/businessAPI";
-
+import {Animated} from "react-animated-css";
 import FormData from 'form-data';
 
 function BizRegister() {
@@ -70,6 +70,7 @@ function BizRegister() {
   return (
     <div>
       <div className="d-flex justify-content-center">
+      <Animated animationIn="bounceInUp" isVisible={true}>
         <div className="card">
           <div className="card-header">
             <h3>
@@ -353,6 +354,7 @@ function BizRegister() {
             </form>
           </div>
         </div>
+        </Animated>
       </div>
       <div className="container"></div>
     </div>
