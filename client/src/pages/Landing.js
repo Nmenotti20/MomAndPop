@@ -176,7 +176,7 @@ const Landing = () => {
                                             <div>
                                                 {
                                                     review.Replies.map(reply => (
-                                                        <div>
+                                                        <div key={reply.id}>
                                                             <span style={{fontSize: '12.5px', marginLeft: 0}}>{reply.message}</span> <span style={{color: 'gray', marginLeft: 0}}>at {formatDateTime(reply.createdAt)}</span>
                                                         </div>
                                                     ))
