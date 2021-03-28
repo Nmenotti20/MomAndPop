@@ -86,6 +86,15 @@ function BizProfile() {
     // setShowCommentModal(false);
     API.reply(bizComment)
       .then(()=>  {
+        API.find()
+          .then(res => {
+            console.log(res.data)
+            setBusiness({
+              ...business,
+              ...res.data
+            })
+          })
+          .catch(err => console.log(err))
         setShowCommentModal(false)
       })
       .catch(err=>
@@ -122,6 +131,20 @@ function BizProfile() {
             <StarRatings starDimension={size} starRatedColor="gold" starSpacing="1px" rating={total/reviews.length} />
         )
     }
+  }
+
+  function formatDateTime(dateTime) {
+    let time;
+    if (parseInt(dateTime.split('T')[1].split(':')[0]) > 12) {
+      time = `${parseInt(dateTime.split('T')[1].split(':')[0]) - 12}:${dateTime.split('T')[1].split(':')[1]} PM`
+    } else if (parseInt(dateTime.split('T')[1].split(':')[0]) < 12) {
+      time = `${dateTime.split('T')[1].split(':')[0].split('')[1]}:${dateTime.split('T')[1].split(':')[1]} AM`;
+    } else {
+      time = `${dateTime.split('T')[1].split(':')[0]}:${dateTime.split('T')[1].split(':')[1]} PM`
+    }
+    // parseInt(dateTime.split('T')[1].split(':')[0]) > 12 ? time = 'blah' : time = `${dateTime.split('T')[1].split(':')[0].split('')[1]}:${dateTime.split('T')[1].split(':')[1]} AM`;
+    const date = `${dateTime.split('T')[0].split('-')[1]}/${dateTime.split('T')[0].split('-')[2]}/${dateTime.split('T')[0].split('-')[0]}`
+    return `${time} on ${date}`;
   }
 
   return (
@@ -168,21 +191,35 @@ function BizProfile() {
                   }
                 </div>
                 <h4 className="mt-5" style={{textDecoration: 'underline'}}>Reviews</h4>
-                <div style={{height: '200px', overflowY: 'scroll'}}>
+                <div className='border' style={{height: '200px', overflowY: 'scroll'}}>
                   {
                     business.Reviews.map(review => (
-                      <div key={review.id} className="comment-height border p-2">
-                          <h5>{review.title}</h5>
-                          <p><Avatar src={review.userImage} /> By: {review.user}</p>
+                      <div key={review.id} className="border p-2">
+                          <div style={{fontSize: '15px'}}><strong>{review.title}</strong></div>
+                          <div style={{fontSize: '10px', marginLeft: 0}}>by {review.user}</div>
+                          <Avatar src={review.userImage} />
+                          <div style={{textDecoration: 'underline'}}><strong>Review</strong></div>
+                          <div style={{fontSize: '15px'}}>{review.message}</div>
+                          <div style={{color: 'gray'}}>at {formatDateTime(review.createdAt)}</div>
                           <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
-                          <p>{review.message}</p>
-                            
+                          <div>
+                              <div style={{textDecoration: 'underline'}}><strong>{review.Replies.length ? `You replied:` : `You Haven't Replied Yet`}</strong></div>
+                              <div>
+                                  {
+                                      review.Replies.map(reply => (
+                                          <div key={reply.id}>
+                                              <span style={{fontSize: '12.5px', marginLeft: 0}}>{reply.message}</span> <span style={{color: 'gray', marginLeft: 0}}>at {formatDateTime(reply.createdAt)}</span>
+                                          </div>
+                                      ))
+                                  }
+                              </div>
+                          </div>
                             {/* id={review.id} 
                             // onClick={reviewOnClick} 
                             style={{cursor: 'pointer'}}> */}
                               <ChatBubbleOutlineIcon 
                               // className="post_option float-right" 
-                              id={review.id} />
+                              id={review.id} className='mt-3'/>
                               <p 
                               // className="post_option float-right" 
                               onClick={handleReplyClick} 
