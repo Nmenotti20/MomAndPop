@@ -11,7 +11,7 @@ import StarRatings from 'react-star-ratings'
 import API from '../utils/API/userAPI';
 import radarAPI from '../utils/API/radarIO';
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
-
+import {Animated} from "react-animated-css";
 
 const Landing = () => {
     const [businesses, setBusinesses] = useState([]);
@@ -223,6 +223,8 @@ const Landing = () => {
                 <input style={{width: '100%'}} onChange={handleInputChange} placeholder="business name, or service you're looking for (if your location is off, you can try a zip code)" type="text" />
             </div>
             <div>
+
+            <Animated animationIn="fadeInUp" animationInDelay="5s" isVisible={true}>
                 <CardColumns>
                     {
                         businesses.map((business, index) => (
@@ -259,6 +261,7 @@ const Landing = () => {
                         ))
                     }
                 </CardColumns>
+                </Animated>
             </div>
             <Modal show={showModal} onHide={() => setShowModal(false)} style={{ opacity: 1 }}>
                 {

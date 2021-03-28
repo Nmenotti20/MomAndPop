@@ -4,6 +4,7 @@ import { FaUnlock } from "react-icons/fa";
 import { FaUsers  } from "react-icons/fa";
 import API from "../utils/API/userAPI";
 import UserContext from "../utils/Context/UserContext";
+import {Animated} from "react-animated-css";
 
 function UserLogin() {
   const { changeUser } = useContext(UserContext);
@@ -80,6 +81,7 @@ function UserLogin() {
   return (
     <div>
       <div className="d-flex justify-content-center h-100">
+      <Animated animationIn="bounceInLeft" isVisible={true}>
         <div className="card">
           <div className="card-header">
             <h3>
@@ -133,6 +135,7 @@ function UserLogin() {
             </form>
           </div>
         </div>
+        </Animated>
       </div>
       <div className="container"></div>
     </div>

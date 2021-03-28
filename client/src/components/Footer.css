@@ -6,7 +6,7 @@
     background-color:white;
     padding: 25px;
     background-position: bottom, center;
-    display: flex;
+    display: sticky;
     justify-content: left;
     position: fixed;
     left:0;

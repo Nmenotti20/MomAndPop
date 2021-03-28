@@ -4,6 +4,7 @@ import { FaEnvelope } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import { FaUsers  } from "react-icons/fa";
 import { FaSignature  } from "react-icons/fa";
+import {Animated} from "react-animated-css";
 
 import API from "../utils/API/userAPI";
 
@@ -73,6 +74,7 @@ function NewUser() {
   return (
     <div>
       <div className="d-flex justify-content-center h-100">
+      <Animated animationIn="bounceInUp" isVisible={true}>
         <div className="card">
           <div className="card-header">
             <h3>Sign In</h3>
@@ -198,6 +200,7 @@ function NewUser() {
             </form>
           </div>
         </div>
+        </Animated>
       </div>
       <div  className="container"></div>
     </div>
