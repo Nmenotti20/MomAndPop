@@ -149,13 +149,13 @@ const Landing = () => {
                             <h5>{viewBusiness.city}, {viewBusiness.state} {viewBusiness.zipCode}</h5>
                             <h5>{viewBusiness.phone}</h5>
                             <h4><a href={viewBusiness.website}>{viewBusiness.website}</a></h4>
-                            {showReviews(viewBusiness.Reviews)}
+                            {showReviews(viewBusiness.Reviews, viewBusiness.companyName)}
                     </div>
                 )
             })
     }, [viewBusiness])
 
-    function showReviews(reviews) {
+    function showReviews(reviews, business) {
         if (reviews.length) {
             return (
                 <div>
@@ -164,10 +164,25 @@ const Landing = () => {
                         {
                             reviews.map(review => (
                                     <div key={review.id} className="border p-2">
-                                        <h5>{review.title}</h5>
-                                        <p><Avatar src={review.userImage} /> By: {review.user}</p>
+                                        <div style={{fontSize: '15px'}}><strong>{review.title}</strong></div>
+                                        <div style={{fontSize: '10px', marginLeft: 0}}>by {review.user}</div>
+                                        <Avatar src={review.userImage} />
+                                        <div style={{textDecoration: 'underline'}}><strong>Review</strong></div>
+                                        <div style={{fontSize: '15px'}}>{review.message}</div>
+                                        <div style={{color: 'gray'}}>at {formatDateTime(review.createdAt)}</div>
                                         <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
-                                        <p>{review.message}</p>
+                                        <div>
+                                            <div style={{textDecoration: 'underline'}}><strong>{review.Replies.length ? `${business} replied:` : `${business} has Not Replied Yet`}</strong></div>
+                                            <div>
+                                                {
+                                                    review.Replies.map(reply => (
+                                                        <div>
+                                                            <span style={{fontSize: '12.5px', marginLeft: 0}}>{reply.message}</span> <span style={{color: 'gray', marginLeft: 0}}>at {formatDateTime(reply.createdAt)}</span>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                        </div>
                                     </div>
                                 )
                             )
@@ -181,6 +196,20 @@ const Landing = () => {
                 <h3 style={{textDecoration: 'underline'}}>This business has no reviews yet</h3>
             )
         }
+    }
+
+    function formatDateTime(dateTime) {
+        let time;
+        if (parseInt(dateTime.split('T')[1].split(':')[0]) > 12) {
+            time = `${parseInt(dateTime.split('T')[1].split(':')[0]) - 12}:${dateTime.split('T')[1].split(':')[1]} PM`
+        } else if (parseInt(dateTime.split('T')[1].split(':')[0]) < 12) {
+            time = `${dateTime.split('T')[1].split(':')[0].split('')[1]}:${dateTime.split('T')[1].split(':')[1]} AM`;
+        } else {
+            time = `${dateTime.split('T')[1].split(':')[0]}:${dateTime.split('T')[1].split(':')[1]} PM`
+        }
+        // parseInt(dateTime.split('T')[1].split(':')[0]) > 12 ? time = 'blah' : time = `${dateTime.split('T')[1].split(':')[0].split('')[1]}:${dateTime.split('T')[1].split(':')[1]} AM`;
+        const date = `${dateTime.split('T')[0].split('-')[1]}/${dateTime.split('T')[0].split('-')[2]}/${dateTime.split('T')[0].split('-')[0]}`
+        return `${time} on ${date}`;
     }
 
     function reviewOnClick(e) {
