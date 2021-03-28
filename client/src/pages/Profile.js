@@ -73,22 +73,56 @@ function handleProfileSubmit(e){
     return (
       
       reviews.map(review => (
-        <div key={review.id} className="bg-white border">
-          <h5>{review.businessName}</h5>
-          <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
-          <h6 className="mt-2">{review.title}</h6>
-          <p style={{fontSize: '10px'}}>{review.message}</p>
-        </div>
+        // <div key={review.id} className="bg-white border">
+        //   <h5>{review.businessName}</h5>
+        //   <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
+        //   <h6 className="mt-2">{review.title}</h6>
+        //   <p style={{fontSize: '10px'}}>{review.message}</p>
+          <div key={review.id} className="border p-2">
+              <div style={{fontSize: '15px'}}><strong>{review.businessName}</strong></div>
+              <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
+              <div style={{fontSize: '12.5px'}}><strong>{review.title}</strong></div>
+              <div style={{fontSize: '12.5px'}}>{review.message}</div>
+              <div style={{color: 'gray'}}>at {formatDateTime(review.createdAt)}</div>
+              
+              <div>
+                  <div style={{textDecoration: 'underline'}}><strong>{review.Replies.length ? `${review.businessName} replied:` : `${review.businessName} has Not Replied Yet`}</strong></div>
+                  <div>
+                      {
+                          review.Replies.map(reply => (
+                              <div key={reply.id}>
+                                  <span style={{fontSize: '12.5px', marginLeft: 0}}>{reply.message}</span> <span style={{color: 'gray', marginLeft: 0}}>at {formatDateTime(reply.createdAt)}</span>
+                              </div>
+                          ))
+                      }
+                  </div>
+              </div>
+          </div>
+        // </div>
       ))
       
     )
+  }
+
+  function formatDateTime(dateTime) {
+    let time;
+    if (parseInt(dateTime.split('T')[1].split(':')[0]) > 12) {
+        time = `${parseInt(dateTime.split('T')[1].split(':')[0]) - 12}:${dateTime.split('T')[1].split(':')[1]} PM`
+    } else if (parseInt(dateTime.split('T')[1].split(':')[0]) < 12) {
+        time = `${dateTime.split('T')[1].split(':')[0].split('')[1]}:${dateTime.split('T')[1].split(':')[1]} AM`;
+    } else {
+        time = `${dateTime.split('T')[1].split(':')[0]}:${dateTime.split('T')[1].split(':')[1]} PM`
+    }
+    // parseInt(dateTime.split('T')[1].split(':')[0]) > 12 ? time = 'blah' : time = `${dateTime.split('T')[1].split(':')[0].split('')[1]}:${dateTime.split('T')[1].split(':')[1]} AM`;
+    const date = `${dateTime.split('T')[0].split('-')[1]}/${dateTime.split('T')[0].split('-')[2]}/${dateTime.split('T')[0].split('-')[0]}`
+    return `${time} on ${date}`;
   }
 
     return (
 
         <div>
             <div className="d-flex justify-content-center h-100">
-                <Card className="card">
+                <Card className="card" style={{width: '600px'}}>
                     <Card.Img variant="top" src={user.image} />
                         <Card.Body>
                             <Card.Title>
@@ -108,7 +142,6 @@ function handleProfileSubmit(e){
                                 <div>
                                   {showReviews ? reviews(user.Reviews) : <div></div>}
                                 </div>
-                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                         </Card.Body>
                 </Card>
             </div>
