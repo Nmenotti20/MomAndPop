@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./style.css";
+import { useHistory } from 'react-router-dom';
 import { FaUnlock } from "react-icons/fa";
 import { FaUsers  } from "react-icons/fa";
 import API from "../utils/API/userAPI";
@@ -7,6 +8,7 @@ import UserContext from "../utils/Context/UserContext";
 import {Animated} from "react-animated-css";
 
 function UserLogin() {
+  const routerHistory = useHistory();
   const { changeUser } = useContext(UserContext);
 
   const [formObject, setFormObject] = useState({});
@@ -49,7 +51,7 @@ function UserLogin() {
                   color: 'success'
                 })
               })
-              .then(() => window.location.replace('/profile'))
+              .then(() => routerHistory.push('/profile'))
             // document.cookie = `token=${res.data.token};SameSite=Lax; Secure`;
             // localStorage.setItem("loggedInAs", res.data.loggedInAs);
             // localStorage.setItem("name", res.data.name);

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./style.css";
+import { useHistory } from 'react-router-dom'
 import { FaEnvelope } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import API from "../utils/API/businessAPI";
@@ -7,6 +8,7 @@ import UserContext from '../utils/Context/UserContext';
 import {Animated} from "react-animated-css";
 
 function BizLogin() {
+  const routerHistory = useHistory();
   const { changeUser } = useContext(UserContext);
   //setting our Components initial state
   const [formObject, setFormObject] = useState({});
@@ -52,7 +54,7 @@ function BizLogin() {
                   color: 'success'
                 })
               })
-              .then(() => window.location.replace('/businessprofile'))
+              .then(() => routerHistory.push('/businessprofile'))
             // document.cookie = `token=${res.data.token}; SameSite=Lax; Secure`;
             // localStorage.setItem("loggedInAs", res.data.loggedInAs);
             // localStorage.setItem("name", res.data.name);
