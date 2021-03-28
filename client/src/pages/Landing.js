@@ -46,15 +46,17 @@ const Landing = () => {
         return debouncedValue
     }
 
-    const debouncedSearchTerm = useDebounce(search, 500)
+    const debouncedSearchTerm = useDebounce(search, 500);
+
+    const [zip, setZip] = useState(undefined)
 
     useEffect(() => {
-
         if (!search) {
             window.navigator.geolocation.getCurrentPosition(location => {
                 radarAPI.findZip(location.coords.latitude, location.coords.longitude)
                     .then(res => {
-                        API.findBusinesses(res.data.addresses[0].postalCode.substr(0, 3))
+                        setZip(res.data.addresses[0].postalCode.substr(0, 3));
+                        API.findBusinesses({ debouncedSearchTerm: undefined, zip: res.data.addresses[0].postalCode.substr(0, 3)})
                             .then(data => {
                                 setBusinesses(data.data)
                                 console.log(data)
@@ -67,7 +69,7 @@ const Landing = () => {
                     .catch(err => console.log(err))
             });
         } else if (debouncedSearchTerm) {
-            searchBusinesses(debouncedSearchTerm)
+            searchBusinesses({ debouncedSearchTerm, zip })
         }
     }, [debouncedSearchTerm]);
 
@@ -147,13 +149,13 @@ const Landing = () => {
                             <h5>{viewBusiness.city}, {viewBusiness.state} {viewBusiness.zipCode}</h5>
                             <h5>{viewBusiness.phone}</h5>
                             <h4><a href={viewBusiness.website}>{viewBusiness.website}</a></h4>
-                            {showReviews(viewBusiness.Reviews)}
+                            {showReviews(viewBusiness.Reviews, viewBusiness.companyName)}
                     </div>
                 )
             })
     }, [viewBusiness])
 
-    function showReviews(reviews) {
+    function showReviews(reviews, business) {
         if (reviews.length) {
             return (
                 <div>
@@ -162,10 +164,25 @@ const Landing = () => {
                         {
                             reviews.map(review => (
                                     <div key={review.id} className="border p-2">
-                                        <h5>{review.title}</h5>
-                                        <p><Avatar src={review.userImage} /> By: {review.user}</p>
+                                        <div style={{fontSize: '15px'}}><strong>{review.title}</strong></div>
+                                        <div style={{fontSize: '10px', marginLeft: 0}}>by {review.user}</div>
+                                        <Avatar src={review.userImage} />
+                                        <div style={{textDecoration: 'underline'}}><strong>Review</strong></div>
+                                        <div style={{fontSize: '15px'}}>{review.message}</div>
+                                        <div style={{color: 'gray'}}>at {formatDateTime(review.createdAt)}</div>
                                         <StarRatings rating={review.rating} starDimension="10px" starSpacing="1px" starRatedColor="orangered" />
-                                        <p>{review.message}</p>
+                                        <div>
+                                            <div style={{textDecoration: 'underline'}}><strong>{review.Replies.length ? `${business} replied:` : `${business} has Not Replied Yet`}</strong></div>
+                                            <div>
+                                                {
+                                                    review.Replies.map(reply => (
+                                                        <div>
+                                                            <span style={{fontSize: '12.5px', marginLeft: 0}}>{reply.message}</span> <span style={{color: 'gray', marginLeft: 0}}>at {formatDateTime(reply.createdAt)}</span>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                        </div>
                                     </div>
                                 )
                             )
@@ -179,6 +196,20 @@ const Landing = () => {
                 <h3 style={{textDecoration: 'underline'}}>This business has no reviews yet</h3>
             )
         }
+    }
+
+    function formatDateTime(dateTime) {
+        let time;
+        if (parseInt(dateTime.split('T')[1].split(':')[0]) > 12) {
+            time = `${parseInt(dateTime.split('T')[1].split(':')[0]) - 12}:${dateTime.split('T')[1].split(':')[1]} PM`
+        } else if (parseInt(dateTime.split('T')[1].split(':')[0]) < 12) {
+            time = `${dateTime.split('T')[1].split(':')[0].split('')[1]}:${dateTime.split('T')[1].split(':')[1]} AM`;
+        } else {
+            time = `${dateTime.split('T')[1].split(':')[0]}:${dateTime.split('T')[1].split(':')[1]} PM`
+        }
+        // parseInt(dateTime.split('T')[1].split(':')[0]) > 12 ? time = 'blah' : time = `${dateTime.split('T')[1].split(':')[0].split('')[1]}:${dateTime.split('T')[1].split(':')[1]} AM`;
+        const date = `${dateTime.split('T')[0].split('-')[1]}/${dateTime.split('T')[0].split('-')[2]}/${dateTime.split('T')[0].split('-')[0]}`
+        return `${time} on ${date}`;
     }
 
     function reviewOnClick(e) {
@@ -218,7 +249,7 @@ const Landing = () => {
         <div>
             <div className="header_input mt-5">
                 <SearchIcon />
-                <input style={{width: '100%'}} onChange={handleInputChange} placeholder="zip code, business name, or service you're looking for" type="text" />
+                <input style={{width: '100%'}} onChange={handleInputChange} placeholder="business name, or service you're looking for (if your location is off, you can try a zip code)" type="text" />
             </div>
             <div>
 
