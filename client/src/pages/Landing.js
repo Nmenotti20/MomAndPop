@@ -13,7 +13,10 @@ import {Animated} from "react-animated-css";
 
 const Landing = () => {
     const [businesses, setBusinesses] = useState([]);
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState({
+        search: undefined,
+        zip: undefined
+    });
     const [showModal, setShowModal] = useState(false);
     const [reviewBusiness, setReviewBusiness] = useState({});
     const [viewBusiness, setViewBusiness] = useState({
@@ -46,18 +49,15 @@ const Landing = () => {
 
     const debouncedSearchTerm = useDebounce(search, 500);
 
-    const [zip, setZip] = useState(undefined)
-
     useEffect(() => {
-        if (!search) {
+        if (!search.search && !search.zip) {
             window.navigator.geolocation.getCurrentPosition(location => {
                 radarAPI.findZip(location.coords.latitude, location.coords.longitude)
                     .then(res => {
-                        setZip(res.data.addresses[0].postalCode.substr(0, 3));
-                        API.findBusinesses({ debouncedSearchTerm: undefined, zip: res.data.addresses[0].postalCode.substr(0, 3)})
+                        setSearch({...search, zip: res.data.addresses[0].postalCode.substr(0, 3)});
+                        API.findBusinesses({ search: undefined, zip: res.data.addresses[0].postalCode.substr(0, 3) })
                             .then(data => {
                                 setBusinesses(data.data)
-                                console.log(data)
                             })
                             .catch(err => console.log(err))
                     })
@@ -67,7 +67,7 @@ const Landing = () => {
                     .catch(err => console.log(err))
             });
         } else if (debouncedSearchTerm) {
-            searchBusinesses({ debouncedSearchTerm, zip })
+            searchBusinesses(search)
         }
     }, [debouncedSearchTerm]);
 
@@ -78,7 +78,12 @@ const Landing = () => {
     }
 
     function handleInputChange(e) {
-        setSearch(e.target.value)
+        const { name, value } = e.target
+        if (!value.length) {
+            setSearch({ ...search, [name]: undefined});
+        } else {
+            setSearch({ ...search, [name]: value })
+        }
     }
 
     function submitReview(e) {
@@ -245,9 +250,13 @@ const Landing = () => {
 
     return (
         <div>
+            <div className="header_input mt-5" style={{width: '50%'}}>
+                <SearchIcon />
+                <input style={{width: '100%'}} onChange={handleInputChange} name="zip" placeholder="zip code" type="text" />
+            </div>
             <div className="header_input mt-5">
                 <SearchIcon />
-                <input style={{width: '100%'}} onChange={handleInputChange} placeholder="business name, or service you're looking for (if your location is off, you can try a zip code)" type="text" />
+                <input style={{width: '100%'}} onChange={handleInputChange} name="search" placeholder="business name or service you're looking for" type="text" />
             </div>
             <div>
 

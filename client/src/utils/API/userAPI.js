@@ -29,7 +29,7 @@ export default {
         return axios.get('/api/user/findAllBusinesses')
     },
     findBusinesses: function(query) {
-        return axios.get("/api/user/findBusinesses/" + query.debouncedSearchTerm + "/" + query.zip)
+        return axios.get("/api/user/findBusinesses/" + query.search + "/" + query.zip)
     },
     allReviews: function() {
         return axios.get("/api/user/reviews")

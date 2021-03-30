@@ -136,46 +136,46 @@ module.exports = {
           ]
         }]
       })
-      .then(business => res.json(business))
-      .catch(err => res.status(422).json(err))
+        .then(business => res.json(business))
+        .catch(err => res.status(422).json(err))
     } else if (req.params.search !== 'undefined' && req.params.zip === 'undefined') {
       db.Business
-      .findAll({
-        where: {
-          [Sequelize.Op.or]: [
-            {
-              service: {
-                [Sequelize.Op.substring]: req.params.search
+        .findAll({
+          where: {
+            [Sequelize.Op.or]: [
+              {
+                service: {
+                  [Sequelize.Op.substring]: req.params.search
+                }
+              },
+              {
+                companyName: {
+                  [Sequelize.Op.substring]: req.params.search
+                }
+              },
+              {
+                zipCode: {
+                  [Sequelize.Op.substring]: req.params.search
+                }
               }
-            },
-            {
-              companyName: {
-                [Sequelize.Op.substring]: req.params.search
+            ]
+          },
+          attributes: {
+            exclude: [
+              'password'
+            ]
+          },
+          include: [{
+            model: db.Review,
+            include: [
+              {
+                model: db.Reply
               }
-            },
-            {
-              zipCode: {
-                [Sequelize.Op.substring]: req.params.search
-              }
-            }
-          ]
-        },
-        attributes: {
-          exclude: [
-            'password'
-          ]
-        },
-        include: [{
-          model: db.Review,
-          include: [
-            {
-              model: db.Reply
-            }
-          ]
-        }]
-      })
-      .then(businesses => res.json(businesses))
-      .catch(err => res.status(422).json(err))
+            ]
+          }]
+        })
+        .then(businesses => res.json(businesses))
+        .catch(err => res.status(422).json(err))
     } else if (req.params.search !== 'undefined' && req.params.zip !== 'undefined') {
       db.Business.findAll({
         where: {
@@ -209,12 +209,12 @@ module.exports = {
           ]
         }]
       })
-      .then(business => res.json(business))
-      .catch(err => res.status(422).json(err))
-    } else if (req.params.search === 'undefined' === req.params.zip === 'undeined') {
-      console.log('both undefined')
+        .then(business => res.json(business))
+        .catch(err => res.status(422).json(err));
+    } else if (req.params.search === 'undefined' && req.params.zip === 'undefined') {
+      res.send('Sorry... something went wrong. Please refresh the page');
     } else {
-      console.log('not valid')
+      res.send('Not a valid search. Please try again');
     }
 
     // db.Business
