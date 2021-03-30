@@ -3,9 +3,7 @@ import UserContext from '../utils/Context/UserContext';
 import "./style.css";
 import SearchIcon from "@material-ui/icons/Search";
 import { Avatar } from "@material-ui/core";
-
 import { Card, CardColumns, Modal } from "react-bootstrap";
-
 import StarRating from '../components/StarRating';
 import StarRatings from 'react-star-ratings'
 import API from '../utils/API/userAPI';
