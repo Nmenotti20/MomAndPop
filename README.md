@@ -32,7 +32,7 @@ so that I can support them with business as opposed to big box retailers
 
 ![GitHub Repo](https://github.com/Nmenotti20/MomAndPop)<br>
 
-![Heroku Deployed App](https://momandpop2021.herokuapp.com/)<br>
+![Heroku Deployed App](https://momandpop2021.herokuapp.com)<br>
 
 ![Additional Links](/client\assets\MomAndPop_Logo.png)<br>
 
